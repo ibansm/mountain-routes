@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\RutasController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +17,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::get('/', function () {
-//     return view('welcome');
+//     return view('home');
 // });
 
-Route::get('/', function() {
-    return view('login');
-});
+// CRUD
+// Route::apiResource('usuarios', UsuarioController::class);
+
+// Route::get('/token', function (Request $request) {
+//     $token = $request->session()->token();
+ 
+//     $token = csrf_token();
+
+//     return $token;
+
+// });
+

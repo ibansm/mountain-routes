@@ -11,14 +11,17 @@
 <body>
     <h1 class="bg-info text-center p-4">Registro de Usuario</h1>
 
-    <form class="w-50 m-auto" method="post">
+    <form class="w-50 m-auto" action="{{route('usuarios.store')}}" method="POST">
+        
+        @csrf
+
         <div class="m-3">
             <label class="form-label" for="username">Username</label>
             <input class="form-control" type="text" name="username" id="">
         </div>
         <div class="m-3">
-            <label class="form-label" for="name">Nombre</label>
-            <input class="form-control" type="text" name="name" id="">
+            <label class="form-label" for="nombre">Nombre</label>
+            <input class="form-control" type="text" name="nombre" id="">
         </div>
         <div class="m-3">
             <label class="form-label" for="apellidos">Apellidos</label>
@@ -34,10 +37,11 @@
         </div>
         <div class="m-3">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password">
+            <input type="password" class="form-control" name="password" id="password">
         </div>
         <div class="m-3 d-flex align-items-center justify-content-center">
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <a class="m-5 btn btn-primary" href="{{route('usuarios.index')}}">Volver</a>
+            <button type="submit" class="text-white btn btn-success">Enviar</button>
         </div>
     </form>
 
