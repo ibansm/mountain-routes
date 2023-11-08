@@ -21,8 +21,8 @@ class UsuarioFactory extends Factory
             'nombre'=> $this->faker->name,
             'apellidos'=> $this->faker->lastName,
             'email'=> $this->faker->unique()->safeEmail(),
-            'password' => $this->faker->password,
-            'edad'=> $this->faker->numberBetween(0,99)
+            'password' => $this->faker->password(),
+            'edad'=> $this->faker->optional()->numberBetween(10,99)
         ];
     }
 }

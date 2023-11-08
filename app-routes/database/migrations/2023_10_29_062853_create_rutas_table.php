@@ -13,14 +13,17 @@ return new class extends Migration
     {
         Schema::create('rutas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('usuarios_id');
             $table->string('nombre');
+            $table->text('descripcion');
             $table->float('longitud');
-            $table->time('tiempo');
+            $table->unsignedInteger('tiempo');
+            $table->string('ciudad');
             $table->date('fecha_creada');
             $table->date('fecha_realizada');
-            $table->string('descripcion');
-            $table->double('coordenadas');
+            $table->json('coordenadas');
+            $table->enum('dificultad',['baja','media','alta']);
+            $table->binary('foto_perfil')->nullable();
+            $table->unsignedBigInteger('usuarios_id');
             $table->foreign('usuarios_id')->references('id')->on('usuarios');
             $table->timestamps();
         });
