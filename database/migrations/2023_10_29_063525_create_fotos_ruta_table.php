@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('fotos_ruta', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('ruta_id');
-            $table->string('data');
+            $table->string('data')->unique();
             $table->string('nombre');
-            $table->double('coordenada');
+            $table->json('coordenadas');
+            $table->unsignedBigInteger('rutas_id');
             $table->timestamps();
-            $table->foreign('ruta_id')->references('id')->on('rutas');
+            $table->foreign('rutas_id')->references('id')->on('rutas');
         });
     }
 

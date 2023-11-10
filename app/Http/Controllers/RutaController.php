@@ -12,7 +12,8 @@ use App\Http\Responses\ApiResponse;
 use App\Models\Ruta;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
 
 class RutaController extends Controller
 {
@@ -46,19 +47,20 @@ class RutaController extends Controller
     //public function create(){}
 
     
-   /**
-    * The above function is a PHP code snippet that handles the storage of a route object, including
-    * validation of the request data and error handling.
-    * 
-    * @param Request request The  parameter is an instance of the Request class, which
-    * represents an HTTP request. It contains all the data and information about the incoming request,
-    * such as the request method, headers, query parameters, form data, and uploaded files.
-    * 
-    * @return an API response. If the validation passes and the route is successfully created, it
-    * returns a success response with a status code of 201 and the created route as the data. If there
-    * is a validation error, it returns an error response with a status code of 422 and the validation
-    * errors as the data. If there is any other exception, it returns an error response with a
-    */
+   
+    /**
+     * The above function is a PHP code snippet that handles the storage of a route object, including
+     * validation of request data, setting values for certain fields, and returning a response.
+     * 
+     * @param Request request The  parameter is an instance of the Request class, which
+     * represents an HTTP request. It contains all the data and information about the incoming request,
+     * such as the request method, headers, query parameters, form data, and uploaded files.
+     * 
+     * @return an API response. If the validation passes and the route is successfully created, it
+     * returns a success response with a status code of 201 (Created) and the created route data in the
+     * response body. If there is a validation error, it returns an error response with a status code
+     * of 422 (Unprocessable Entity) and the validation errors in the response body. If there is
+     */
     public function store(Request $request)
     {
 
@@ -75,14 +77,25 @@ class RutaController extends Controller
                 'fecha_realizada' => 'required|date_format:Y-m-d|after_or_equal:'.date('Y-01-01'),
                 'coordenadas' => 'required',
                 'dificultad' => 'required|in:baja,media,alta',
-                'foto_perfil' => 'mimes:jpeg,jpg,png,gif|max:2048'
+                'foto_perfil' => 'required|image|max:2048'
             ]);
+            
+            // Data request
+            $data = $request->all();
 
-            $request['tiempo'] = $this->setTimeToSeconds($request->tiempo);
-            $ruta = Ruta::create($request->all());
+            // Set foto_perfil
+            // En produccion habra que linkear tambien la carpeta "storage" {php artisan storage:link}
+            $foto = $request->file('foto_perfil')->store('public/multimedia/fotos/perfil');
+            $data['foto_perfil'] = Storage::url($foto);
+    
+            // Set tiempo
+            $data['tiempo'] = $this->setTimeToSeconds($request->tiempo);
+            
+            $ruta = Ruta::create($data);
             $ruta['tiempo'] = $this->setSecondsToTime($ruta['tiempo']); // Parse to JSON
 
-            return ApiResponse::success('Ruta creada correctamente',201,$ruta);    
+            return ApiResponse::success('Ruta creada correctamente',201,$ruta);   
+           
 
         } catch (ValidationException $e) {
             $errors = $e->validator->errors()->toArray();
@@ -150,7 +163,7 @@ class RutaController extends Controller
                 'fecha_creada' => 'date_format:Y-m-d',
                 'fecha_realizada' => 'date_format:Y-m-d|after_or_equal:'.date('Y-01-01'),
                 'dificultad' => 'in:baja,media,alta',
-                'foto_perfil' => 'mimes:jpeg,jpg,png,gif|max:2048'
+                'foto_perfil' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
             ]);
 
             $request['tiempo'] = $this->setTimeToSeconds($request->tiempo); // To seconds

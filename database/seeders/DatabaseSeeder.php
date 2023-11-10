@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\FotosRuta;
 use App\Models\Ruta;
 use Illuminate\Database\Seeder;
 use App\Models\Usuario;
@@ -25,5 +26,6 @@ class DatabaseSeeder extends Seeder
             // Crear registros de prueba
             Usuario::factory(30)->create();
             Ruta::factory(30)->create();
+            FotosRuta::factory(30)->create();
     }
 }

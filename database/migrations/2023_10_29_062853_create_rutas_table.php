@@ -22,7 +22,7 @@ return new class extends Migration
             $table->date('fecha_realizada');
             $table->json('coordenadas');
             $table->enum('dificultad',['baja','media','alta']);
-            $table->binary('foto_perfil')->nullable();
+            $table->string('foto_perfil')->nullable();
             $table->unsignedBigInteger('usuarios_id');
             $table->foreign('usuarios_id')->references('id')->on('usuarios');
             $table->timestamps();

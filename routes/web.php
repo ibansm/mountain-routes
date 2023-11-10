@@ -16,9 +16,9 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::get('/', function () {
-//     return view('home');
-// });
+Route::get('/', function () {
+    return view('index');
+});
 
 // CRUD
 // Route::apiResource('usuarios', UsuarioController::class);

@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\FotosRutaController;
 use App\Http\Controllers\RutaController;
 use App\Http\Controllers\UsuarioController;
+use Database\Factories\FotosRutaFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,4 +32,5 @@ Route::get('rutas/ultimas/{ruta}', [RutaController::class, 'ultimasRutas']);
 Route::get('rutas/{ruta}/coordenadas', [RutaController::class, 'getCoordenadasRuta']);
 Route::get('rutas/busqueda/{filtro}', [RutaController::class, 'filtrarRuta']);
 
-
+// API FOTOS_RUTA
+Route::apiResource('fotos-ruta', FotosRutaController::class, ['parameters' => ['fotos-ruta' => 'fotos']]);

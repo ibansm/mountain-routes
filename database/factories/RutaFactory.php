@@ -40,7 +40,7 @@ class RutaFactory extends Factory
             'fecha_realizada'=> $this->faker->dateTimeBetween(date('2023-01-01'), now()),
             'coordenadas'=> $kenduSlas,
             'dificultad' => $this->faker->randomElement(['baja','media','alta']),
-            'foto_perfil' => $this->faker->imageUrl(width:600, height:600),
+            'foto_perfil' => $this->faker->imageUrl(),
             'usuarios_id' => $this->faker->numberBetween(1,30)
         ];
     }

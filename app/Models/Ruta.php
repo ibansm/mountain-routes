@@ -36,4 +36,9 @@ class Ruta extends Model
     public function usuarios() { // Una ruta pertenece a un solo usuario
         return $this->belongsTo(Usuario::class);
     }
+
+    public function fotos() { // Una ruta puede tener muchas fotos
+        return $this->hasMany(FotosRuta::class, 'rutas_id');
+    }
+
 }
