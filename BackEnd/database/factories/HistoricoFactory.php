@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\FotosRuta>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Historico>
  */
-class FotosRutaFactory extends Factory
+class HistoricoFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,8 @@ class FotosRutaFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre'=> $this->faker->sentence(),
-            'data' => $this->faker->imageUrl(),
-            'coordenadas' => $this->faker->randomFloat(-999999,999999,2),
+            'fecha_actualizada' => $this->faker->dateTimeBetween(date('2023-01-01'), now()),
+            'fecha_realizada' =>  $this->faker->dateTimeBetween(date('2023-01-01'), now()),
             'rutas_id' => $this->faker->numberBetween(1,30)
         ];
     }

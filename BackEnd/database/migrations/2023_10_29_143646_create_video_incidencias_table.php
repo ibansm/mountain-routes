@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('historico', function (Blueprint $table) {
+        Schema::create('video_incidencias', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('ruta_id');
-            $table->date('fecha_actualizada');
-            $table->date('fecha_realizada');
+            $table->unsignedBigInteger('incidencias_id');
+            $table->string('data');
+            $table->string('nombre');
             $table->timestamps();
-            $table->foreign('ruta_id')->references('id')->on('rutas');
+            $table->foreign('incidencias_id')->references('id')->on('incidencias');
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('historico');
+        Schema::dropIfExists('video_incidencias');
     }
 };

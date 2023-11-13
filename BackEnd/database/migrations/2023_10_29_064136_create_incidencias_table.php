@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('incidencia', function (Blueprint $table) {
+        Schema::create('incidencias', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('historico_id');
+            $table->unsignedBigInteger('historicos_id');
             $table->enum('tipo',['derrumbe','piedra','estado_fuente','hundimiento'])->default('estado_fuente');
-            $table->double('coordenada');
+            $table->json('coordenada');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
-            $table->foreign('historico_id')->references('id')->on('historico');
+            $table->foreign('historicos_id')->references('id')->on('historicos');
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('incidencia');
+        Schema::dropIfExists('incidencias');
     }
 };

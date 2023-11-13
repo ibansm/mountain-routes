@@ -5,6 +5,8 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\FotosRuta;
+use App\Models\Historico;
+use App\Models\Incidencia;
 use App\Models\Ruta;
 use Illuminate\Database\Seeder;
 use App\Models\Usuario;
@@ -27,5 +29,7 @@ class DatabaseSeeder extends Seeder
             Usuario::factory(30)->create();
             Ruta::factory(30)->create();
             FotosRuta::factory(30)->create();
+            Historico::factory(30)->create();
+            Incidencia::factory(15)->create();
     }
 }

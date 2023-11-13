@@ -18,7 +18,7 @@ return new class extends Migration
             $table->json('coordenadas');
             $table->unsignedBigInteger('rutas_id');
             $table->timestamps();
-            $table->foreign('rutas_id')->references('id')->on('rutas');
+            $table->foreign('rutas_id')->references('id')->on('rutas')->onDelete('cascade');
         });
     }
 

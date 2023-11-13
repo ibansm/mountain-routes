@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\FotosRutaController;
+use App\Http\Controllers\HistoricoController;
+use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\RutaController;
 use App\Http\Controllers\UsuarioController;
 use Database\Factories\FotosRutaFactory;
@@ -34,3 +36,9 @@ Route::get('rutas/busqueda/{filtro}', [RutaController::class, 'filtrarRuta']);
 
 // API FOTOS_RUTA
 Route::apiResource('fotos-ruta', FotosRutaController::class, ['parameters' => ['fotos-ruta' => 'fotos']]);
+
+// API HISTORICO
+Route::apiResource('historico', HistoricoController::class);
+
+// API INCIDENCIAS
+Route::apiResource('incidencias', IncidenciaController::class);
