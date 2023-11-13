@@ -121,7 +121,7 @@ class UsuarioController extends Controller
 
         } catch (ValidationException $e) {
             $errors = $e->validator->errors()->toArray();
-            return ApiResponse::error('Error de validación' ,422, $errors);
+            return ApiResponse::fail(422, $errors);
         } catch (ModelNotFoundException $e) {
             return ApiResponse::error('Usuario no encontrado' ,404);
         } catch (Exception $e) {
@@ -174,13 +174,17 @@ class UsuarioController extends Controller
         try {
             $usuarios = Usuario::with('usuarios')->findOrFail($id);
 
+            if ( count($usuarios['usuarios']) == 0 ) {
+                return ApiResponse::error('El usuario no tiene rutas',404);
+            }
+
             $usuarios = [
                 "username" => $usuarios->username,
                 "email" => $usuarios->email,
                 "rutas" => $usuarios->usuarios
             ];
                 
-            return ApiResponse::success('Lista rutas '.$usuarios['username'],200,$usuarios);
+            return ApiResponse::success($usuarios,200);
 
         } catch (ModelNotFoundException $e) {
             return ApiResponse::error('Usuario no encontrado',404);

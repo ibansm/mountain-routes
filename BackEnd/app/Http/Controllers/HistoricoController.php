@@ -35,9 +35,9 @@ class HistoricoController extends Controller
                 }       
             }
 
-            return ApiResponse::success('Historico',200,$historicos);
+            return ApiResponse::success($historicos,200);
         } catch(Exception $e) {
-            return ApiResponse::error('Ocurrió un error: '.$e->getMessage(), 500);
+            return ApiResponse::error($e->getMessage(), 500);
         }
     }
 
@@ -61,9 +61,9 @@ class HistoricoController extends Controller
 
         } catch (ValidationException $e) {
             $errors = $e->validator->errors()->toArray();
-            return ApiResponse::error('Error de validación' ,422, $errors);
+            return ApiResponse::fail($errors,422);
         } catch (Exception $e) {
-            return ApiResponse::error('Error: '.$e->getMessage() ,500);
+            return ApiResponse::error($e->getMessage() ,500);
         }
     }
 
@@ -83,14 +83,14 @@ class HistoricoController extends Controller
             $historico = Historico::with('rutas')->where('rutas_id', $id)->orderBy('fecha_actualizada','desc')->get();
 
             if ( count($historico) == 0 ) {
-                return ApiResponse::error('No se encontró histórico de la ruta seleccionada',200);
+                return ApiResponse::fail('No se encontró histórico de la ruta seleccionada',200);
             }
 
             
             $ruta = $historico[0]["rutas"];
             $historico = $this->setCollectionHistoricToRoute($historico, $ruta);
   
-            return ApiResponse::success("Lista de históricos '$id'",200,$historico);
+            return ApiResponse::success($historico,200);
 
         } catch (ModelNotFoundException $e) {
             return ApiResponse::error('No existe el histórico',404);
@@ -134,11 +134,11 @@ class HistoricoController extends Controller
 
             $historico->update($request->all());
          
-            return ApiResponse::success('Histórico actualizado correctamente',201,$historico);   
+            return ApiResponse::success($historico,201);   
 
         } catch (ValidationException $e) {
             $errors = $e->validator->errors()->toArray();
-            return ApiResponse::error('Error de validación' ,422, $errors);
+            return ApiResponse::fail($errors ,422);
         } catch (Exception $e) {
             return ApiResponse::error('Error: '.$e->getMessage() ,500);
         }

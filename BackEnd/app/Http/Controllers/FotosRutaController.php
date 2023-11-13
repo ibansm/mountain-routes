@@ -28,9 +28,9 @@ class FotosRutaController extends Controller
         try {
             $fotos = FotosRuta::all()->groupBy('rutas_id');
 
-            return ApiResponse::success('Listado de fotos',200,$fotos);
+            return ApiResponse::success($fotos,200);
         } catch(Exception $e) {
-            return ApiResponse::error('Ocurrió un error: '.$e->getMessage(), 500);
+            return ApiResponse::error($e->getMessage(), 500);
         } 
     }
 
@@ -53,8 +53,8 @@ class FotosRutaController extends Controller
             $request->validate([                
                 'nombre' => 'required|string|unique:fotos_ruta',
                 'data' => 'required|image|max:2048',
-                'coordenadas' => 'required|array',
-                'coordenadas.*' => 'numeric|between:-99999999,9999999.9999999',
+                'coordenadas' => 'required|array|min:2',
+                'coordenadas.*' => 'required|numeric|between:-99999999,9999999.9999999',
                 'rutas_id' => 'required|integer'
             ]);
 
@@ -66,13 +66,13 @@ class FotosRutaController extends Controller
 
             $fotos = FotosRuta::create($data);
          
-            return ApiResponse::success('Ruta creada correctamente',201,$fotos);   
+            return ApiResponse::success($fotos,201);   
 
         } catch (ValidationException $e) {
             $errors = $e->validator->errors()->toArray();
-            return ApiResponse::error('Error de validación' ,422, $errors);
+            return ApiResponse::fail($errors,422);
         } catch (Exception $e) {
-            return ApiResponse::error('Error: '.$e->getMessage() ,500);
+            return ApiResponse::error($e->getMessage() ,500);
         }
     }
 
@@ -95,20 +95,20 @@ class FotosRutaController extends Controller
             $fotos = FotosRuta::with('rutas')->where('rutas_id', $id)->get();
 
             if ( count($fotos) == 0 ) {
-                return ApiResponse::error('No se encontraron fotos',200);
+                return ApiResponse::fail('No se encontraron fotos',404);
             }
 
             
             $ruta = $fotos[0]["rutas"];
             $fotos = $this->setCollectionPhotoToRoute($fotos, $ruta);
   
-            return ApiResponse::success("Lista fotos de ruta '$id'",200,$fotos);
+            return ApiResponse::success($fotos,200);
 
         } catch (ModelNotFoundException $e) {
             return ApiResponse::error('No existe la ruta',404);
 
         } catch (Exception $e) {
-            return ApiResponse::error('Error: '.$e->getMessage() ,500);
+            return ApiResponse::error($e->getMessage() ,500);
         }
     }
 

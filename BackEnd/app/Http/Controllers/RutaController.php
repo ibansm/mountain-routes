@@ -37,7 +37,7 @@ class RutaController extends Controller
                 $tiempo['tiempo'] = $this->setSecondsToTime($tiempo['tiempo']);
             }
 
-            return ApiResponse::success('Lista de rutas',200,$rutas);
+            return ApiResponse::success($rutas,200);
         } catch(Exception $e) {
             return ApiResponse::error('Ocurrió un error: '.$e->getMessage(), 500);
         } 
@@ -94,12 +94,12 @@ class RutaController extends Controller
             $ruta = Ruta::create($data);
             $ruta['tiempo'] = $this->setSecondsToTime($ruta['tiempo']); // Parse to JSON
 
-            return ApiResponse::success('Ruta creada correctamente',201,$ruta);   
+            return ApiResponse::success($ruta,201);   
            
 
         } catch (ValidationException $e) {
             $errors = $e->validator->errors()->toArray();
-            return ApiResponse::error('Error de validación' ,422, $errors);
+            return ApiResponse::fail($errors ,422);
         } catch (Exception $e) {
             return ApiResponse::error('Error: '.$e->getMessage() ,500);
         }
@@ -121,7 +121,7 @@ class RutaController extends Controller
         try {
             $ruta = Ruta::with('usuarios')->findOrFail($id);
             $ruta['tiempo'] = $this->setSecondsToTime($ruta['tiempo']);
-            return ApiResponse::success('Ruta obtenida con éxito',200,$ruta);
+            return ApiResponse::success($ruta,200);
         } catch (ModelNotFoundException $e) {
             return ApiResponse::error('Ruta no encontrada' ,404);
         }
@@ -170,11 +170,11 @@ class RutaController extends Controller
             $ruta->update($request->all());
 
             $ruta['tiempo'] = $this->setSecondsToTime($ruta['tiempo']); // Parse to JSON
-            return ApiResponse::success('Ruta actualizada correctamente',200,$ruta);    
+            return ApiResponse::success($ruta,200);    
 
         } catch (ValidationException $e) {
             $errors = $e->validator->errors()->toArray();
-            return ApiResponse::error('Error de validación' ,422, $errors);
+            return ApiResponse::fail($errors ,422);
         } catch (ModelNotFoundException $e) {
             return ApiResponse::error('Ruta no encontrada' ,404);
         } catch (Exception $e) {
@@ -242,7 +242,7 @@ class RutaController extends Controller
             foreach($rutas as $tiempo) {
                 $tiempo['tiempo'] = $this->setSecondsToTime($tiempo['tiempo']);
             }
-            return ApiResponse::success('Últimas rutas',200,$rutas);
+            return ApiResponse::success($rutas,200);
         } catch(Exception $e) {
             return ApiResponse::error('Ocurrió un error: '.$e->getMessage(), 500);
         }  
@@ -264,9 +264,15 @@ class RutaController extends Controller
      */
     public function getCoordenadasRuta($ruta) {
         try {
-            $ruta = Ruta::select('id','nombre','coordenadas')->where('id',$ruta)->get();
+            $ruta = Ruta::select('coordenadas')->where('id',$ruta)->get();
+
+            if ( count($ruta) == 0 ) {
+                return ApiResponse::error('No existe la ruta',404);
+            }
+
+            $coordinadas = $ruta[0]['coordenadas']['geometry']['type']['coordinates'];
     
-            return ApiResponse::success('Ruta obtenida con éxito',200,$ruta);
+            return ApiResponse::success($coordinadas,200);
         } catch (ModelNotFoundException $e) {
             return ApiResponse::error('Ruta no encontrada',404);
         } catch (Exception $e) {
@@ -291,7 +297,7 @@ class RutaController extends Controller
             if (count($ruta) == 0) {
                 return ApiResponse::error('No se encontraron resultados' ,404);
             }
-            return ApiResponse::success('Resultados',200,$ruta);
+            return ApiResponse::success($ruta,200);
         } catch (ModelNotFoundException $e) {
             return ApiResponse::error('No se encontraron resultados' ,404);
         }

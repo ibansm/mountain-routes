@@ -27,26 +27,52 @@ class IncidenciaController extends Controller
         try {
             $incidencias = Incidencia::all()->groupBy('historicos_id'); 
 
-            return ApiResponse::success('Incidencias',200,$incidencias);
+            return ApiResponse::success($incidencias,200);
         } catch(Exception $e) {
             return ApiResponse::error('Ocurrió un error: '.$e->getMessage(), 500);
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+   
+    // public function create(){}
 
+  
     /**
-     * Store a newly created resource in storage.
+     * The function stores an incident record in the database with the provided request data.
+     * 
+     * @param Request request The  parameter is an instance of the Request class, which
+     * represents an HTTP request. It contains all the data and information about the incoming request,
+     * such as the request method, headers, query parameters, form data, and more.
+     * 
+     * @return an API response. If the validation passes and the Incidencia is successfully created, it
+     * will return a success response with the created Incidencia and a status code of 201. If there
+     * are validation errors, it will return a fail response with the validation errors and a status
+     * code of 422. If there is any other exception, it will return an error response with the
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $request->validate([
+                'historicos_id' => 'required|numeric|unique:incidencias',
+                'tipo' => 'required|in:derrumbe,piedra,estado_fuente,hundimiento',
+                'coordenada' => 'required|array|min:2',
+                'coordenada.*' => 'required|numeric|between:-99999999,9999999.9999999',
+                'estado' => 'boolean',
+            ]);
+            
+            $request['coordenada'] = json_encode($request->coordenada);
+            
+            $incidencia = Incidencia::create($request->all());
+
+            return ApiResponse::success($incidencia,201);   
+           
+
+        } catch (ValidationException $e) {
+            $errors = $e->validator->errors()->toArray();
+            return ApiResponse::fail($errors ,422);
+        } catch (Exception $e) {
+            return ApiResponse::error($e->getMessage() ,500);
+        }
     }
 
    
@@ -70,7 +96,7 @@ class IncidenciaController extends Controller
             $incidencias = Incidencia::where('historicos_id', $id)->get();
 
             if (sizeof($incidencias)==0) {
-                return ApiResponse::success('No existen incidencias vinculadas al histórico',200);
+                return ApiResponse::fail('No existen incidencias vinculadas al histórico',404);
             }
 
             $result = [
@@ -78,37 +104,59 @@ class IncidenciaController extends Controller
                 "historico" => $historico
             ];
   
-            return ApiResponse::success("Lista de incidencias",200,$result);
+            return ApiResponse::success($result,200);
 
         } catch (ModelNotFoundException $e) {
-            return ApiResponse::error('No existe el histórico',404);
+            return ApiResponse::fail('No existe la incidencia',404);
 
         } catch (Exception $e) {
             return ApiResponse::error('Error: '.$e->getMessage() ,500); 
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // public function edit(string $id){}
+
+  
+  /**
+   * The function updates an incident with the given ID using the data from the request and returns a
+   * success response or an error response.
+   * 
+   * @param Request request The  parameter is an instance of the Request class, which
+   * represents an HTTP request. It contains all the data and information about the request, such as
+   * the request method, headers, query parameters, form data, etc.
+   * @param string id The "id" parameter is a string that represents the unique identifier of the
+   * "Ruta" object that needs to be updated.
+   * 
+   * @return an API response. If the update is successful, it returns a success response with the
+   * updated incidence and a status code of 201. If there are validation errors, it returns a fail
+   * response with the validation errors and a status code of 422. If there is any other exception, it
+   * returns an error response with the error message and a status code of 500.
+   */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $incidencia = Incidencia::findOrFail($id);
+            $request->validate([
+                'tipo' => 'in:derrumbe,piedra,estado_fuente,hundimiento',
+                'coordenada' => 'array|min:2',
+                'coordenada.*' => 'numeric|between:-99999999,9999999.9999999',
+                'estado' => 'boolean',
+            ]);
+            
+            $incidencia->update($request->all());
+
+            return ApiResponse::success($incidencia,201);   
+           
+
+        } catch (ValidationException $e) {
+            $errors = $e->validator->errors()->toArray();
+            return ApiResponse::fail($errors ,422);
+        } catch (Exception $e) {
+            return ApiResponse::error('Error: '.$e->getMessage() ,500);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+
+    // public function destroy(string $id){}
 }
