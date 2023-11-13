@@ -19,4 +19,8 @@ class Historico extends Model
     public function rutas() { // Las fotos pertenecen a una sola ruta
         return $this->belongsTo(Ruta::class);
     }
+
+    public function incidencias () {
+        return $this->hasMany(Incidencia::class, 'historicos_id');
+    }
 }
