@@ -20,7 +20,7 @@ import { TipoRutaComponent } from './components/tipo-ruta/tipo-ruta.component';
 		ContactoComponent,
 		FavoritasComponent,
 		CreaRutaComponent,
-  TipoRutaComponent,
+  		TipoRutaComponent,
 	],
 	imports: [
 		BrowserModule,
