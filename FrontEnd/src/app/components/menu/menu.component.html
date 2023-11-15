@@ -1,13 +1,12 @@
 <nav class="navbar navbar-expand-md">
-	<!-- <a class="navbar-brand" href="#">Tu Proyecto</a> -->
-	<a [routerLink]="['/']">
-		<img src="../../../assets/logo.png" alt="logo_mountain_routes" class="navbar-brand w-25 p-3" >
+	<a [routerLink]="['/']" class="navbar-brand ps-2 pt-2 pb-2">
+		<img class="logo" src="../../../assets/logo.png" alt="logo_mountain_routes" >
 	</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	<button class="navbar-toggler me-3" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" (click)="toggle()">
 	  <span class="navbar-toggler-icon"></span>
 	</button>
-	<div class="collapse navbar-collapse" id="navbarNav">
-	  <ul class="navbar-nav">
+	<div class="navbar-collapse collapse justify-content-end" id="navbarNav">
+	  <ul class="navbar-nav text-center">
 		<li class="nav-item">
 		  <a [routerLink]="['/']" class="nav-link">Inicio</a>
 		</li>
@@ -23,6 +22,12 @@
 		<li class="nav-item">
 		  <a [routerLink]="['/contacto']" class="nav-link">Contacto</a>
 		</li>
-	  </ul>
+		<li class="nav-item">
+		  <button class="btn-registrarse" type="submit">REGISTRARSE</button>
+		</li>
+		<li class="nav-item">
+		  <button class="btn-inicia-sesion" type="submit">INICIA SESI&Oacute;N</button>
+		</li>
+	</ul>
 	</div>
-  </nav>
+</nav>

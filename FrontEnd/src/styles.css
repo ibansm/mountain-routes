@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-
+/* Variables globales */
 :root {
 	--blanco: #fff;
 	--naranja: #f4941c;
@@ -11,4 +11,24 @@
 
 * {
 	color: var(--marron);
+	font-family: 'Roboto', sans-serif;
+}
+
+/* Botones */
+.btn-registrarse {
+	margin: .25rem;
+	padding: .2rem .6rem;
+	border-radius: 20px;
+	border: var(--negro222) 1px;
+	background-color: #cf6442;
+	color: var(--blanco);
+}
+
+.btn-inicia-sesion {
+	margin: .25rem .5rem;
+	padding: .2rem .6rem;
+	border-radius: 20px;
+	border: var(--negro222) 1px;
+	background-color: var(--naranja);
+	color: var(--blanco);
 }

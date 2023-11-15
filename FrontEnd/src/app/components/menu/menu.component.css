@@ -1,3 +1,28 @@
 a {
-	font-weight: bold;
+	font-weight: 600;
+}
+
+.logo {
+	max-height: 2.5em;
+}
+
+.nav-item, .nav-link {
+	@media (max-width: 767px) {
+		background-color: #323232;
+		color: white;
+		padding: .3rem;
+	}
+	text-align: center;
+}
+
+.nav-item, .nav-item > button {
+	font-size: .6rem;
+}
+
+.nav-item a {
+	padding: .5rem .5rem;
+}
+
+.navbar-brand {
+	margin: 0;
 }
