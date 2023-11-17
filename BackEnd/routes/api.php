@@ -5,6 +5,7 @@ use App\Http\Controllers\HistoricoController;
 use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\RutaController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\AuthController;
 use Database\Factories\FotosRutaFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
