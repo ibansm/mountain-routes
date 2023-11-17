@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Responses\ApiResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -64,9 +64,11 @@ class AuthController extends Controller
         if(Auth::attempt($request->all())){
 
              $usuario = Auth::user(); 
-    
-            $token =  $usuario->createToken('apiToken')->plainTextToken;         
-            return ApiResponse::success(['acess_token'=>$token,'token_type'=>'Bearer'],200);
+            
+             if ($usuario instanceof \App\Models\User) {
+                $token =  $usuario->createToken('apiToken')->plainTextToken;         
+                return ApiResponse::success(['acess_token'=>$token,'token_type'=>'Bearer'],200);
+             }
 
         }
         return ApiResponse::fail(['data'=>'email o contraseña incorrecto.'],401);
@@ -78,22 +80,11 @@ class AuthController extends Controller
     public function logout(){
     
         $usuario = Auth::user();
-        $usuario->tokens()->delete();
-       
-        return ApiResponse::success(['data' => 'Usuario ha cerrado sesion correctamente.'],200);
+
+        if ($usuario instanceof \App\Models\User) {
+            $usuario->tokens()->delete();
+        
+            return ApiResponse::success(['data' => 'Usuario ha cerrado sesion correctamente.'],200);
+        }
     }
 }
-
-
-    
-
-    
-    
-
-
-
-
-
-
-
-

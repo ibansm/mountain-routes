@@ -8,8 +8,9 @@ use App\Models\FotosRuta;
 use App\Models\Historico;
 use App\Models\Incidencia;
 use App\Models\Ruta;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use App\Models\Usuario;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,7 +27,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
             // Crear registros de prueba
-            Usuario::factory(30)->create();
+            User::factory(30)->create();
             Ruta::factory(30)->create();
             FotosRuta::factory(30)->create();
             Historico::factory(30)->create();

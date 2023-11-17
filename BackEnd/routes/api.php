@@ -4,9 +4,8 @@ use App\Http\Controllers\FotosRutaController;
 use App\Http\Controllers\HistoricoController;
 use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\RutaController;
-use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
-use Database\Factories\FotosRutaFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,9 +31,9 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     Route::post('login',[AuthController::class,'login']);
 /////////////
 
-    // API USUARIOS
-    Route::apiResource('usuarios', UsuarioController::class);
-    Route::get('usuarios/{usuario}/rutas', [UsuarioController::class, 'rutasPorUsuario']);
+    // API USERS
+    Route::apiResource('usuarios', UserController::class);
+    Route::get('usuarios/{usuario}/rutas', [UserController::class, 'rutasPorUsuario']);
     
     // API RUTAS
     Route::apiResource('rutas', RutaController::class);

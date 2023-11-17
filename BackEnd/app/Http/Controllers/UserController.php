@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
+use App\Models\User;
 
 use Exception;
 use Illuminate\Http\Request;
@@ -11,8 +11,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 
-
-class UsuarioController extends Controller
+class UserController extends Controller
 {
    
     /**
@@ -27,39 +26,13 @@ class UsuarioController extends Controller
     public function index()
     {
         try {
-            $usuarios = Usuario::all();
-            return ApiResponse::success('Lista de usuarios',200,$usuarios);
+            $usuarios = User::all();
+            return ApiResponse::success($usuarios, 200);
         } catch(Exception $e) {
             return ApiResponse::error('Ocurrió un error: '.$e->getMessage(), 500);
         } 
     }
 
-
-
-  
-    // public function store(Request $request)
-    // {
-    //     try {
-    //         $request->validate([
-    //             'username' => 'required|unique:usuarios',
-    //             'nombre' => 'required',
-    //             'apellidos' => 'required',
-    //             'email' => 'required|unique:usuarios',
-    //             'edad' => 'numeric|between:10,99',
-    //             'password' => 'required'
-    //         ]);
-
-    //         $usuario = Usuario::create($request->all());
-
-    //         return ApiResponse::success('Usuario creado correctamente',201,$usuario);    
-
-    //     } catch (ValidationException $e) {
-    //         $errors = $e->validator->errors()->toArray();
-    //         return ApiResponse::error('Error de validación' ,422, $errors);
-    //     } catch (Exception $e) {
-    //         return ApiResponse::error('Error: '.$e->getMessage() ,500);
-    //     }
-    // }
 
     
     /**
@@ -77,8 +50,8 @@ class UsuarioController extends Controller
     public function show($id)
     {
         try {
-            $usuario = Usuario::findOrFail($id);
-            return ApiResponse::success('Usuario obtenido con éxito',200,$usuario);
+            $usuario = User::findOrFail($id);
+            return ApiResponse::success($usuario, 200);
         } catch (ModelNotFoundException $e) {
             return ApiResponse::error('Usuario no encontrado' ,404);
         }
@@ -105,19 +78,18 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $usuario = Usuario::findOrFail($id);
+            $usuario = User::findOrFail($id);
             $request->validate([
-                'username' => 'required|unique:usuarios,username,'.$usuario->id,
-                'nombre' => 'required',
-                'apellidos' => 'required',
-                'email' => 'required|unique:usuarios,email,'.$usuario->id,
-                'edad' => 'numeric|between:10,99',
-                'password' => 'required'
+                'username' =>'string',
+                'email' => 'unique:users,email,'.$usuario->id,
+                'nombre'=>'string|nullable',
+                'apellidos'=>'string|nullable',
+                'edad'=>'integer|nullable',
             ]);
 
             $usuario->update($request->all());
 
-            return ApiResponse::success('Usuario actualizado correctamente',200,$usuario);    
+            return ApiResponse::success($usuario,200);    
 
         } catch (ValidationException $e) {
             $errors = $e->validator->errors()->toArray();
@@ -146,7 +118,7 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         try {
-            $usuario = Usuario::findOrFail($id);
+            $usuario = User::findOrFail($id);
             $usuario->delete();
             return ApiResponse::success('Usuario borrado con éxito',200);
 
@@ -172,7 +144,7 @@ class UsuarioController extends Controller
      */
     public function rutasPorUsuario($id) {
         try {
-            $usuarios = Usuario::with('usuarios')->findOrFail($id);
+            $usuarios = User::with('usuarios')->findOrFail($id);
 
             if ( count($usuarios['usuarios']) == 0 ) {
                 return ApiResponse::error('El usuario no tiene rutas',404);

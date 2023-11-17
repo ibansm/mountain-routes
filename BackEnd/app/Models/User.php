@@ -58,4 +58,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class);
     }
+
+    public function usuarios() { // Un usuario puede tener muchas rutas
+        return $this->hasMany(Ruta::class, 'usuarios_id');
+    }
 }

@@ -17,14 +17,14 @@ return new class extends Migration
             $table->text('descripcion');
             $table->float('longitud');
             $table->unsignedInteger('tiempo');
-            $table->string('ciudad');
+            $table->string('ciudad')->nullable();
             $table->date('fecha_creada');
             $table->date('fecha_realizada');
             $table->json('coordenadas');
             $table->enum('dificultad',['baja','media','alta']);
             $table->string('foto_perfil')->nullable();
             $table->unsignedBigInteger('usuarios_id');
-            $table->foreign('usuarios_id')->references('id')->on('usuarios');
+            $table->foreign('usuarios_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
