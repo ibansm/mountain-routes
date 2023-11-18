@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -8,6 +8,6 @@ import { Component, ViewChild } from '@angular/core';
 export class MenuComponent {
 	
 	toggle() : void {
-		document.querySelector('#navbarNav')?.classList.toggle('collapse')
+		document.querySelector('#navbarNav')?.classList.toggle('collapse');
 	}
 }

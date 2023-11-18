@@ -1,17 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Variables globales */
-:root {
-	--blanco: #fff;
-	--naranja: #f4941c;
-	--negro: #000;
-	--negro222: #222;
-	--marron: #422d18;
-}
+$colores: (
+	"blanco": #fff,
+	"naranja": #f4941c,
+	"negro": #000,
+	"negro222": #222,
+	"marron": #422d18
+);
+
+$font-Roboto: 'Roboto', sans-serif;
 
 * {
-	color: var(--marron);
-	font-family: 'Roboto', sans-serif;
+	color: map-get($colores, 'marron');
+	font-family: $font-Roboto;
 }
 
 /* Botones */
@@ -19,16 +21,16 @@
 	margin: .25rem;
 	padding: .2rem .6rem;
 	border-radius: 20px;
-	border: var(--negro222) 1px;
+	border: map-get($colores, 'negro222') 1px;
 	background-color: #cf6442;
-	color: var(--blanco);
+	color: map-get($colores, 'blanco');
 }
 
 .btn-inicia-sesion {
 	margin: .25rem .5rem;
 	padding: .2rem .6rem;
 	border-radius: 20px;
-	border: var(--negro222) 1px;
-	background-color: var(--naranja);
-	color: var(--blanco);
+	border: map-get($colores, 'negro222') 1px;
+	background-color: map-get($colores, 'naranja');
+	color: map-get($colores, 'blanco');
 }
