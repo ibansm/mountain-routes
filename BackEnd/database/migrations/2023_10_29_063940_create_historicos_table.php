@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('historicos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('rutas_id');;
             $table->date('fecha_actualizada');
             $table->date('fecha_realizada');
+            $table->foreign('id')->references('id')->on('rutas');
             $table->timestamps();
-            $table->foreign('rutas_id')->references('id')->on('rutas')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Usuario;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Ruta extends Model
@@ -34,7 +34,7 @@ class Ruta extends Model
     }
 
     public function usuarios() { // Una ruta pertenece a un solo usuario
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(User::class);
     }
 
     public function fotos() { // Una ruta puede tener muchas fotos

@@ -47,8 +47,8 @@ class HistoricoController extends Controller
     public function store(Request $request)
     {
         try {
-            $request->validate([  
-                'rutas_id' => 'required|integer',              
+            $request->validate([
+                'rutas_id' => 'required|integer',               
                 'fecha_actualizada' => 'required|date_format:Y-m-d',
                 'fecha_realizada' => 'required|date_format:Y-m-d|after_or_equal:'.date('Y-01-01')
                 
@@ -79,21 +79,24 @@ class HistoricoController extends Controller
     public function show(string $id)
     {
         try {
-            $findId = Ruta::findOrFail($id);
-            $historico = Historico::with('rutas')->where('rutas_id', $id)->orderBy('fecha_actualizada','desc')->get();
-
-            if ( count($historico) == 0 ) {
-                return ApiResponse::fail('No se encontró histórico de la ruta seleccionada',200);
-            }
-
             
-            $ruta = $historico[0]["rutas"];
-            $historico = $this->setCollectionHistoricToRoute($historico, $ruta);
+            $historico = Historico::with('incidencias')->findOrFail($id);
+            $findId = Ruta::findOrFail($id);
+
+            if ( $findId == null) 
+            {
+                return ApiResponse::fail('La ruta no existe',404);
+            } 
+            
+            $resul = [
+                'historico' => $historico,
+                'ruta' => $findId
+            ];
   
-            return ApiResponse::success($historico,200);
+            return ApiResponse::success($resul,200);
 
         } catch (ModelNotFoundException $e) {
-            return ApiResponse::error('No existe el histórico',404);
+            return ApiResponse::error('No existe histórico asociado a la ruta',404);
 
         } catch (Exception $e) {
             return ApiResponse::error('Error: '.$e->getMessage() ,500);
@@ -127,8 +130,7 @@ class HistoricoController extends Controller
             $request->validate([  
                 'rutas_id' => 'integer',              
                 'fecha_actualizada' => 'date_format:Y-m-d|after_or_equal:'.now(),
-                'fecha_realizada' => 'date_format:Y-m-d|after_or_equal:'.date('Y-01-01')
-                
+                'fecha_realizada' => 'date_format:Y-m-d|after_or_equal:'.date('Y-01-01')  
             ]);
 
 
@@ -167,45 +169,5 @@ class HistoricoController extends Controller
         } catch (Exception $e) {
             return ApiResponse::error('Error: '.$e->getMessage() ,500);
         } 
-    }
-
-    /**
-     * The function "setCollectionHistoricToRoute" creates a collection that combines historic data
-     * with route data.
-     * 
-     * @param historico An array of objects representing historical data.
-     * @param ruta The parameter "ruta" is an object that represents a route. It has properties such as
-     * "id" (route ID), "nombre" (route name), "ciudad" (city), "longitud" (length), and "dificultad"
-     * (difficulty).
-     * 
-     * @return an array that contains the historic data and route data. The historic data is stored in
-     * an array with keys "Histórico 1", "Histórico 2", etc., and each value is an array containing the
-     * id, fecha_actualizada, fecha_realizada, and rutas_id properties of each historic entry. The
-     * route data is stored in an array with the key
-     */
-    private function setCollectionHistoricToRoute($historico, $ruta) {
-        $count = 1;
-        $coleccion = [];
-
-        foreach ($historico as $val) {  
-            $array = [
-                "id" => $val->id,
-                "fecha_actualizada" => $val->fecha_actualizada,
-                "fecha_realizada" => $val->fecha_realizada,
-                "id ruta" => $val->rutas_id
-            ];
-            $coleccion["Histórico ".$count] = $array;
-            $count++;
-        }
-
-        $coleccion["ruta"] = [
-            "id" => $ruta->id,
-            "nombre" => $ruta->nombre,
-            "ciudad" => $ruta->ciudad,
-            "longitud" => $ruta->longitud,
-            "dificultad" => $ruta->dificultad
-        ];
-
-        return $coleccion;
     }
 }

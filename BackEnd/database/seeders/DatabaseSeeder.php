@@ -30,7 +30,5 @@ class DatabaseSeeder extends Seeder
             User::factory(30)->create();
             Ruta::factory(30)->create();
             FotosRuta::factory(30)->create();
-            Historico::factory(30)->create();
-            Incidencia::factory(15)->create();
     }
 }

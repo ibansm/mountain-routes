@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('incidencias', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('historicos_id');
-            $table->enum('tipo',['derrumbe','piedra','estado_fuente','hundimiento'])->default('estado_fuente');
+            $table->enum('tipo',['arbol','derrumbe','piedra','estado_fuente','hundimiento'])->default('estado_fuente');
+            $table->text('descripcion');
             $table->json('coordenada');
             $table->boolean('estado')->default(true);
+            $table->unsignedBigInteger('rutas_id');
+            $table->unsignedBigInteger('historicos_id');
             $table->timestamps();
             $table->foreign('historicos_id')->references('id')->on('historicos');
+            $table->foreign('rutas_id')->references('id')->on('rutas')->onDelete('cascade');
         });
     }
 

@@ -11,14 +11,10 @@ class Historico extends Model
     use HasFactory;
 
     protected $fillable = [
-        'rutas_id',
+        'id',
         'fecha_actualizada',
         'fecha_realizada'
     ];
-
-    public function rutas() { // Las fotos pertenecen a una sola ruta
-        return $this->belongsTo(Ruta::class);
-    }
 
     public function incidencias () {
         return $this->hasMany(Incidencia::class, 'historicos_id');
