@@ -28,13 +28,6 @@ class HistoricoController extends Controller
         try {
             $historicos = Historico::with('incidencias')->get();
 
-            // Si no hay incidencias devolvemos en el response un 0
-            foreach ($historicos as $val) {
-                if (sizeof($val->incidencias) == 0) {
-                    $val['incidencias'][] = 0;
-                }       
-            }
-
             return ApiResponse::success($historicos,200);
         } catch(Exception $e) {
             return ApiResponse::error($e->getMessage(), 500);

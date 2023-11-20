@@ -66,7 +66,19 @@ class IncidenciaController extends Controller
 
             $incidencia = new Incidencia();
             $request['coordenada'] = json_encode($request->coordenada);
+            $test = Incidencia::select('coordenada','tipo')
+                                ->where([
+                                    'rutas_id' => $request->rutas_id,
+                                    'coordenada' => $request->coordenada,
+                                    'tipo' => $request->tipo
+                                ])->get();
+
+            if( sizeof($test) != 0 ) {
+                return ApiResponse::fail('El tipo y la coordenada ya existen' ,422);
+            }
+
             $historico_id = $this->setHistoricoToIncidencia($request->rutas_id);
+
 
             $resul = $incidencia->create([
                 'tipo' => $request->tipo,

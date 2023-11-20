@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('historicos', function (Blueprint $table) {
+        Schema::create('contactos', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha_actualizada');
-            $table->date('fecha_realizada');
-            $table->foreign('id')->references('id')->on('rutas')->onDelete('cascade');
+            $table->string('nombre');
+            $table->string('email');
+            $table->text('mensaje');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('historicos');
+        Schema::dropIfExists('contactos');
     }
 };

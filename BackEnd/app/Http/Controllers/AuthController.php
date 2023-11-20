@@ -63,12 +63,11 @@ class AuthController extends Controller
    
         if(Auth::attempt($request->all())){
 
-             $usuario = Auth::user(); 
-            
-             if ($usuario instanceof \App\Models\User) {
-                $token =  $usuario->createToken('apiToken')->plainTextToken;         
-                return ApiResponse::success(['acess_token'=>$token,'token_type'=>'Bearer'],200);
-             }
+            $usuario = Auth::user(); 
+       
+            $token = $request->user()->createToken('apiToken')->plainTextToken;  
+            return ApiResponse::success(['access_token'=>$token,'token_type'=>'Bearer'],200);
+          
 
         }
         return ApiResponse::fail(['data'=>'email o contraseña incorrecto.'],401);

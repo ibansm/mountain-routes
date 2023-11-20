@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Exception;
 use App\Http\Responses\ApiResponse;
+use App\Models\Historico;
 use App\Models\Ruta;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -200,7 +201,10 @@ class RutaController extends Controller
     {
         try {
             $ruta = Ruta::findOrFail($id);
+            $historico = Historico::findOrFail($id);
             $ruta->delete();
+            $historico->delete();
+            
             return ApiResponse::success('Ruta borrada con éxito',200);
 
         } catch (ModelNotFoundException $e) {
