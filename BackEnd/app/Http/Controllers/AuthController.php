@@ -27,7 +27,7 @@ class AuthController extends Controller
    
         if($validator->fails()){
 
-            return ApiResponse::fail(['data' => $validator->errors()],422);
+            return ApiResponse::fail($validator->errors(),422);
         }
    
         $usuario = User::create([
@@ -43,7 +43,7 @@ class AuthController extends Controller
 
         $token =  $usuario->createToken('apiToken')->plainTextToken; 
          
-        return ApiResponse::success(['usuario' =>$usuario,'acess_token'=>$token,'token_type'=>'Bearer'],200);
+        return ApiResponse::success(['usuario' =>$usuario,'access_token'=>$token,'token_type'=>'Bearer'],200);
     
 
     }
@@ -58,7 +58,7 @@ class AuthController extends Controller
    
          if($validator->fails()){
 
-            return ApiResponse::fail(['data' => $validator->errors()],422);
+            return ApiResponse::fail($validator->errors(),422);
          }
    
         if(Auth::attempt($request->all())){
@@ -70,7 +70,7 @@ class AuthController extends Controller
           
 
         }
-        return ApiResponse::fail(['data'=>'email o contraseña incorrecto.'],401);
+        return ApiResponse::fail(['email o contraseña incorrecto.',401);
 
   
     }
@@ -83,7 +83,7 @@ class AuthController extends Controller
         if ($usuario instanceof \App\Models\User) {
             $usuario->tokens()->delete();
         
-            return ApiResponse::success(['data' => 'Usuario ha cerrado sesion correctamente.'],200);
+            return ApiResponse::success('Usuario ha cerrado sesion correctamente.',200);
         }
     }
 }
