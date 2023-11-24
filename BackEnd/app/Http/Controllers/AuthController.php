@@ -22,7 +22,6 @@ class AuthController extends Controller
             'nombre'=>'string|nullable',
             'apellidos'=>'string|nullable',
             'edad'=>'integer|nullable',
-
         ]);
    
         if($validator->fails()){
@@ -70,20 +69,20 @@ class AuthController extends Controller
           
 
         }
-        return ApiResponse::fail(['email o contraseña incorrecto.',401);
+        return ApiResponse::fail('Email o contraseña incorrectos.',401);
 
-  
     }
 
     //Logout
-    public function logout(){
-    
-        $usuario = Auth::user();
-
-        if ($usuario instanceof \App\Models\User) {
-            $usuario->tokens()->delete();
+    public function logout() {
         
-            return ApiResponse::success('Usuario ha cerrado sesion correctamente.',200);
-        }
+        // the user() method has a return type of \Illuminate\Contracts\Auth\Authenticatable|null
+
+        /** @var User @usuario **/
+        $usuario = Auth::user();
+    
+        $usuario->tokens()->delete();
+        return ApiResponse::success('Usuario ha cerrado sesión correctamente.',200);
+        
     }
 }
