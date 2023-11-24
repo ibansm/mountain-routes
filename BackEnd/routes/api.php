@@ -6,7 +6,9 @@ use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\RutaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +32,12 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     //API REGISTRO y LOGIN
     Route::post('registrarse',[AuthController::class,'registrarse']);
     Route::post('login',[AuthController::class,'login']);
+
+    // CONTACTA CON NOSOTROS
+    Route::post('contacta-con-nosotros', [ContactoController::class, 'store']);
+
+    // SERVICIO
+    Route::get('carreras-monte', [CarreraController::class, 'index']);
 /////////////
 
     // API USERS
@@ -50,9 +58,6 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     
     // API INCIDENCIAS
     Route::apiResource('incidencias', IncidenciaController::class);
-
-    // CONTACTA CON NOSOTROS
-    Route::post('contacta-con-nosotros', [ContactoController::class, 'store']);
 
 
 //RUTAS PRIVADAS

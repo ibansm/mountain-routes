@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Usuario;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -33,7 +32,7 @@ class RutaFactory extends Factory
         return [          
             'nombre'=> $this->faker->unique()->sentence(),
             'descripcion'=>$this->faker->unique()->text(250),
-            'longitud'=> $this->faker->randomFloat(1, 20, 30),
+            'longitud'=> $this->faker->randomFloat(1, 10, 200),
             'tiempo'=> $this->faker->numberBetween(3600, 7000),
             'ciudad' => $this->faker->city(),
             'fecha_creada' => $this->faker->dateTimeBetween(date('2023-01-01'), now()),
