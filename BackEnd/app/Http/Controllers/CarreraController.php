@@ -20,7 +20,7 @@ class CarreraController extends Controller
     public function index() 
     {
         try {
-            $carreras = Carrera::all();
+            $carreras = Carrera::orderBy('fecha','asc')->get();
 
             // Decodificar los campos tipo JSON
             foreach ($carreras as $val) {
