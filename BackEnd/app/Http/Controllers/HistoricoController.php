@@ -28,6 +28,10 @@ class HistoricoController extends Controller
         try {
             $historicos = Historico::with('incidencias')->get();
 
+            if (sizeof($historicos) == 0) {
+                return ApiResponse::success("No existen históricos", 200);
+            }
+
             return ApiResponse::success($historicos,200);
         } catch(Exception $e) {
             return ApiResponse::error($e->getMessage(), 500);
@@ -37,7 +41,7 @@ class HistoricoController extends Controller
    
     // public function create(){}
 
-    public function store(Request $request)
+    private function store(Request $request)
     {
         try {
             $request->validate([
@@ -72,14 +76,9 @@ class HistoricoController extends Controller
     public function show(string $id)
     {
         try {
-            
-            $historico = Historico::with('incidencias')->findOrFail($id);
+             
             $findId = Ruta::findOrFail($id);
-
-            if ( $findId == null) 
-            {
-                return ApiResponse::fail('La ruta no existe',404);
-            } 
+            $historico = Historico::with('incidencias')->findOrFail($id);
             
             $resul = [
                 'historico' => $historico,
@@ -89,7 +88,11 @@ class HistoricoController extends Controller
             return ApiResponse::success($resul,200);
 
         } catch (ModelNotFoundException $e) {
-            return ApiResponse::error('No existe histórico asociado a la ruta',404);
+            if ($e->getModel() == "App\Models\Historico") {
+                return ApiResponse::error('No existe histórico asociado a la ruta',404);
+            } else if ($e->getModel() == "App\Models\Ruta") {
+                return ApiResponse::error('No existe la ruta',404);
+            }
 
         } catch (Exception $e) {
             return ApiResponse::error('Error: '.$e->getMessage() ,500);
@@ -123,7 +126,7 @@ class HistoricoController extends Controller
             $request->validate([  
                 'rutas_id' => 'integer',              
                 'fecha_actualizada' => 'date_format:Y-m-d|after_or_equal:'.now(),
-                'fecha_realizada' => 'date_format:Y-m-d|after_or_equal:'.date('Y-01-01')  
+                'fecha_realizada' => 'date_format:Y-m-d'  
             ]);
 
 
@@ -137,30 +140,5 @@ class HistoricoController extends Controller
         } catch (Exception $e) {
             return ApiResponse::error('Error: '.$e->getMessage() ,500);
         }
-    }
-
-
-    /**
-     * The function "destroy" deletes a historical record by its ID and returns a success message if
-     * the record is found and deleted, or an error message if the record is not found or an exception
-     * occurs.
-     * 
-     * @param string id The "id" parameter is a string that represents the unique identifier of the
-     * historical record that needs to be deleted.
-     * 
-     * @return an ApiResponse.
-     */
-    public function destroy(string $id)
-    {
-        try {
-            $historico = Historico::findOrFail($id);
-            $historico->delete();
-            return ApiResponse::success('Histórico borrado con éxito',200);
-
-        } catch (ModelNotFoundException $e) {
-            return ApiResponse::error('Histórico no encontrado',404);
-        } catch (Exception $e) {
-            return ApiResponse::error('Error: '.$e->getMessage() ,500);
-        } 
     }
 }

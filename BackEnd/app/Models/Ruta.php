@@ -41,4 +41,8 @@ class Ruta extends Model
         return $this->hasMany(FotosRuta::class, 'rutas_id');
     }
 
+    public function incidencias() { // Una ruta puede tener muchas incidencias
+        return $this->hasMany(Incidencia::class, 'rutas_id');
+    }
+
 }

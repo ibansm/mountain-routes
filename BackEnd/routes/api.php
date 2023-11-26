@@ -49,6 +49,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     Route::get('rutas/ultimas/{ruta}', [RutaController::class, 'ultimasRutas']);
     Route::get('rutas/{ruta}/coordenadas', [RutaController::class, 'getCoordenadasRuta']);
     Route::get('rutas/busqueda/{filtro}', [RutaController::class, 'filtrarRuta']);
+    Route::get('rutas/incidencias/{ruta}',[RutaController::class, 'getIncidenciasPorRuta']);
     
     // API FOTOS_RUTA
     Route::apiResource('fotos-ruta', FotosRutaController::class, ['parameters' => ['fotos-ruta' => 'fotos']]);

@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Storage;
-use App\Models\Ruta;
 use App\Http\Responses\ApiResponse;
 use App\Models\Historico;
 use App\Models\Incidencia;
@@ -25,16 +23,13 @@ class IncidenciaController extends Controller
     public function index()
     {
         try {
-            $incidencias = Incidencia::all()->groupBy('historicos_id'); 
+            $incidencias = Incidencia::all(); 
 
             return ApiResponse::success($incidencias,200);
         } catch(Exception $e) {
             return ApiResponse::error('Ocurrió un error: '.$e->getMessage(), 500);
         }
     }
-
-   
-    // public function create(){}
 
   
    
@@ -99,43 +94,6 @@ class IncidenciaController extends Controller
         }
     }
 
-   
-    /**
-     * The function retrieves a historical record and its associated incidents, and returns them as a
-     * response.
-     * 
-     * @param string id The "id" parameter is a string that represents the ID of the historical record
-     * that you want to retrieve.
-     * 
-     * @return an API response. If the specified historical record is found, it returns a success
-     * response with a list of incidents associated with that historical record. If there are no
-     * incidents associated with the historical record, it returns a success response with a message
-     * indicating that there are no incidents. If the historical record is not found, it returns an
-     * error response indicating that the historical record does not exist.
-     */
-    public function show(string $id)
-    {
-        try {
-            $incidencias = Incidencia::with('historicos')->findOrFail($id);
-
-            if ($incidencias == null) {
-                return ApiResponse::fail('No existen incidencias vinculadas al histórico',404);
-            }
-
-  
-            return ApiResponse::success($incidencias,200);
-
-        } catch (ModelNotFoundException $e) {
-            return ApiResponse::fail('No existe el histórico',404);
-
-        } catch (Exception $e) {
-            return ApiResponse::error('Error: '.$e->getMessage() ,500); 
-        }
-    }
-
-
-    // public function edit(string $id){}
-
   
   /**
    * The function updates an incident with the given ID using the data from the request and returns a
@@ -176,9 +134,6 @@ class IncidenciaController extends Controller
             return ApiResponse::error('Error: '.$e->getMessage() ,500);
         }
     }
-
-
-    // public function destroy(string $id){}
 
 
     /**

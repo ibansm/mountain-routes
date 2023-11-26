@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Exception;
 use App\Http\Responses\ApiResponse;
 use App\Models\Historico;
+use App\Models\Incidencia;
 use App\Models\Ruta;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -229,6 +230,7 @@ class RutaController extends Controller
 
         try {
             $rutas = Ruta::select(
+                                'fecha_creada as Fecha',
                                 'nombre',
                                 'descripcion',
                                 'tiempo',
@@ -304,6 +306,19 @@ class RutaController extends Controller
             return ApiResponse::success($ruta,200);
         } catch (ModelNotFoundException $e) {
             return ApiResponse::error('No se encontraron resultados' ,404);
+        }
+    }
+
+    public function getIncidenciasPorRuta($id) {
+        try {
+            $rutas = Ruta::with('incidencias')->findOrFail($id);
+
+            if (sizeof($rutas->incidencias) == 0) {
+                return ApiResponse::fail('No hay incidencias en esa ruta', 401);
+            }
+            return ApiResponse::success($rutas,200);
+        } catch (ModelNotFoundException $e) {
+            return ApiResponse::error('No existe la ruta' ,404);
         }
     }
 
