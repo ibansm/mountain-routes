@@ -1,4 +1,4 @@
-@import '../../../styles.scss';
+@import "../../../styles.scss";
 
 .logo {
 	max-height: 2.5em;
@@ -8,18 +8,28 @@
 	margin: 0;
 }
 
-.nav-item {
+li.nav-item {
 	font-size: .6rem;
 	text-align: center;
+
 	a {
 		padding: .5rem .5rem;
 		font-weight: 600;
+		color: map-get($colores, 'marron');
+		
+		&.active {
+			color: map-get($colores, 'naranja');
+		}
+
+		@media (max-width: 767px) {
+			color: map-get($colores, 'blanco');
+		}
 	}
 
 	@media (max-width: 992px) {
 		padding-right: 1rem;
 	}
-	
+
 	@media (max-width: 898px) {
 		padding-right: 0.5rem;
 	}
@@ -34,12 +44,6 @@
 
 	@media (max-width: 767px) {
 		background-color: #323232;
-		color: white;
 		padding: 0.3rem 0;
 	}
-}
-
-/* TODO: Cambiar la propiedad de tamaño a otra */
-.active {
-	font-size: 1rem;
 }

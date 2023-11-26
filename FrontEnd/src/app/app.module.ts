@@ -10,6 +10,7 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { FavoritasComponent } from './components/favoritas/favoritas.component';
 import { CreaRutaComponent } from './components/crea-ruta/crea-ruta.component';
 import { TipoRutaComponent } from './components/tipo-ruta/tipo-ruta.component';
+import { BuscadorComponent } from './components/buscador/buscador.component';
 
 @NgModule({
 	declarations: [
@@ -21,6 +22,7 @@ import { TipoRutaComponent } from './components/tipo-ruta/tipo-ruta.component';
 		FavoritasComponent,
 		CreaRutaComponent,
   		TipoRutaComponent,
+    	BuscadorComponent,
 	],
 	imports: [
 		BrowserModule,
