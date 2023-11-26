@@ -7,20 +7,20 @@
 	</button>
 	<div class="navbar-collapse collapse justify-content-end" id="navbarNav">
 	  <ul  class="navbar-nav text-center">
-		<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" class="nav-item pe-lg-4">
-		  <a [routerLink]="['/']" class="nav-link">Inicio</a>
+		<li  class="nav-item pe-lg-4">
+		  <a [routerLink]="['/']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">Inicio</a>
 		</li>
-		<li routerLinkActive="active" class="nav-item pe-lg-4">
-		  <a [routerLink]="['/tipo-ruta']" class="nav-link">Rutas de monta&ntilde;a</a>
+		<li class="nav-item pe-lg-4">
+		  <a [routerLink]="['/tipo-ruta']" routerLinkActive="active" class="nav-link">Rutas de monta&ntilde;a</a>
 		</li>
-		<li [routerLinkActive]="['active']" class="nav-item pe-lg-4">
-			<a [routerLink]="['/crearuta']" class="nav-link">Crea tu ruta</a>
+		<li class="nav-item pe-lg-4">
+			<a [routerLink]="['/crearuta']" [routerLinkActive]="['active']" class="nav-link">Crea tu ruta</a>
 		</li>
-		<li [routerLinkActive]="['active']" class="nav-item pe-lg-4">
-		  <a [routerLink]="['/favoritas']" class="nav-link">Tus favoritas</a>
+		<li class="nav-item pe-lg-4">
+		  <a [routerLink]="['/favoritas']" [routerLinkActive]="['active']" class="nav-link">Tus favoritas</a>
 		</li>
-		<li [routerLinkActive]="['active']" class="nav-item pe-lg-4">
-		  <a [routerLink]="['/contacto']" class="nav-link">Contacto</a>
+		<li class="nav-item pe-lg-4">
+		  <a [routerLink]="['/contacto']" [routerLinkActive]="['active']" class="nav-link">Contacto</a>
 		</li>
 		<li class="nav-item pe-lg-4">
 		  <button [routerLink]="['/registrarse']" class="btn-registrarse" type="submit">REGISTRARSE</button>

@@ -6,13 +6,14 @@ $colores: (
 	"naranja": #f4941c,
 	"negro": #000,
 	"negro222": #222,
-	"marron": #422d18
+	"marron": #422d18,
+	"rojizo": #cf6442
 );
 
 $font-Roboto: 'Roboto', sans-serif;
 
 * {
-	color: map-get($colores, 'marron');
+	// color: map-get($colores, 'marron');
 	font-family: $font-Roboto;
 }
 
@@ -22,11 +23,20 @@ $font-Roboto: 'Roboto', sans-serif;
 	padding: .2rem .6rem;
 	border-radius: 20px;
 	border: map-get($colores, 'negro222') 1px;
-	background-color: #cf6442;
+	background-color: map-get($colores, 'rojizo');
 	color: map-get($colores, 'blanco');
 }
 
 .btn-inicia-sesion {
+	margin: .25rem .5rem;
+	padding: .2rem .6rem;
+	border-radius: 20px;
+	border: map-get($colores, 'negro222') 1px;
+	background-color: map-get($colores, 'naranja');
+	color: map-get($colores, 'blanco');
+}
+
+.btn-buscar {
 	margin: .25rem .5rem;
 	padding: .2rem .6rem;
 	border-radius: 20px;

@@ -1,0 +1,20 @@
+<h1>Buscador</h1>
+<form id="buscador" class="d-flex flex-column flex-wrap flex-sm-row border">
+	<select class="form-select">
+		<option selected>Nombre</option>
+		<option *ngFor="let user of userArray" name="user">{{ user }}</option>
+	</select>
+	<select class="form-select">
+		<option selected>Cuidad</option>
+		<option *ngFor="let city of cityArray">{{ city }}</option>
+	</select>
+	<select class="form-select">
+		<option selected>Distancia</option>
+		<option *ngFor="let distancia of distanciaArray">{{ distancia }}</option>
+	</select>
+	<select class="form-select">
+		<option selected>Duracion</option>
+		<option *ngFor="let duracion of duracionArray">{{ duracion }}</option>
+	</select>
+	<button type="submit" class="btn-buscar">Buscar</button>
+</form>
