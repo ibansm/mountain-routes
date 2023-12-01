@@ -13,6 +13,7 @@ class BuscadorController extends Controller
     public function getCiudades(){
 
         $ciudades = Ruta::select('ciudad')
+        ->distinct()
         ->get();
         return ApiResponse::success($ciudades,200);
 
