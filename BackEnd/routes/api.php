@@ -1,16 +1,18 @@
 <?php
 
-use App\Http\Controllers\FotosRutaController;
-use App\Http\Controllers\HistoricoController;
-use App\Http\Controllers\IncidenciaController;
-use App\Http\Controllers\RutaController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CarreraController;
-use App\Http\Controllers\ContactoController;
-use App\Http\Controllers\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BuscadorController;
+use App\Http\Controllers\RutaController;
+use App\Http\Controllers\FotosRutaController;
+use App\Http\Controllers\IncidenciaController;
+use App\Http\Controllers\HistoricoController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\CarreraController;
+use App\Http\Controllers\ContactoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,15 +31,20 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 //RUTAS PUBLICAS
 
-    //API REGISTRO y LOGIN
+    // REGISTRO y LOGIN
     Route::post('registrarse',[AuthController::class,'registrarse']);
     Route::post('login',[AuthController::class,'login']);
+
+    // BUSCADOR
+    Route::get('ciudades',[BuscadorController::class,'getCiudades']);
+    Route::get('dificultad',[BuscadorController::class,'getDificultad']);
 
     // CONTACTA CON NOSOTROS
     Route::post('contacta-con-nosotros', [ContactoController::class, 'store']);
 
     // SERVICIO
     Route::get('carreras-monte', [CarreraController::class, 'index']);
+
 /////////////
 
     // API USERS
