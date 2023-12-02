@@ -1,21 +1,36 @@
 form{
 	width: 80vw;
 	justify-content: center;
+	align-items: center;
 	select {
 		border-radius: 20px;
-		padding: .15rem 1.5rem .15rem .5rem;
+		padding: 0.15rem 1.5rem 0.15rem .5rem;
 		width: fit-content;
-		font-size: 0.5rem;
+		font-size: 0.6rem;
 		margin: 0 .1rem;
 		
-		@media (max-width: 576px) {
+		@media (max-width: 767px) {
 			margin: .2rem 0rem;
 			width: 100%;
+			padding: 0.5rem 1rem;
 		}
 	}
-
+	input[type="checkbox"] {
+		font-size: .8rem;
+		border-radius: 50%;
+	}
+	label {
+		font-size: 0.6rem;
+		color: white;
+		padding: 0 0.4rem;
+	}
 	button {
-		font-size: 0.5rem;
-		margin: 0 .4rem;
+		font-size: 0.6rem;
+		
+		@media (max-width: 767px) {
+			margin: .2rem 0rem;
+			padding: 0.5rem 1rem;
+			width: 50%;
+		}
 	}
 }

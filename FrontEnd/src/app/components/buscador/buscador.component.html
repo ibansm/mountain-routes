@@ -1,20 +1,23 @@
-<h1>Buscador</h1>
-<form id="buscador" class="d-flex flex-column flex-wrap flex-sm-row border">
+<form #searchForm="ngForm" (ngSubmit)="buscadorForm()" class="d-flex flex-column flex-wrap flex-md-row">
 	<select class="form-select">
-		<option selected>Nombre</option>
+		<option selected>Ciudad</option>
 		<option *ngFor="let user of userArray" name="user">{{ user }}</option>
 	</select>
 	<select class="form-select">
-		<option selected>Cuidad</option>
+		<option selected>Dificultad</option>
 		<option *ngFor="let city of cityArray">{{ city }}</option>
-	</select>
-	<select class="form-select">
-		<option selected>Distancia</option>
-		<option *ngFor="let distancia of distanciaArray">{{ distancia }}</option>
 	</select>
 	<select class="form-select">
 		<option selected>Duracion</option>
 		<option *ngFor="let duracion of duracionArray">{{ duracion }}</option>
 	</select>
+	<select class="form-select">
+		<option selected>Longitud</option>
+		<option *ngFor="let distancia of distanciaArray">{{ distancia }}</option>
+	</select>
+	<div class="form-check d-flex align-items-center">
+		<input class="form-check-input" type="checkbox" name="conNinos" value="" id="conNinos">
+		<label class="form-check-label" for="conNinos">Niños</label>
+	  </div>
 	<button type="submit" class="btn-buscar">Buscar</button>
 </form>
