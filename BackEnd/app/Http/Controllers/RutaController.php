@@ -35,9 +35,9 @@ class RutaController extends Controller
             $rutas = Ruta::all();
 
             // Set time field to JSON format
-            foreach($rutas as $tiempo) {
-                $tiempo['tiempo'] = $this->setSecondsToTime($tiempo['tiempo']);
-            }
+            // foreach($rutas as $tiempo) {
+            //     $tiempo['tiempo'] = $this->setSecondsToTime($tiempo['tiempo']);
+            // }
 
             return ApiResponse::success($rutas,200);
         } catch(Exception $e) {
@@ -71,9 +71,7 @@ class RutaController extends Controller
                 'nombre' => 'required|string|unique:rutas',
                 'descripcion' => 'required|string',
                 'longitud' => 'required|numeric|between:1,99999999.99',
-                'tiempo.horas' => 'required|numeric|between:0,9999',
-                'tiempo.minutos' => 'required|numeric|between:0,60',
-                'tiempo.segundos' => 'required|numeric|between:0,60',
+                'tiempo' => 'required|numeric|between:0,9999',
                 'ciudad' => 'required|string|min:2|max:40',
                 'fecha_creada' => 'required|date_format:Y-m-d',
                 'fecha_realizada' => 'required|date_format:Y-m-d|after_or_equal:'.date('Y-01-01'),
@@ -91,10 +89,10 @@ class RutaController extends Controller
             $data['foto_perfil'] = Storage::url($foto);
     
             // Set tiempo
-            $data['tiempo'] = $this->setTimeToSeconds($request->tiempo);
+            // $data['tiempo'] = $this->setTimeToSeconds($request->tiempo);
             
             $ruta = Ruta::create($data);
-            $ruta['tiempo'] = $this->setSecondsToTime($ruta['tiempo']); // Parse to JSON
+            // $ruta['tiempo'] = $this->setSecondsToTime($ruta['tiempo']); // Parse to JSON
 
             return ApiResponse::success($ruta,201);   
            
@@ -122,7 +120,7 @@ class RutaController extends Controller
     {
         try {
             $ruta = Ruta::with('usuarios')->findOrFail($id);
-            $ruta['tiempo'] = $this->setSecondsToTime($ruta['tiempo']);
+            // $ruta['tiempo'] = $this->setSecondsToTime($ruta['tiempo']);
             return ApiResponse::success($ruta,200);
         } catch (ModelNotFoundException $e) {
             return ApiResponse::error('Ruta no encontrada' ,404);
@@ -158,9 +156,7 @@ class RutaController extends Controller
                 'nombre' => 'unique:rutas,nombre,'.$ruta->id,
                 'descripcion' => 'string',
                 'longitud' => 'numeric|between:1,99999999.99',
-                'tiempo.horas' => 'numeric|between:0,9999',
-                'tiempo.minutos' => 'numeric|between:0,60',
-                'tiempo.segundos' => 'numeric|between:0,60',
+                'tiempo' => 'numeric|between:0,9999',
                 'ciudad' => 'string|min:2|max:40',
                 'fecha_creada' => 'date_format:Y-m-d',
                 'fecha_realizada' => 'date_format:Y-m-d|after_or_equal:'.date('Y-01-01'),
@@ -168,10 +164,10 @@ class RutaController extends Controller
                 'foto_perfil' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
             ]);
 
-            $request['tiempo'] = $this->setTimeToSeconds($request->tiempo); // To seconds
+            // $request['tiempo'] = $this->setTimeToSeconds($request->tiempo); // To seconds
             $ruta->update($request->all());
 
-            $ruta['tiempo'] = $this->setSecondsToTime($ruta['tiempo']); // Parse to JSON
+            // $ruta['tiempo'] = $this->setSecondsToTime($ruta['tiempo']); // Parse to JSON
             return ApiResponse::success($ruta,200);    
 
         } catch (ValidationException $e) {
@@ -245,9 +241,9 @@ class RutaController extends Controller
                     ->get();
 
              // Set time field to JSON format
-            foreach($rutas as $tiempo) {
-                $tiempo['tiempo'] = $this->setSecondsToTime($tiempo['tiempo']);
-            }
+            // foreach($rutas as $tiempo) {
+            //     $tiempo['tiempo'] = $this->setSecondsToTime($tiempo['tiempo']);
+            // }
             return ApiResponse::success($rutas,200);
         } catch(Exception $e) {
             return ApiResponse::error('Ocurrió un error: '.$e->getMessage(), 500);
