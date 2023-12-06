@@ -1,11 +1,11 @@
 <form #searchForm="ngForm" (ngSubmit)="buscadorForm()" class="d-flex flex-column flex-wrap flex-md-row">
 	<select class="form-select">
 		<option selected>Ciudad</option>
-		<option *ngFor="let user of userArray" name="user">{{ user }}</option>
+		<option *ngFor="let c of cityArray" name="user">{{ c }}</option>
 	</select>
 	<select class="form-select">
 		<option selected>Dificultad</option>
-		<option *ngFor="let city of cityArray">{{ city }}</option>
+		<option *ngFor="let d of dificultadArray">{{ d }}</option>
 	</select>
 	<select class="form-select">
 		<option selected>Duracion</option>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PeticionesService } from 'src/app/service/peticiones.service';
 
 @Component({
@@ -7,45 +7,14 @@ import { PeticionesService } from 'src/app/service/peticiones.service';
 	styleUrls: ['./buscador.component.scss'],
 	providers: [PeticionesService]
 })
-export class BuscadorComponent {
 
-	buscadorData = {}
+export class BuscadorComponent implements OnInit {
 
-	constructor(
-		private _peticiones: PeticionesService
-	) { }
+	public buscadorData: any = {}
 
-	public getCiudades() {
-		this._peticiones.getCiudades().subscribe({
-			next: data => {
-				console.log('La data de getCiudades(): ', data)
-			},
-			error: error => { }
-		})
-	}
+	public dificultadArray: any = []
 
-	buscadorForm() {
-		this._peticiones.buscadorForm(this.buscadorData).subscribe({
-			next: data => { },
-			error: error => { }
-		})
-	}
-
-	ngOnInit() {
-		this.getCiudades();
-	}
-
-	public userArray: any = [
-		"Iako",
-		"Ivan",
-		"Juncal",
-		"Unai"
-	]
-
-	public cityArray: any = [
-		"Bilbo",
-		"Algorta"
-	]
+	public cityArray: any = []
 
 	public distanciaArray: any = [
 		"<5km",
@@ -63,4 +32,50 @@ export class BuscadorComponent {
 		"< 5km",
 		"< 10km"
 	]
+
+	constructor(
+		private _peticiones: PeticionesService
+	) { }
+
+	public getCiudades() {
+		this._peticiones.getCiudades().subscribe({
+			next: data => {
+				for (let city of data.data) {
+					this.cityArray.push(city.ciudad)
+				}
+			},
+			error: error => {
+				console.log('Error accessing cities data\nERROR: ', error);
+				this.cityArray = []
+			}
+		})
+	}
+
+	public getDificultad() {
+		this._peticiones.getDificultad().subscribe({
+			next: data => {
+				for (let dif of data.data) {
+					this.dificultadArray.push(dif.dificultad)
+				}
+			},
+			error: error => {
+				console.log('Error accessing dificultad data\nERROR: ', error);
+				this.dificultadArray = []
+			}
+		})
+	}
+
+	buscadorForm() {
+		this._peticiones.buscadorForm(this.buscadorData).subscribe({
+			next: data => { },
+			error: error => { }
+		})
+	}
+
+	ngOnInit() {
+		this.getCiudades()
+		this.getDificultad()
+	}
+
+	
 }
