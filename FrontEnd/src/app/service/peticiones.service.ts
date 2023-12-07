@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class PeticionesService {
+
+	public baseUrl = 'http://localhost:8000/api'
 
 	constructor(public _http: HttpClient) { }
 
@@ -12,14 +14,18 @@ export class PeticionesService {
 	 * @returns An observable to that endpoint
 	 */
 	getCiudades(): Observable<any> {
-		return this._http.get('http://localhost:8000/api/ciudades')
+		return this._http.get(`${this.baseUrl}/ciudades`)
 	}
 	/**
 	 * This function gets all the 'dificultad' from 'rutas'
 	 * @returns An observable to that endpoint
 	 */
 	getDificultad(): Observable<any> {
-		return this._http.get('http://localhost:8000/api/dificultad')
+		return this._http.get(`${this.baseUrl}/dificultad`)
+	}
+
+	getRutas(): Observable<any> {
+		return this._http.get(`${this.baseUrl}/rutas`)
 	}
 
 	/**
@@ -28,7 +34,7 @@ export class PeticionesService {
 	 * @returns An observable to that endpoint
 	 */
 	buscadorForm(data : any): Observable<any> {
-		return this._http.post('http://localhost:8000/api/buscador', data)
+		return this._http.post(`${this.baseUrl}/buscador`, data)
 	}
 
 }

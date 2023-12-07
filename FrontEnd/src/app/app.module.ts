@@ -13,6 +13,7 @@ import { FavoritasComponent } from './components/favoritas/favoritas.component';
 import { CreaRutaComponent } from './components/crea-ruta/crea-ruta.component';
 import { TipoRutaComponent } from './components/tipo-ruta/tipo-ruta.component';
 import { BuscadorComponent } from './components/buscador/buscador.component';
+import { HorizontalCardComponent } from './components/horizontal-card/horizontal-card.component';
 
 @NgModule({
 	declarations: [
@@ -25,6 +26,7 @@ import { BuscadorComponent } from './components/buscador/buscador.component';
 		CreaRutaComponent,
   		TipoRutaComponent,
     	BuscadorComponent,
+     HorizontalCardComponent,
 	],
 	imports: [
 		BrowserModule,
