@@ -1,15 +1,14 @@
-<article class="container-fluid">
-	<div *ngFor="let ruta of rutasAll" class="card w-75 mt-3 mb-3 ms-auto me-auto d-grid border-black">
+<article class="container-fluid container-sm">
+	<div *ngFor="let ruta of rutasAll" class="card w-100 xxl-w75 mt-3 mb-3 ms-auto me-auto d-grid border-black">
 		<div class="row g-0">
 			<div class="col-md-4" id="card-img">
-				<!-- TODO => Introduce rounded all responsive to md-rounded-start  -->
 				<!-- TODO => Change absolute path for {{ ruta.imagen }} -->
-				<img src="../../../assets/shutterstock_221809534.jpeg" class="img-fluid rounded-start h-100 m-auto object-fit-cover" alt="foto_ruta">
+				<img src="../../../assets/shutterstock_221809534.jpeg" class="img-thumbnail h-100 object-fit-cover" alt="foto_ruta">
 			</div>
-			<div class="col-md-8 h-100">
-				<div class="card-body">
-					<div class="row border">
-						<div class="col-10 border">
+			<div class="col-md-8">
+				<div class="card-body h-100 d-flex flex-column justify-content-around border">
+					<div class="row border ">
+						<div class="col-10">
 							<h5 class="card-title">{{ ruta.nombre }}</h5>
 							<p class="card-text">{{ ruta.descripcion }}</p>
 						</div>
@@ -19,21 +18,21 @@
 						</div>
 					</div>
 					<div class="row border">
-						<div class="col-9 d-flex flex-row justify-content-around border ">
-							<div class="m-2 d-flex flex-column align-items-center justify-content-end border ">
+						<div class="col-10 d-flex flex-row justify-content-around">
+							<div class="m-2 d-flex flex-column align-items-center justify-content-end">
 								<img class="ruta-propeties" src="../../../assets/horas.png" alt="">
 								<span class="span-card fw-bold mt-2">{{ ruta.tiempo }}'</span>
 							</div>
-							<div class="m-2 d-flex flex-column align-items-center justify-content-end border ">
+							<div class="m-2 d-flex flex-column align-items-center justify-content-end">
 								<img class="ruta-propeties" src="../../../assets/km.png" alt="">
 								<span class="span-card fw-bold mt-2">{{ ruta.longitud }} km</span>
 							</div>
-							<div class="m-2 d-flex flex-column align-items-center justify-content-end border ">
+							<div class="m-2 d-flex flex-column align-items-center justify-content-end">
 								<img class="ruta-propeties" src="../../../assets/dificultad.png" alt="">
 								<span class="span-card fw-bold mt-2">{{ ruta.dificultad }}</span>
 							</div>
 						</div>
-						<div class="col-3 d-flex flex-column justify-content-end align-items-end border">
+						<div class="col-2 d-flex flex-column justify-content-end align-items-end">
 							<img class="ubicacion-propety" src="../../../assets/ubicacion.png" alt="ubicacion_ruta.png">
 							<span class="span-card mt-1">{{ ruta.ciudad }}</span>
 						</div>

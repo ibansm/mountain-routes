@@ -9,3 +9,17 @@
 .ubicacion-propety {
 	width: 1rem;
 }
+
+.card-title {
+	font-size: 1.2rem;
+}
+
+.card-text {
+	font-size: 0.7rem;
+}
+
+.xxl-w75 {
+	@media (max-width: 1200px) {
+		width: 75;
+	}
+}
