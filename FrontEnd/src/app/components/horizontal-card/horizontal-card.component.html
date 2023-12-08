@@ -1,40 +1,42 @@
 <article class="container-fluid container-sm">
-	<div *ngFor="let ruta of rutasAll" class="card w-100 xxl-w75 mt-3 mb-3 ms-auto me-auto d-grid border-black">
-		<div class="row g-0">
-			<div class="col-md-4" id="card-img">
-				<!-- TODO => Change absolute path for {{ ruta.imagen }} -->
-				<img src="../../../assets/shutterstock_221809534.jpeg" class="img-thumbnail h-100 object-fit-cover" alt="foto_ruta">
-			</div>
-			<div class="col-md-8">
-				<div class="card-body h-100 d-flex flex-column justify-content-around border">
-					<div class="row border ">
-						<div class="col-10">
-							<h5 class="card-title">{{ ruta.nombre }}</h5>
-							<p class="card-text">{{ ruta.descripcion }}</p>
-						</div>
-						<!-- TODO => Dotar de funcionalidad a 'Favoritos' -->
-						<div class="col-2 d-flex justify-content-end mt-2">
-							<i class="bi bi-heart-fill"></i>
-						</div>
-					</div>
-					<div class="row border">
-						<div class="col-10 d-flex flex-row justify-content-around">
-							<div class="m-2 d-flex flex-column align-items-center justify-content-end">
-								<img class="ruta-propeties" src="../../../assets/horas.png" alt="">
-								<span class="span-card fw-bold mt-2">{{ ruta.tiempo }}'</span>
+	<div *ngFor="let ruta of rutasAll; let i = index">
+		<div *ngIf="i < 3" class="card w-100 xxl-w70 mt-3 mb-3 ms-auto me-auto d-grid border-black">
+			<div class="row g-0">
+				<div class="col-md-4" id="card-img">
+					<!-- TODO => Change absolute path for {{ ruta.imagen }} -->
+					<img src="../../../assets/shutterstock_221809534.jpeg" class="img-thumbnail h-100 object-fit-cover" alt="foto_ruta">
+				</div>
+				<div class="col-md-8">
+					<div class="card-body h-100 d-flex flex-column justify-content-around border">
+						<div class="row border ">
+							<div class="col-10">
+								<h5 class="card-title">{{ ruta.nombre }}</h5>
+								<p class="card-text">{{ ruta.descripcion }}</p>
 							</div>
-							<div class="m-2 d-flex flex-column align-items-center justify-content-end">
-								<img class="ruta-propeties" src="../../../assets/km.png" alt="">
-								<span class="span-card fw-bold mt-2">{{ ruta.longitud }} km</span>
-							</div>
-							<div class="m-2 d-flex flex-column align-items-center justify-content-end">
-								<img class="ruta-propeties" src="../../../assets/dificultad.png" alt="">
-								<span class="span-card fw-bold mt-2">{{ ruta.dificultad }}</span>
+							<!-- TODO => Dotar de funcionalidad a 'Favoritos' -->
+							<div class="col-2 d-flex justify-content-end mt-2">
+								<i class="bi bi-heart-fill"></i>
 							</div>
 						</div>
-						<div class="col-2 d-flex flex-column justify-content-end align-items-end">
-							<img class="ubicacion-propety" src="../../../assets/ubicacion.png" alt="ubicacion_ruta.png">
-							<span class="span-card mt-1">{{ ruta.ciudad }}</span>
+						<div class="row border">
+							<div class="col-10 d-flex flex-row justify-content-around">
+								<div class="m-2 d-flex flex-column align-items-center justify-content-end">
+									<img class="ruta-propeties" src="../../../assets/horas.png" alt="">
+									<span class="span-card fw-bold mt-2">{{ ruta.tiempo }}'</span>
+								</div>
+								<div class="m-2 d-flex flex-column align-items-center justify-content-end">
+									<img class="ruta-propeties" src="../../../assets/km.png" alt="">
+									<span class="span-card fw-bold mt-2">{{ ruta.longitud }} km</span>
+								</div>
+								<div class="m-2 d-flex flex-column align-items-center justify-content-end">
+									<img class="ruta-propeties" src="../../../assets/dificultad.png" alt="">
+									<span class="span-card fw-bold mt-2">{{ ruta.dificultad }}</span>
+								</div>
+							</div>
+							<div class="col-2 d-flex flex-column justify-content-end align-items-end">
+								<img class="ubicacion-propety" src="../../../assets/ubicacion.png" alt="ubicacion_ruta.png">
+								<span class="span-card mt-1">{{ ruta.ciudad }}</span>
+							</div>
 						</div>
 					</div>
 				</div>
