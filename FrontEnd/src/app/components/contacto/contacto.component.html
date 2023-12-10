@@ -1,2 +1,47 @@
-<h1>ContactoComponent</h1>
-<app-menu></app-menu>
+<section>
+	<article id="contact-img" class="d-flex flex-column justify-content-between">
+		<app-menu></app-menu>
+		<app-buscador class="align-self-center mb-3"></app-buscador>
+	</article>
+</section>
+<section class="container d-flex flex-column flex-md-row align-items-center">
+	<article id="contact-form" class="mt-5">
+		<!-- TODO => Dotar de funcionalidad al formulario -->
+		<form>
+			<div class="row">
+				<div class="form-floating mb-2 col-6">
+				  <input type="text" class="form-control" id="contact-name" placeholder="Nombre">
+				  <label for="contact-name">Nombre</label>
+				</div>
+				<div class="form-floating col-6">
+					<input type="email" class="form-control" id="contact-email" placeholder="name@example.com">
+					<label for="contact-email">Email</label>
+				</div>
+			</div>
+			<div class="form-floating col-12">
+				<textarea class="form-control" placeholder="Deja tus comentarios aqu&iacute;" id="contact-description"></textarea>
+				<label for="floatingTextarea">Deja tus comentarios aqu&iacute;</label>
+			</div>
+			<button type="submit" id="contact-btn">Enviar</button>
+		</form>
+	</article>
+	<article id="contact-info" class="container d-flex flex-column text-center text-md-start mt-5 mb-5 ps-md-5">
+		<div class="row">
+			<span class="fw-bold">D&oacute;nde est&aacute;n nuestras oficinas</span>
+			<span>Calle parraplas, 9, 48300 Mutriku</span>
+		</div>
+		<div class="row mt-3">
+			<span class="fw-bold">Horario de atenci&oacute;n</span>
+			<span>Lunes a Viernes de 9:00h a 17:00h</span>
+		</div>
+		<div class="row mt-3">
+			<span class="fw-bold">Email</span>
+			<span>info&#64;mountainroutes.com</span>
+		</div>
+		<div class="row mt-3">
+			<span class="fw-bold">T&eacute;lefono de atenci&oacute;n</span>
+			<span>+34 80 80 80 80</span>
+		</div>
+	</article>
+</section>
+<app-footer></app-footer>

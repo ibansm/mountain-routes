@@ -1,0 +1,20 @@
+@import '../../../styles.scss';
+
+#contact-img {
+	background-image: url('../../../assets/shutterstock_221809534.jpeg');
+	background-position: center;
+	background-size: cover;
+	height: 70vh;
+}
+
+#contact-description {
+	min-height: 30vh;
+}
+
+#contact-btn {
+	background-color: map-get($colores, 'naranja');
+	padding: 0.4rem 1rem;
+	margin: 1rem;
+	border-radius: 20px;
+	border: none;
+}
