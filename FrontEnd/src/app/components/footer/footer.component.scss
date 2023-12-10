@@ -24,7 +24,7 @@
 }
 
 #footer-RS {
-	min-height: 30vh;
+	min-height: 10vh;
 	padding: 2rem;
 	background-color: black;
 	color: white;
@@ -45,6 +45,7 @@
 		}
 		hr {
 			margin-top: 0;
+			max-width: 210px;
 		}
 		input[type=checkbox] {
 			margin-right: 0.5rem;

@@ -1,24 +1,24 @@
 <footer>
-	<section id="footer-img" class="d-flex flex-row justify-content-end align-items-end">
+	<section id="footer-img" class="d-none d-md-flex flex-row justify-content-end align-items-end">
 		<article id="footer-deg">
 			<h5>Crea tus rutas y<br>compar&aacute;rtelas con tus amigos</h5>
 		</article>
 	</section>
 	<section id="footer-RS" class="container-fluid">
-		<div class="row mb-2">
-			<article class="col-10 d-flex justify-content-around ">
+		<div class="d-none d-md-flex row mb-2">
+			<article class="col-10 d-flex justify-content-between">
 				<div class="col-3 d-flex flex-column">
 					<p id="title">M&aacute;ndanos un mail</p>
 					<a href="#">info&#64;example.com</a>
 					<a href="#">+34 80 80 80</a>
 				</div>
-				<div class="col-3 d-flex flex-column">
+				<div class="col-2 d-flex flex-column">
 					<p id="title">Social</p>
 					<a href="https://www.facebook.com/">Facebook</a>
 					<a href="https://www.instagram.com/">Instagram</a>
 					<a href="https://twitter.com/">Twitter</a>
 				</div>
-				<div class="col-3">
+				<div class="col-5">
 					<p id="title">Newsletter</p>
 					<!-- TODO => Dotar de funcionalidad al formulario -->
 					<form>
@@ -26,17 +26,19 @@
 						<i class="bi bi-chevron-right"></i>
 						<i class="bi bi-chevron-right"></i>
 						<i class="bi bi-chevron-right"></i>
-						<hr class="w-75">
-						<input type="checkbox" name="acepto" id="acepto-politica">
-						<label for="acepto-politica">Acepto la pol&iacute;tica de privacidad</label>
+						<hr>
+						<div>
+							<input type="checkbox" name="acepto" id="acepto-politica">
+							<label for="acepto-politica" id="acepto-label">Acepto la pol&iacute;tica de privacidad</label>
+						</div>
 					</form>
 				</div>
 			</article>
 			<article class="col-2">
-				<img class="" src="../../../assets/logo.png" alt="logo_mountain_routes">
+				<img src="../../../assets/logo.png" alt="logo_mountain_routes">
 			</article>
 		</div>
-		<hr class="row">
+		<hr class="d-none d-md-flex row">
 		<div class="row">
 			<span class="text-white d-flex justify-content-center"><small>P&aacute;gina creada por el equipo de MountainRoutes 2023</small></span>
 		</div>
