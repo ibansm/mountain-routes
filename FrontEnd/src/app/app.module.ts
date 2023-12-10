@@ -14,6 +14,7 @@ import { CreaRutaComponent } from './components/crea-ruta/crea-ruta.component';
 import { TipoRutaComponent } from './components/tipo-ruta/tipo-ruta.component';
 import { BuscadorComponent } from './components/buscador/buscador.component';
 import { HorizontalCardComponent } from './components/horizontal-card/horizontal-card.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
 	declarations: [
@@ -27,6 +28,7 @@ import { HorizontalCardComponent } from './components/horizontal-card/horizontal
   		TipoRutaComponent,
     	BuscadorComponent,
      HorizontalCardComponent,
+     FooterComponent,
 	],
 	imports: [
 		BrowserModule,

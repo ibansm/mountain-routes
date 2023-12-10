@@ -1,0 +1,57 @@
+@import '../../../styles.scss';
+
+#footer-img {
+	height: 40vh;
+	background-image: url('../../../assets/shutterstock_2223442379.jpeg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+#footer-deg {
+	height: 20vh;
+	width: 30vw;
+	border-radius: 25px 0 0 0;
+	background-color: rgba(0, 0, 0, 0.45);
+	display: flex;
+	justify-content: end;
+	align-items: center;
+	text-align: right;
+	padding-right: 1rem;
+	& h5{
+		color: map-get($colores, 'naranja');
+	}
+}
+
+#footer-RS {
+	min-height: 30vh;
+	padding: 2rem;
+	background-color: black;
+	color: white;
+	font-size: 0.7rem;
+	& img {
+		max-width: 10vw;
+	}
+	& a {
+		margin-bottom: 0.6rem;
+	}
+	& form {
+		input[type=email] {
+			background: none;
+			border: none;
+			outline: none;
+		}
+		hr {
+			margin-top: 0;
+		}
+		input[type=checkbox] {
+			margin-right: 0.5rem;
+		}
+		i {
+			color: map-get($colores, 'naranja');
+		}
+	}
+	#title {
+		color: map-get($colores, 'naranja');
+	}
+}
