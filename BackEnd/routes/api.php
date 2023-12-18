@@ -38,6 +38,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     // BUSCADOR
     Route::get('ciudades',[BuscadorController::class,'getCiudades']);
     Route::get('dificultad',[BuscadorController::class,'getDificultad']);
+    Route::post('buscador', [BuscadorController::class, 'buscar']);
 
     // CONTACTA CON NOSOTROS
     Route::post('contacta-con-nosotros', [ContactoController::class, 'store']);
