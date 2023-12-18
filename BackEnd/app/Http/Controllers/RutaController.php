@@ -161,6 +161,7 @@ class RutaController extends Controller
                 'longitud' => 'numeric|between:1,99999999.99',
                 'tiempo' => 'numeric|between:0,9999',
                 'ciudad' => 'string|min:2|max:40',
+                'ninos'=>'required|boolean',
                 'fecha_creada' => 'date_format:Y-m-d',
                 'fecha_realizada' => 'date_format:Y-m-d|after_or_equal:'.date('Y-01-01'),
                 'dificultad' => 'in:baja,media,alta',
@@ -236,6 +237,7 @@ class RutaController extends Controller
                                 'ciudad',
                                 'longitud',
                                 'dificultad',
+                                'ninos',
                                 'foto_perfil'
                                 )
                     ->latest()
