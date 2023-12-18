@@ -15,13 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->text('descripcion');
-            $table->float('longitud');
-            $table->unsignedInteger('tiempo');
             $table->string('ciudad')->nullable();
+            $table->enum('dificultad',['baja','media','alta']);
+            $table->float('longitud');
+            $table->unsignedInteger('duracion');
+            $table->boolean('ninos');
             $table->date('fecha_creada');
             $table->date('fecha_realizada');
             $table->json('coordenadas');
-            $table->enum('dificultad',['baja','media','alta']);
             $table->string('foto_perfil')->nullable();
             $table->unsignedBigInteger('usuarios_id');
             $table->foreign('usuarios_id')->references('id')->on('users');
