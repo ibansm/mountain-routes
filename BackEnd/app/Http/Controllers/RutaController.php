@@ -12,6 +12,7 @@ use App\Http\Responses\ApiResponse;
 use App\Models\Historico;
 use App\Models\Incidencia;
 use App\Models\Ruta;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Storage;
@@ -71,8 +72,9 @@ class RutaController extends Controller
                 'nombre' => 'required|string|unique:rutas',
                 'descripcion' => 'required|string',
                 'longitud' => 'required|numeric|between:1,99999999.99',
-                'tiempo' => 'required|numeric|between:0,9999',
+                'duracion' => 'required|numeric|between:0,9999',
                 'ciudad' => 'required|string|min:2|max:40',
+                'ninos'=>'required|boolean',
                 'fecha_creada' => 'required|date_format:Y-m-d',
                 'fecha_realizada' => 'required|date_format:Y-m-d|after_or_equal:'.date('Y-01-01'),
                 'coordenadas' => 'required',
@@ -82,6 +84,7 @@ class RutaController extends Controller
             
             // Data request
             $data = $request->all();
+
 
             // Set foto_perfil
             // En produccion habra que linkear tambien la carpeta "storage" {php artisan storage:link}
