@@ -28,7 +28,7 @@ class BuscadorController extends Controller
 
     }
 
-    /*
+    
     public function buscar(Request $request){
 
        $ciudad = $request->ciudad;
@@ -55,15 +55,19 @@ class BuscadorController extends Controller
 
                     switch($longitud){
 
-                        case '5':
-                            return $query ->whereBetween('longitud',[0,$longitud]);
+                        case '1':
+                            return $query ->whereBetween('longitud',[0,5]);
                         break;
 
-                        case '10':
-                            return $query ->whereBetween('longitud',[5,$longitud]);
+                        case '2':
+                            return $query ->whereBetween('longitud',[5,10]);
                         break;
 
-                        //Falta el case mayor que 10
+                        case '3':
+                            return $query ->where('longitud','>',10);
+                        break;
+
+                        
                     } 
                 
                 })
@@ -72,16 +76,16 @@ class BuscadorController extends Controller
                     
                     switch($duracion){
 
-                        case '2':
+                        case '1':
                            
                             return $query ->whereBetween('duracion',[0,120]);
                         break;
 
-                        case '4':
+                        case '2':
                             return $query ->whereBetween('duracion',[120,240]);
                         break;
 
-                        case '6':
+                        case '3':
                             return $query ->whereBetween('duracion',[240,360]);
                         break;
                     }
@@ -105,6 +109,5 @@ class BuscadorController extends Controller
        
     }
     
-*/
     
 }
