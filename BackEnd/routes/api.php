@@ -40,6 +40,9 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     Route::get('dificultad',[BuscadorController::class,'getDificultad']);
     Route::post('buscador', [BuscadorController::class, 'buscar']);
 
+    // RUTA MAPA
+    Route::get('geojson/{id}',[RutaController::class,'getGeoJson']);
+
     // CONTACTA CON NOSOTROS
     Route::post('contacta-con-nosotros', [ContactoController::class, 'store']);
 
