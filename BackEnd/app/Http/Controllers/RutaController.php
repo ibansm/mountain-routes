@@ -268,7 +268,7 @@ class RutaController extends Controller
      * data. If the route is not found, it returns an error response with a "Ruta no encontrada"
      * message and a 404 status code. If any other exception occurs, it returns an error response with
      * the exception message and a 500 status code.
-     */
+     *
     public function getCoordenadasRuta($ruta) {
         try {
             $ruta = Ruta::select('coordenadas')->where('id',$ruta)->get();
@@ -286,8 +286,38 @@ class RutaController extends Controller
             return ApiResponse::error('Error: '.$e->getMessage() ,500);
         }
     }
+*/
 
-   
+    function getGeoJson(string $id){
+          
+            $ruta = Ruta::find($id);
+            if($ruta){
+                $coord = Ruta::select('coordenadas') 
+                            ->where('id',$id) 
+                            ->pluck('coordenadas')
+                            ->first();
+    
+                $coordenadas = json_decode($coord);
+    
+                $geoJson = array('type' => 'FeatureCollection',
+                                'features'=>array(array('type' => 'Feature',
+                                                        'geometry' => array('type'=>'MultiLineString',
+                                                                            'coordinates'=>array($coordenadas)
+                                                                            ),
+                                                        'id'=>$id,
+                                                        'properties' =>array('felt-type'=>'Path',
+                                                                             'felt-color'=>'RED',
+                                                                             'felt-routeMode'=>'WALKING',
+                                                                             'felt-showLength'=>false)
+                                                ))
+                                );
+                return ApiResponse::success($geoJson,200); 
+    
+            }else{
+                return ApiResponse::error('No se ha encontrado ninguna ruta con id ' .$id,404);  
+            }  
+    } 
+    
     /**
      * The function "filtrarRuta" filters routes based on a given filter and returns the results as a
      * success response or an error response if no results are found.
