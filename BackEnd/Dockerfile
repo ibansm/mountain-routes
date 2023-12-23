@@ -15,7 +15,8 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 RUN \
     mkdir /proyecto \  
     && git clone https://github.com/ibansm/mountain-routes.git /proyecto \
-    && cp -r /proyecto/BackEnd/* /var/www/html \
+    && cd /proyecto/BackEnd \
+    && cp -r . /var/www/html \
     && chmod 777 /var/www/html/Docker/entrypoint.sh
 # COPY . /var/www/html
 

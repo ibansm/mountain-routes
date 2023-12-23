@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return "App Mountain Routes";
 });
 
 // CRUD
