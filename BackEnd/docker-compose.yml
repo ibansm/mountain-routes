@@ -23,15 +23,12 @@ services:
         environment:
             - APP_ENV=${APP_ENV}
             - CONTAINER_ROLE=app
-        command: bash -c "sleep 100; exec docker/entrypoint.sh"
-        working_dir: /var/www
-        volumes:
-            - ./:/var/www
+        command: bash -c "sleep 100; exec Docker/entrypoint.sh"
+        working_dir: /var/www/html
         ports:
-            - 8000:8000
+            - 80:8000
         depends_on:
             - db
                 
-
 volumes:
     db-data: ~
