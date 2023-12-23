@@ -9,6 +9,7 @@ services:
         environment:
             - MYSQL_DATABASE=${DB_DATABASE}
             - MYSQL_ROOT_PASSWORD=root
+        restart: always
         volumes:
             - db-data:/var/lib/mysql
         
@@ -24,6 +25,7 @@ services:
             - APP_ENV=${APP_ENV}
             - CONTAINER_ROLE=app
         command: bash -c "sleep 100; exec Docker/entrypoint.sh"
+        restart: always
         working_dir: /var/www/html
         ports:
             - 80:8000
