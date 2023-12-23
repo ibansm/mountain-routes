@@ -1,7 +1,5 @@
 FROM php:8.2-apache as php
 
-USER root
-
 # Enable mod_rewrite
 RUN a2enmod rewrite
 
@@ -15,10 +13,11 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
 # Clone the application code
 RUN \
-    mkdir proyecto \
-    git clone https://github.com/ibansm/mountain-routes.git /proyecto \
-    cp /proyecto/BackEnd/* /var/www/html
-#COPY . /var/www/html
+    mkdir /proyecto \  
+    && git clone https://github.com/ibansm/mountain-routes.git /proyecto \
+    && cp -r /proyecto/BackEnd/* /var/www/html \
+    && chmod 777 /var/www/html/Docker/entrypoint.sh
+# COPY . /var/www/html
 
 # Set the working directory
 WORKDIR /var/www/html
@@ -26,4 +25,4 @@ WORKDIR /var/www/html
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Set permissions
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+#RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
