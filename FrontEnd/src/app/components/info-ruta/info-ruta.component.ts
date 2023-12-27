@@ -3,9 +3,8 @@ import { PeticionesService } from 'src/app/service/peticiones.service';
 
 
 @Component({
-  selector: 'info-ruta',
-  standalone: true,
-  imports: [],
+  selector: 'app-info-ruta',
+  //imports: [],
   templateUrl: './info-ruta.component.html',
   styleUrls: ['./info-ruta.component.scss'],
   providers: [PeticionesService]
@@ -16,7 +15,7 @@ export class InfoRutaComponent implements OnInit {
 	constructor( private _peticiones: PeticionesService ) {}
 	
 	ngOnInit(): void {
-		this.getRutas()
+		//this.getRutas()
 	}
 
 	public getRutas() {
