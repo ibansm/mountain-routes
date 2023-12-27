@@ -1,0 +1,58 @@
+@import "../../../styles.scss";
+/* Custom styles for the sections */
+.section {
+ /* height: 11; /* Adjust the height as needed */
+  
+  margin-left : 7%;
+  margin-right : 7%;
+  margin-bottom : 2.3%;
+  color: #422d18;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.section1 {
+  margin-top : 6%;
+  padding-left: 0%;
+  
+}
+
+.section2 {
+  align-self: flex-start;
+}
+
+.section3 {
+    font-size: 1.1rem;
+  }
+
+.top-left-content {
+text-align: left;
+align-self: flex-start;
+
+}
+.mapa-propeties {
+
+width: 80.6%;
+}
+.inner-section11 h2 {
+  color: #422d18;
+  font-size:2.5rem;
+  font-weight: bold;
+}
+.page {      
+  height: 25rem; /* Fill the height of the parent */
+  }
+  .ubicacion-propety {
+width: 2.6rem;
+margin-right: 1.1rem;
+}
+.span-card {
+font-size: 1.6rem;
+color: #422d18;
+font-weight: bold;
+}
+.row-2
+{margin-top: 4.1rem;}

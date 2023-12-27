@@ -12,6 +12,7 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { FavoritasComponent } from './components/favoritas/favoritas.component';
 import { CreaRutaComponent } from './components/crea-ruta/crea-ruta.component';
 import { TipoRutaComponent } from './components/tipo-ruta/tipo-ruta.component';
+// import { InfoRutaComponent } from './components/info-ruta/info-ruta.component';
 import { BuscadorComponent } from './components/buscador/buscador.component';
 import { HorizontalCardComponent } from './components/horizontal-card/horizontal-card.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -25,10 +26,11 @@ import { FooterComponent } from './components/footer/footer.component';
 		ContactoComponent,
 		FavoritasComponent,
 		CreaRutaComponent,
+		//InfoRutaComponent,
   		TipoRutaComponent,
     	BuscadorComponent,
      HorizontalCardComponent,
-     FooterComponent,
+     FooterComponent
 	],
 	imports: [
 		BrowserModule,
