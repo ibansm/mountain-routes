@@ -7,6 +7,10 @@ import { FavoritasComponent } from './components/favoritas/favoritas.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { TipoRutaComponent } from './components/tipo-ruta/tipo-ruta.component';
 import { InfoRutaComponent } from './components/info-ruta/info-ruta.component';
+import { LoginComponent } from './components/login/login.component';
+import { CreateAccComponent } from './components/create-acc/create-acc.component';
+
+
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
 	{ path: 'tipo-ruta', component: TipoRutaComponent },
@@ -15,6 +19,8 @@ const routes: Routes = [
 	{ path: 'favoritas', component: FavoritasComponent },
 	{ path: 'contacto', component: ContactoComponent },
 	{ path: 'check', component: CheckComponent },
+	{ path: 'login', component: LoginComponent },
+	{ path: 'create_account', component: CreateAccComponent },
 	{ path: '**', component: HomeComponent }
 ];
 

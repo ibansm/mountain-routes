@@ -1,0 +1,51 @@
+@import "../../../styles.scss";
+
+html, body, .container-fluid, .row {
+    height: 100%;
+
+  }
+  .login-form {
+    width: 80%;
+    margin-top: 25%;
+    color:#402B18;
+    }
+    .login-form.h3 {
+        color:#402B18;
+        }
+  .bg-image {
+    background-image: url("../../../assets/login_recortada.jpeg"); /* Reemplaza 'ruta_de_la_imagen.jpg' con la ruta de tu imagen */
+    background-size: cover; /* Para cubrir todo el área del body */
+    background-position: 00px -250px; /* Posición centrada de la imagen de fondo */
+    background-repeat: no-repeat;
+    height: 100vh; /* Opcional: para que la imagen ocupe toda la altura de la pantalla */
+    width: 100%;
+    margin: 0; /* Elimina el margen predeterminado del body */
+    padding: 0; /* Elimina el relleno predeterminado del body */
+    }
+  .col-md-6,
+  .col-12 {
+    height: 100%;
+    margin: 0; /* Elimina el margen predeterminado del body */
+    padding: 0; /* Elimina el relleno predeterminado del body */
+  }
+  .logo-img {
+    max-width: 42%;
+height: auto;
+  }
+  h1{
+    color:#402B18 ;
+  }
+  h5, h3{
+    color:#F4941C ;
+  }
+  .btn{
+    width: 100%;
+    background-color: #F4941C;
+    --bs-btn-bg: #F4941C;
+    border-color: #F4941C;
+    color:#402B18;
+  }
+  .btn:hover{
+    background-color: #F46400;
+    border-color: #F46400;
+  }
