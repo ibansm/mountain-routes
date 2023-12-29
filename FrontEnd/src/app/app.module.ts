@@ -27,10 +27,10 @@ import { FooterComponent } from './components/footer/footer.component';
 		FavoritasComponent,
 		CreaRutaComponent,
 		InfoRutaComponent,
-  		TipoRutaComponent,
-    	BuscadorComponent,
-     	HorizontalCardComponent,
-    	FooterComponent
+		TipoRutaComponent,
+		BuscadorComponent,
+		HorizontalCardComponent,
+		FooterComponent
 	],
 	imports: [
 		BrowserModule,
