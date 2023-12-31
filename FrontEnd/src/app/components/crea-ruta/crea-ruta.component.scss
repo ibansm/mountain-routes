@@ -6,5 +6,32 @@
 }
 
 #crea-ruta-container {
-	height: 50vh;
+	min-height: 50vh;
+	max-height: fit-content;
+}
+
+#crea-ruta-form {
+	background-color: #F4941C;
+	input, textarea, select {
+		font-size: 0.7rem;
+		margin: 1rem 0rem;
+		border: 1px solid #222;
+	}
+	label {
+		font-size: 0.7rem;
+	}
+	input#ninos_ruta {
+		margin: 0;
+	}
+}
+
+#map {
+	height: 30vh;
+}
+
+#planifica {
+	background-color: #222;
+	& {
+		color: #fff;
+	}
 }

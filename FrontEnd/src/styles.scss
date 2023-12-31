@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-:root{
+
+// @import url('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
+
+:root {
 	color-scheme: light dark;
 }
 
@@ -30,7 +33,7 @@ $font-Roboto: 'Roboto', sans-serif;
 	color: map-get($colores, 'blanco');
 }
 
-.btn-inicia-sesion {
+.btn-inicia-sesion, .btn-buscar {
 	margin: .25rem .5rem;
 	padding: .2rem .6rem;
 	border-radius: 20px;
@@ -39,11 +42,11 @@ $font-Roboto: 'Roboto', sans-serif;
 	color: map-get($colores, 'blanco');
 }
 
-.btn-buscar {
+.btn-guardar {
 	margin: .25rem .5rem;
 	padding: .2rem .6rem;
 	border-radius: 20px;
 	border: map-get($colores, 'negro222') 1px;
-	background-color: map-get($colores, 'naranja');
+	background-color: map-get($colores, 'rojizo');
 	color: map-get($colores, 'blanco');
 }

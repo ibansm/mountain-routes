@@ -6,12 +6,35 @@
 	</article>
 </section>
 <section id="crea-ruta-container">
-	<article>
-		<span>Planificador de ruta</span>
+	<article id="planifica" class="p-3">
+		<span class="fs1">Planificador de ruta</span>
 	</article>
-	<article id="crea-ruta-form">
-		<form class="">
+	<article id="map-container">
+		<div id="map">
 
+		</div>
+	</article>
+	<article id="crea-ruta-form" class="d-flex justify-content-center">
+		<form #creaRutaForm="ngForm" (ngSubmit)="creaRutaForm.valid && guardaRuta()" class="">
+			<input type="text" class="form-control" id="nombre_ruta" name="nombre" placeholder="Nombra tu ruta" [(ngModel)]="this.nuevaRuta.nombre">
+			<input type="text" class="form-control" id="ciudad_ruta" name="ciudad" placeholder="Ubicaci&oacute;n de la ruta" [(ngModel)]="this.nuevaRuta.ciudad">
+			<input type="number" class="form-control" id="longitud_ruta" name="longitud" placeholder="Longitud de la ruta (m)" [(ngModel)]="this.nuevaRuta.longitud">
+			<input type="number" class="form-control" id="duracion_ruta" name="duracion" placeholder="Duraci&oacute;n de la ruta" [(ngModel)]="this.nuevaRuta.duracion">
+			<div class="d-flex align-items-center ps-2">
+				<input class="form-check-input me-1 ps-0 " type="checkbox" id="ninos_ruta" name="ninos"[(ngModel)]="this.nuevaRuta.ninos">
+				<label for="ninos_ruta" class="form-check-label">Ruta apta para ni&ntilde;os</label>
+			</div>
+			<select class="form-select" id="dificultad" name="dificultad" [(ngModel)]="this.nuevaRuta.dificultad">
+				<option selected>Elige una dificultad</option>
+				<option value="baja">Baja</option>
+				<option value="media">Media</option>
+				<option value="alta">Alta</option>
+			</select>
+			<textarea class="form-control" id="describe_ruta" rows="3" placeholder="Describe tu ruta" name="descripcion" [(ngModel)]="this.nuevaRuta.descripcion"></textarea>
+			<input class="form-control" type="file" name="imagenes" id="imagenes_ruta" accept=".jpeg, .jpg, .png" multiple [(ngModel)]="this.nuevaRuta.imagenes">
+			<div class="d-flex justify-content-center align-items-center">
+				<button type="submit" class="btn-guardar">Guardar ruta</button>
+			</div>
 		</form>
 	</article>
 </section>
