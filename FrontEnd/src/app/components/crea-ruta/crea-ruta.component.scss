@@ -3,6 +3,17 @@
 	background-position: center;
 	background-size: cover;
 	height: 70vh;
+	width: 100%;
+}
+
+h1 {
+	color: #fff;
+	margin-left: 3rem;
+	font-size: 3.5rem;
+	font-weight: bold;
+	@media (max-width: 767px) {
+		font-size: 2rem;
+	}
 }
 
 #crea-ruta-container {
@@ -12,13 +23,18 @@
 
 #crea-ruta-form {
 	background-color: #F4941C;
+	padding-top: 1rem;
 	input, textarea, select {
 		font-size: 0.7rem;
-		margin: 1rem 0rem;
+		margin: 0.5rem 0rem;
 		border: 1px solid #222;
 	}
 	label {
 		font-size: 0.7rem;
+		color: #fff;
+		// font-weight: 600;
+		margin: 0;
+		padding: 0;
 	}
 	input#ninos_ruta {
 		margin: 0;
@@ -26,12 +42,18 @@
 }
 
 #map {
-	height: 30vh;
+	height: 50vh;
+	@media (min-width: 768px) {
+		height: 100%;
+	}
 }
 
 #planifica {
 	background-color: #222;
-	& {
-		color: #fff;
-	}
+	color: #fff;
+
+}
+
+#ultimas-rutas-container {
+	height: fit-content;
 }

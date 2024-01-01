@@ -1,20 +1,36 @@
 @import '../../../styles.scss';
 
 #contact-img {
-	background-image: url('../../../assets/shutterstock_221809534.jpeg');
+	background-image: url('../../../assets/shutterstock_1071252569.jpeg');
 	background-position: center;
 	background-size: cover;
 	height: 70vh;
+	overflow: hidden;
+}
+
+h1 {
+	color: #fff;
+	margin-left: 3rem;
+	font-size: 4rem;
+	font-weight: bold;
+	@media (max-width: 767px) {
+		font-size: 2rem;
+	}
 }
 
 #contact-description {
 	min-height: 30vh;
 }
 
-#contact-btn {
+a#contact-btn {
 	background-color: map-get($colores, 'naranja');
 	padding: 0.4rem 1rem;
-	margin: 1rem;
 	border-radius: 20px;
 	border: none;
+	text-decoration: none;
+	color: #fff;
+}
+
+#button-container {
+	margin: 1rem;
 }

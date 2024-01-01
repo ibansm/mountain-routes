@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class ContactoComponent {
 
+	// TODO => Reactive Form para poder recoger la info del formulario y enviarla por email
+	public mailContent: string = '';
+
+	public mailtoString: String = 'mailto:info@mountainroutes.com?subject=ContactoMountainRoutes&body=' + encodeURIComponent(this.mailContent);
 }

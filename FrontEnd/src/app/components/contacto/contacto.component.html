@@ -1,28 +1,31 @@
 <section>
 	<article id="contact-img" class="d-flex flex-column justify-content-between">
 		<app-menu></app-menu>
+		<h1>Contacta <br/> con nosotros</h1>
 		<app-buscador class="align-self-center mb-3"></app-buscador>
 	</article>
 </section>
 <section class="container d-flex flex-column flex-md-row align-items-center mb-3">
-	<article id="contact-form" class="col-12 col-md-6 col-xl-8  mt-5">
+	<article id="contact-form" class="col-12 col-md-6 col-xl-8 mt-5">
 		<!-- TODO => Dotar de funcionalidad al formulario -->
 		<form>
 			<div class="row">
-				<div class="form-floating mb-2 col-6">
+				<div class="form-floating mb-4 col-6">
 				  <input type="text" class="form-control" id="contact-name" placeholder="Nombre">
-				  <label for="contact-name">Nombre</label>
+				  <label for="contact-name" class="ms-3">Nombre</label>
 				</div>
 				<div class="form-floating col-6">
 					<input type="email" class="form-control" id="contact-email" placeholder="name@example.com">
-					<label for="contact-email">Email</label>
+					<label for="contact-email" class="ms-3">Email</label>
 				</div>
 			</div>
 			<div class="form-floating col-12">
 				<textarea class="form-control" placeholder="Deja tus comentarios aqu&iacute;" id="contact-description"></textarea>
 				<label for="floatingTextarea">Deja tus comentarios aqu&iacute;</label>
 			</div>
-			<button type="submit" id="contact-btn">Enviar</button>
+			<div id="button-container">
+				<a [href]="mailtoString" id="contact-btn">Enviar</a>
+			</div>
 		</form>
 	</article>
 	<article id="contact-info" class="container col-12 col-md-6 col-xl-4 d-flex flex-column text-center text-md-start mt-5 mb-5 ps-md-5">
