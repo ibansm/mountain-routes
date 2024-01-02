@@ -24,7 +24,7 @@ export class CreaRutaComponent implements AfterViewInit {
 	constructor(
 		private _peticiones: PeticionesService
 	) {
-		this.nuevaRuta = new Ruta('', '', '', undefined, 0, 0, false, this.coordenadas);
+		this.nuevaRuta = new Ruta(0, '', '', '', undefined, 0, 0, false, this.coordenadas);
 	}
 	
 	guardaRuta(): void {

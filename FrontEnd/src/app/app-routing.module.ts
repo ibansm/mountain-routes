@@ -18,7 +18,7 @@ const routes: Routes = [
 	{ path: 'crearuta', component: CreaRutaComponent },
 	{ path: 'favoritas', component: FavoritasComponent },
 	{ path: 'contacto', component: ContactoComponent },
-	{ path: 'check', component: CheckComponent },
+	{ path: 'check/:id', component: CheckComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'create_account', component: CreateAccComponent },
 	{ path: '**', component: HomeComponent }

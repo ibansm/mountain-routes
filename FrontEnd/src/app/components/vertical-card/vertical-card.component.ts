@@ -1,19 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Ruta } from 'src/app/models/ruta';
 import { PeticionesService } from 'src/app/service/peticiones.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-horizontal-card',
-  templateUrl: './horizontal-card.component.html',
-  styleUrls: ['./horizontal-card.component.scss'],
-  providers: [PeticionesService]
+  selector: 'app-vertical-card',
+  templateUrl: './vertical-card.component.html',
+  styleUrls: ['./vertical-card.component.scss']
 })
-export class HorizontalCardComponent implements OnInit {
+export class VerticalCardComponent implements OnInit {
 
-	public rutasAll: Array<Ruta> = []
+	public rutasAll: Array<Ruta> = [];
 
-	constructor( private _peticiones: PeticionesService ) {}
-	
+	constructor( 
+		private _peticiones: PeticionesService,
+		private router: Router
+	) {}
+
 	ngOnInit(): void {
 		this.getRutas()
 	}
@@ -29,5 +32,9 @@ export class HorizontalCardComponent implements OnInit {
 				this.rutasAll = []
 			}
 		})
+	}
+
+	public clickCard(id: any) : void {
+		this.router.navigate(['check:id'])
 	}
 }

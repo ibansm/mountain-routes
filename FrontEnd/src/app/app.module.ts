@@ -19,6 +19,7 @@ import { InfoRutaComponent } from './components/info-ruta/info-ruta.component';
 import { BuscadorComponent } from './components/buscador/buscador.component';
 import { HorizontalCardComponent } from './components/horizontal-card/horizontal-card.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { VerticalCardComponent } from './components/vertical-card/vertical-card.component';
 
 @NgModule({
 	declarations: [
@@ -33,7 +34,8 @@ import { FooterComponent } from './components/footer/footer.component';
 		TipoRutaComponent,
 		BuscadorComponent,
 		HorizontalCardComponent,
-		FooterComponent
+		FooterComponent,
+  		VerticalCardComponent
 	],
 	imports: [
 		BrowserModule,
