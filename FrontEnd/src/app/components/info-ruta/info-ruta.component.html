@@ -1,48 +1,53 @@
 
-    <div class="section section1 row">
-        <!-- First Vertical Section -->
-        <div class="col-md-4 inner-section11 top-left-content d-flex flex-column">
-            <h2>Maiza por los senderos medievales de Urbasa</h2>
-            <div class="row-2 ">
-                <img class="ubicacion-propety" src="../../../assets/ubicacion.png" alt="ubicacion_ruta.png">
-                <span class="span-card mt-1">Ciudad</span>
-                <!-- <span class="span-card mt-1">{{ ruta.ciudad }}</span>* -->
-            </div>
-        </div>
-        <!-- Second Vertical Section -->
-        <div class="col-md-8 inner-section12">
-          <div class="row">
-            <div class="col-10 d-flex flex-row justify-content-around">
-              <div class="m-2 d-flex flex-column align-items-center justify-content-end">
-                <img class="ruta-propeties" src="../../../assets/horas.png" alt="">
-                <span class="span-card fw-bold mt-2">3.5h</span>
-              </div>
-              <div class="m-2 d-flex flex-column align-items-center justify-content-end">
-                <img class="ruta-propeties" src="../../../assets/km.png" alt="">
-                <span class="span-card fw-bold mt-2">788 km</span>
-              </div>
-              <div class="m-2 d-flex flex-column align-items-center justify-content-end">
-                <img class="ruta-propeties" src="../../../assets/dificultad.png" alt="">
-                <span class="span-card fw-bold mt-2">dificultad</span>
-              </div>
-            </div>
+<section>
+	<article id="contact-img" class="d-flex flex-column justify-content-between">
+		<app-menu></app-menu>
+	</article>
+</section>
+<div class="section section1 row">
+  <!-- First Vertical Section -->
+  <div class="col-md-4 inner-section11 top-left-content d-flex flex-column">
+    <h2>{{ ruta.nombre }}</h2>
+      <div class="row-2 ">
+        <img class="ubicacion-propety" src="../../../assets/ubicacion.png" alt="ubicacion_ruta.png">
+        <span class="span-card mt-1">{{ ruta.ciudad }}</span>
+      </div>
+  </div>
+  <!-- Second Vertical Section -->
+  <div class="col-md-8 inner-section12">
+    <div class="col-2 icons d-flex flex-column">
+      <div class="sidebar-box">
+        <p>{{ ruta.descripcion }}</p>
+        <p class="read-more">Seguir Leyendo Mas Abajo ...</p>
+      </div>
+      <div class="row">
+        <div class="d-flex flex-row justify-content-center">
+          <div class="small-icon d-flex flex-column align-items-center justify-content-end">
+            <img class="ruta-propeties" src="../../../assets/horas.png" alt="">
+            <span class="span-card fw-bold mt-2">{{ ruta.tiempo }}h</span>
+          </div>
+          <div class="small-icon d-flex flex-column align-items-center justify-content-end">
+            <img class="ruta-propeties" src="../../../assets/km.png" alt="">
+            <span class="span-card fw-bold mt-2">{{ ruta.longitud }} km</span>
+          </div>
+          <div class=" small-icon d-flex flex-column align-items-center justify-content-end">
+            <img class="ruta-propeties" src="../../../assets/dificultad.png" alt="">
+            <span class="span-card fw-bold mt-2">{{ ruta.dificultad }}</span>
           </div>
         </div>
-    </div>
-  
-    <!-- Section 2 -->
-    <div class="section section2 d-flex">
-      <img class="mapa-propeties" src="../../../assets/mapa.png" alt="">
-    </div>
-    <!-- Section 3 -->
-    <div class="section section3">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc imperdiet tortor id nunc pulvinar, a blandit turpis auctor. In finibus quis sapien quis sagittis. Nulla congue sit amet risus et fringilla. Curabitur finibus est eget lorem maximus sollicitudin. Curabitur at sapien sit amet dui interdum vehicula. Pellentesque ultrices nunc at turpis venenatis, quis blandit mi posuere. Curabitur non lectus in magna pharetra molestie vel quis tellus. Integer at ante pellentesque, efficitur ante ac, scelerisque libero. Sed lacus erat, fermentum sit amet leo quis, sagittis molestie leo. Fusce ac nisl turpis. Vivamus tempor consequat sapien, vel facilisis justo facilisis ut. Nulla luctus congue arcu, non cursus libero viverra sit amet. Cras vehicula dignissim leo, non posuere odio aliquet quis. Nulla volutpat feugiat sollicitudin. Cras rutrum purus at lacus ultrices laoreet et et odio.
-        
-
-        Morbi tincidunt euismod diam, a vestibulum mauris rutrum vel. Vestibulum tincidunt rhoncus ipsum, id iaculis mauris scelerisque at. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Pellentesque consectetur maximus odio congue ultricies. Cras consectetur, ipsum et dictum pulvinar, nisl sem hendrerit tellus, sit amet scelerisque nunc ante eget tellus. Fusce posuere eros sed magna condimentum, aliquam fermentum neque ultrices. Etiam eu odio ex. Sed consectetur, enim quis vulputate ullamcorper, elit lectus dapibus tellus, id pulvinar lorem sapien id tellus. Donec efficitur pellentesque est, imperdiet vulputate quam varius nec. Donec sodales, augue porta aliquet pellentesque, purus orci mattis tellus, eu suscipit lectus metus vel mauris. Vivamus eu nulla eget nulla porta dapibus vitae ac neque.
-        
-        Cras lectus libero, molestie at scelerisque ornare, ultricies in ex. Donec turpis quam, suscipit a dui a, elementum tristique eros. Pellentesque in viverra nulla. Fusce feugiat commodo vestibulum. Nunc lorem augue, volutpat id ante at, commodo tempor nibh. Suspendisse nec leo nunc. Praesent varius urna nulla, vel lacinia mauris pretium sed.
-      </p>
       </div>
+    </div>
+  </div>
+</div>
+<!-- Section 2 -->
+<div class="section section2 d-flex">
+  <img class="mapa-propeties" src="../../../assets/mapa.png" alt="">
+</div>
+<!-- Section 3 -->
+<div class="section section3">
+  {{ ruta.descripcion }}
+</div>
+<div class="section section4">
+
+</div>
 <app-footer></app-footer> 

@@ -13,8 +13,8 @@ import { CreateAccComponent } from './components/create-acc/create-acc.component
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
+	{ path: 'info-ruta/:id', component: InfoRutaComponent },
 	{ path: 'tipo-ruta', component: TipoRutaComponent },
-	{ path: 'info-ruta', component: InfoRutaComponent },
 	{ path: 'crearuta', component: CreaRutaComponent },
 	{ path: 'favoritas', component: FavoritasComponent },
 	{ path: 'contacto', component: ContactoComponent },
