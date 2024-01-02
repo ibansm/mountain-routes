@@ -35,6 +35,6 @@ export class VerticalCardComponent implements OnInit {
 	}
 
 	public clickCard(id: any) : void {
-		this.router.navigate(['check:id'])
+		this.router.navigate(['info-ruta/:' + id])
 	}
 }

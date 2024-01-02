@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
@@ -42,7 +42,8 @@ import { VerticalCardComponent } from './components/vertical-card/vertical-card.
 		AppRoutingModule,
 		HttpClientModule,
 		FormsModule,
-		LeafletModule
+		LeafletModule,
+		ReactiveFormsModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
