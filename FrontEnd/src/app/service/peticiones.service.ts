@@ -35,4 +35,12 @@ export class PeticionesService {
 		return this._http.post(`${this.baseUrl}/rutas`, nuevaRuta, {observe: 'response'})
 	}
 
+	/* 
+		FIXME => Debe de realizar una peticion a todas las rutas,
+				ordenadas por fecha de la más reciente a la más antigua
+	*/
+	getLastRutas(): Observable<any> {
+		return this._http.get(`${this.baseUrl}/rutas/ultimas`)
+	}
+
 }
