@@ -17,7 +17,7 @@ export class HorizontalCardComponent implements OnInit {
 	
 	ngOnInit(): void {
 		this.getRutas()
-		this.getLastRutas()
+		this.getLastRutas(2)
 	}
 
 	public getRutas() {
@@ -33,8 +33,8 @@ export class HorizontalCardComponent implements OnInit {
 		})
 	}
 
-	public getLastRutas() {
-		this._peticiones.getLastRutas().subscribe({
+	public getLastRutas(id: number) {
+		this._peticiones.getLastRutas(id).subscribe({
 			next: data => {
 				this.rutasLast = data.data
 				console.log('Resultado de rutasLast: \n', this.rutasLast);
