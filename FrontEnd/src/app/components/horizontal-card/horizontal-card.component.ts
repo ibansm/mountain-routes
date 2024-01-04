@@ -11,11 +11,13 @@ import { PeticionesService } from 'src/app/service/peticiones.service';
 export class HorizontalCardComponent implements OnInit {
 
 	public rutasAll: Array<Ruta> = []
+	public rutasLast: Array<Ruta> = []
 
 	constructor( private _peticiones: PeticionesService ) {}
 	
 	ngOnInit(): void {
 		this.getRutas()
+		this.getLastRutas(2)
 	}
 
 	public getRutas() {
@@ -27,6 +29,19 @@ export class HorizontalCardComponent implements OnInit {
 			error: error => {
 				console.log('Error accessing cities data\nERROR: ', error);
 				this.rutasAll = []
+			}
+		})
+	}
+
+	public getLastRutas(id: number) {
+		this._peticiones.getLastRutas(id).subscribe({
+			next: data => {
+				this.rutasLast = data.data
+				console.log('Resultado de rutasLast: \n', this.rutasLast);
+			},
+			error: error => {
+				console.log('Error accessing cities data\nERROR: ', error);
+				this.rutasLast = []
 			}
 		})
 	}

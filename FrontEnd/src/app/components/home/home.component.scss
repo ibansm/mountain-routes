@@ -3,6 +3,7 @@
 	background-position: center;
 	background-size: cover;
 	height: 70vh;
+	// position: absolute;
 }
 
 h1 {
@@ -13,4 +14,13 @@ h1 {
 	@media (max-width: 767px) {
 		font-size: 2rem;
 	}
+}
+
+#orange-gradient {
+	// position: absolute;
+	z-index: 1;
+	min-height: 150vh;
+	background: rgb(244,148,28);
+	background: linear-gradient(0deg, rgba(244,148,28,1) 10%, transparent 70%);
+	clip-path: polygon(100% 0, 100% 93%, 26% 100%, 0 93%, 0 0);
 }

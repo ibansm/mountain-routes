@@ -35,4 +35,9 @@ export class PeticionesService {
 		return this._http.post(`${this.baseUrl}/rutas`, nuevaRuta, {observe: 'response'})
 	}
 
+	// El numero es la cantidad de ocurrencias que se quieren recuperar
+	getLastRutas(id: number): Observable<any> {
+		return this._http.get(`${this.baseUrl}/rutas/ultimas/` + id)
+	}
+
 }

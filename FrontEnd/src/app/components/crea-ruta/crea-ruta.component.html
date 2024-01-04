@@ -10,8 +10,10 @@
 		<span class="fs1">Planificador de ruta</span>
 	</article>
 	<div class="row">
-		<article id="map" class="col-12 col-md-8 order-md-1">
-		</article>
+		<!-- Mapa -->
+		<article id="map" class="col-12 col-md-8 order-md-1"></article>
+
+		<!-- Formulario -->
 		<article id="crea-ruta-form" class="col-12 col-md-4 order-md-0 d-flex justify-content-center">
 			<form #creaRutaForm="ngForm" (ngSubmit)="creaRutaForm.valid && guardaRuta()" class="w-75 fw-bold">
 				<label for="dificultad" class="form-label">Nombra tu ruta</label>
@@ -21,7 +23,7 @@
 				<label for="ciudad" class="form-label">Longitud de la ruta (m)</label>
 				<input type="number" class="form-control" id="longitud_ruta" name="longitud" [(ngModel)]="this.nuevaRuta.longitud">
 				<label for="ciudad" class="form-label">Duraci&oacute;n de la ruta en (min)</label>
-				<input type="number" class="form-control" id="duracion_ruta" name="duracion" [(ngModel)]="this.nuevaRuta.tiempo">
+				<input type="number" class="form-control" id="duracion_ruta" name="duracion" [(ngModel)]="this.nuevaRuta.duracion">
 				<label for="dificultad" class="form-label">Elige una dificultad</label>
 				<select class="form-select" id="dificultad" name="dificultad" [(ngModel)]="this.nuevaRuta.dificultad">
 					<option value="baja">Baja</option>

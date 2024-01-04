@@ -1,19 +1,13 @@
-<section class="container">
-	<article class="text-center mt-3">
-		<h5>Rutas más populares</h5>
-		<p>Ultimas novedades</p>
-	</article>
-	<article class="container d-flex" id="card-container">
-		<div *ngFor="let ruta of rutasAll; let i = index">
-			<div class="" type="button" (click)="clickCard(ruta.id)">
-				<div *ngIf="i < 4" class="card m-2">
-					<img src="../../../assets/shutterstock_2206701587.jpeg" class="card-img-top">
-					<div class="card-body">
-						<h5 class="card-title">{{ ruta.nombre }}</h5>
-						<p class="card-text">{{ ruta.descripcion }}</p>
-					</div>
+<article class="container d-flex">
+	<div id="card-container" *ngFor="let ruta of rutasAll; let i = index">
+		<div type="button" (click)="clickCard(ruta.id)">
+			<div *ngIf="i < 4" class="card m-2">
+				<img src="../../../assets/shutterstock_2206701587.jpeg" class="card-img-top">
+				<div class="card-body">
+					<h5 class="card-title">{{ ruta.nombre }}</h5>
+					<p class="card-text">{{ ruta.descripcion }}</p>
 				</div>
 			</div>
 		</div>
-	</article>
-</section>
+	</div>
+</article>
