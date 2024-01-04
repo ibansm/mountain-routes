@@ -15,7 +15,7 @@ export class Ruta {
 		public ciudad?: String,
 		public dificultad?: Dificultad,
 		public longitud?: Number,
-		public tiempo?: Number,
+		public duracion?: Number,
 		public ninos?: Boolean,
 		public coordenadas?: Array<LatLng>,
 		public imagenes?: Array<File>
