@@ -14,14 +14,11 @@ export class InfoRutaComponent implements OnInit {
 	constructor( private _peticiones: PeticionesService, private route: ActivatedRoute, private location: Location ) {}
 
 	public ruta: any;
+	public fotosAll: any[] = []
 	public currentURL: string = this.location.path();
 	//public urlTree = this.urlSerializer.parse(this.currentURL);
 	public id : string = "";
 
-
-
-
-	
 	ngOnInit(): void {
 		console.log('Current URL:-> ', this.currentURL);
 		//console.log('Parsed URL Tree:', this.urlTree);
@@ -30,6 +27,7 @@ export class InfoRutaComponent implements OnInit {
 			console.log('Route Parameter - ID:', this.id);
 		  });
 		this.getRuta();
+		this.getFotos();
 	}
 
 	public getRuta() {
@@ -42,6 +40,20 @@ export class InfoRutaComponent implements OnInit {
 			error: error => {
 				console.log('Error accessing cities data\nERROR: ', error);
 				this.ruta = []
+			}
+		})
+	}
+	public getFotos() {
+		this._peticiones.getFotos(parseInt(this.id, 10)).subscribe({
+			
+			next: data => {
+				this.fotosAll = Object.values(data.data)
+				this.fotosAll.pop()
+				console.log('Resultado de getFoto: \n', this.fotosAll);
+			},
+			error: error => {
+				console.log('Error accessing cities data\nERROR: ', error);
+				this.fotosAll = []
 			}
 		})
 	}
