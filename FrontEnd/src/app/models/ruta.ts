@@ -1,4 +1,4 @@
-import { LatLng } from "leaflet";
+import { LatLng, Marker } from "leaflet";
 
 export enum Dificultad {
 	baja = 'baja',
@@ -8,6 +8,18 @@ export enum Dificultad {
 
 export class Ruta {
 
+		// 'nombre',
+		// 'descripcion',
+		// 'longitud',
+		// 'duracion',
+		// 'ciudad',
+		// 'ninos',
+		// 'fecha_creada',
+		// 'fecha_realizada',
+		// 'coordenadas',
+		// 'dificultad',
+		// 'foto_perfil',
+		// 'usuarios_id',
 	constructor(
 		public id?: Number,
 		public nombre?: String,
@@ -18,6 +30,7 @@ export class Ruta {
 		public duracion?: Number,
 		public ninos?: Boolean,
 		public coordenadas?: Array<LatLng>,
+		public marcadores?: Array<Marker>,
 		public imagenes?: Array<File>
 	) {}
 	
