@@ -1,23 +1,48 @@
-<form #searchForm="ngForm" (ngSubmit)="buscadorForm()" class="d-flex flex-column flex-wrap flex-md-row">
-	<select class="form-select">
-		<option selected>Ciudad</option>
-		<option *ngFor="let c of cityArray" name="user">{{ c }}</option>
+<!-- <form #searchForm="ngForm" (ngSubmit)="buscadorForm()" class="d-flex flex-column flex-wrap flex-md-row">
+	<select class="form-select" name="ciudad" [(ngModel)]="this.buscadorData.ciudad">
+		<option value="">Ciudad</option>
+		<option *ngFor="let c of cityArray" name="user" [value]="c">{{ c }}</option>
 	</select>
-	<select class="form-select">
-		<option selected>Dificultad</option>
-		<option *ngFor="let d of dificultadArray">{{ d }}</option>
+	<select class="form-select" name="dificultad" [(ngModel)]="this.buscadorData.dificultad">
+		<option value="">Dificultad</option>
+		<option *ngFor="let d of dificultadArray" [value]="d">{{ d }}</option>
 	</select>
-	<select class="form-select">
-		<option selected>Duracion</option>
-		<option *ngFor="let duracion of duracionArray">{{ duracion }}</option>
+	<select class="form-select" name="duracion" [(ngModel)]="this.buscadorData.duracion">
+		<option value="">Duracion</option>
+		<option *ngFor="let duracion of duracionArray; let i = index" [value]="i + 1">{{ duracion }}</option>
 	</select>
-	<select class="form-select">
-		<option selected>Longitud</option>
-		<option *ngFor="let distancia of distanciaArray">{{ distancia }}</option>
+	<select class="form-select" name="longitud" [(ngModel)]="this.buscadorData.longitud">
+		<option value="">Longitud</option>
+		<option *ngFor="let longitud of longitudArray; let i = index" [value]="i + 1">{{ longitud }}</option>
 	</select>
 	<div class="form-check d-flex align-items-center">
-		<input class="form-check-input" type="checkbox" name="conNinos" value="" id="conNinos">
+		<input class="form-check-input" type="checkbox" name="conNinos" id="conNinos" [(ngModel)]="this.buscadorData.ninos">
 		<label class="form-check-label" for="conNinos">Niños</label>
-	  </div>
+	</div>
+	<button type="submit" class="btn-buscar">Buscar</button>
+</form> -->
+
+
+<form [formGroup]="formularioBuscador" (submit)="onSubmit()" class="d-flex flex-column flex-wrap flex-md-row">
+	<select class="form-select" formControlName="ciudad">
+		<option value="">Ciudad</option>
+		<option *ngFor="let c of cityArray" [value]="c">{{ c }}</option>
+	</select>
+	<select class="form-select" formControlName="dificultad">
+		<option value="">Dificultad</option>
+		<option *ngFor="let dif of dificultadArray" [value]="dif">{{ dif }}</option>
+	</select>
+	<select class="form-select" formControlName="duracion">
+		<option value="">Duracion</option>
+		<option *ngFor="let d of duracionArray; let i = index" [value]="i + 1">{{ d }}</option>
+	</select>
+	<select class="form-select" formControlName="longitud">
+		<option value="">Longitud</option>
+		<option *ngFor="let l of longitudArray; let i = index" [value]="i + 1">{{ l }}</option>
+	</select>
+	<div class="form-check d-flex align-items-center">
+		<input class="form-check-input" type="checkbox" formControlName="ninos">
+		<label class="form-check-label" for="conNinos">Niños</label>
+	</div>
 	<button type="submit" class="btn-buscar">Buscar</button>
 </form>

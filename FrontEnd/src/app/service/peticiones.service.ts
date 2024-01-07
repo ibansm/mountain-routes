@@ -27,8 +27,8 @@ export class PeticionesService {
 		return this._http.get(`${this.baseUrl}/rutas/${id}`)
 	}
 
-	buscadorForm(data : any): Observable<any> {
-		return this._http.post(`${this.baseUrl}/buscador`, data)
+	buscadorForm(data : string): Observable<any> {
+		return this._http.post(`${this.baseUrl}/buscador`, data, {observe: 'response'})
 	}
 
 	creaRuta(nuevaRuta: Ruta): Observable<any> {

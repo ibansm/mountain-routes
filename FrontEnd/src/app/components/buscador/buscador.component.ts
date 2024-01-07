@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PeticionesService } from 'src/app/service/peticiones.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
 	selector: 'app-buscador',
@@ -10,33 +11,42 @@ import { PeticionesService } from 'src/app/service/peticiones.service';
 
 export class BuscadorComponent implements OnInit {
 
-	public buscadorData: any = {}
+	// Formulario
+	public formularioBuscador: FormGroup;
 
+	// Componentes de los select del buscador
 	public dificultadArray: any = []
-
 	public cityArray: any = []
-
-	public distanciaArray: any = [
-		"<5km",
-		">5km y <10km",
-		">10km"
+	public longitudArray: any = [
+		"menos de 5km",
+		"entre 5km y 10km",
+		"más de 10km"
 	]
-
 	public duracionArray: any = [
-		"<2h",
-		">2h y <4h",
-		">4h y <6h"
-	]
-
-	public longitud: any = [
-		"< 5km",
-		"< 10km"
+		"menos de 2h",
+		"entre 2h y 4h",
+		"más de 4h"
 	]
 
 	constructor(
-		private _peticiones: PeticionesService
-	) { }
+		private _peticiones: PeticionesService,
+		private fb: FormBuilder
+	)
+	{
+		this.formularioBuscador = this.fb.group({
+			ciudad: ['',],
+			dificultad: ['',],
+			duracion: ['',],
+			longitud: ['',],
+			ninos: ['',]
+		})
+	}
 
+	ngOnInit() {
+		this.getCiudades()
+		this.getDificultad()
+	}
+	
 	public getCiudades() {
 		this._peticiones.getCiudades().subscribe({
 			next: data => {
@@ -65,17 +75,24 @@ export class BuscadorComponent implements OnInit {
 		})
 	}
 
-	buscadorForm() {
-		this._peticiones.buscadorForm(this.buscadorData).subscribe({
-			next: data => { },
-			error: error => { }
+	public onSubmit(): void {
+		console.log('Formulario enviado => \n');
+		this.formularioBuscador.value.ciudad ?? ''
+		this.formularioBuscador.value.dificultad ?? ''
+		this.formularioBuscador.value.duracion ?? ''
+		this.formularioBuscador.value.longitud ?? ''
+		this.formularioBuscador.value.ninos ?? false
+		console.log('Data formulario\n')
+		console.log(this.formularioBuscador.value)
+
+		this._peticiones.buscadorForm(this.formularioBuscador.value).subscribe({
+			next: data => {
+				console.log('La data del buscador ha sido enviada correctamente\n' + data);
+			},
+			error: error => {
+				console.log('Ha habido un error a la hora de enviar los datos a través del buscador\n' + error);
+				console.log(this.formularioBuscador.value);
+			}
 		})
 	}
-
-	ngOnInit() {
-		this.getCiudades()
-		this.getDificultad()
-	}
-
-	
 }
