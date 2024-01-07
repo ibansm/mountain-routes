@@ -1,4 +1,4 @@
-<article class="container d-flex">
+<article class="container d-flex flex-column flex-md-row flex-md-wrap  align-items-center align-items-md-start border">
 	<div id="card-container" *ngFor="let ruta of rutasAll; let i = index">
 		<div type="button" (click)="clickCard(ruta.id)">
 			<div *ngIf="i < 4" class="card m-2">
