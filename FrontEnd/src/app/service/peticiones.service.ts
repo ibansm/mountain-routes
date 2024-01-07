@@ -40,4 +40,8 @@ export class PeticionesService {
 		return this._http.get(`${this.baseUrl}/rutas/ultimas/` + id)
 	}
 
+	getFotos(id: number): Observable<any> {
+		return this._http.get(`` + id);
+	}
+
 }
