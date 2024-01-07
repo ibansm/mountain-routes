@@ -1,9 +1,4 @@
 
-<section>
-	<article id="contact-img" class="d-flex flex-column justify-content-between">
-		<app-menu></app-menu>
-	</article>
-</section>
 <div class="section section1 row">
   <!-- First Vertical Section -->
   <div class="col-md-4 inner-section11 top-left-content d-flex flex-column">
@@ -48,6 +43,22 @@
   {{ ruta.descripcion }}
 </div>
 <div class="section section4">
-
+  <div id="carouselExample" class="carousel slide">
+    <div  class="carousel-inner">
+      <div *ngFor="let fotos of fotosAll; let i = index">
+        <div class="carousel-item active">
+          <img src="{{ fotos.foto }}"  class="d-block w-100" alt="...">
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 </div>
 <app-footer></app-footer> 
