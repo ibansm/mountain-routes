@@ -22,7 +22,7 @@ h1 {
 	min-height: 30vh;
 }
 
-a#contact-btn {
+#contact-btn {
 	background-color: map-get($colores, 'naranja');
 	padding: 0.4rem 1rem;
 	border-radius: 20px;
@@ -33,4 +33,9 @@ a#contact-btn {
 
 #button-container {
 	margin: 1rem;
+}
+
+#head-title {
+	position: relative;
+	top: -10rem;
 }
