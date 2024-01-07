@@ -12,6 +12,9 @@
 	<div class="row">
 		<!-- Mapa -->
 		<article id="map" class="col-12 col-md-8 order-md-1"></article>
+		<button type="button" class="btn btn-primary col-4" (click)="cambiarPolyline()">Polyline</button>
+		<button type="button" class="btn btn-danger col-4" (click)="cambiarMarker()">Marker</button>
+		<button type="button" class="btn btn-warning col-4" (click)="cambiarReset()">RESET</button>
 
 		<!-- Formulario -->
 		<article id="crea-ruta-form" class="col-12 col-md-4 order-md-0 d-flex justify-content-center">
@@ -46,7 +49,9 @@
 	</div>
 </section>
 <section id="ultimas-rutas-container">
-	<h5 id="vertical-card-title">&Uacute;ltimas b&uacute;squedas</h5>
+	<article id="title-ultimas-rutas" class="fw-bold ms-3 ms-sm-4 ms-md-5 mt-3 ">
+		<span>&Uacute;ltimas rutas creadas</span>
+	</article>
 	<!-- TODO => Generar la peticion adecuada para que sean las ultimas creadas
 		 y mostrar solo 2 -->
 	<app-horizontal-card></app-horizontal-card>
