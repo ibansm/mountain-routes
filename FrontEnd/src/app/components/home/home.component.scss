@@ -1,4 +1,4 @@
-#home-img {
+ #home-img {
 	background-image: url('../../../assets/shutterstock_221809534.jpeg');
 	background-position: center;
 	background-size: cover;
@@ -23,4 +23,12 @@ h1 {
 	background: rgb(244,148,28);
 	background: linear-gradient(0deg, rgba(244,148,28,1) 10%, transparent 70%);
 	clip-path: polygon(100% 0, 100% 93%, 26% 100%, 0 93%, 0 0);
+}
+
+#vertical-card-title {
+	color: #222;
+	margin: 1rem 2rem;
+	@media (min-width: 768px) {
+		margin: 1rem 4rem;
+	}
 }
