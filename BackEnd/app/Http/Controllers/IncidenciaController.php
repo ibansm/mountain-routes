@@ -25,6 +25,10 @@ class IncidenciaController extends Controller
         try {
             $incidencias = Incidencia::all(); 
 
+            if( sizeof($incidencias) == 0 ) {
+                return ApiResponse::fail('No existen incidencias' ,422);
+            }
+
             return ApiResponse::success($incidencias,200);
         } catch(Exception $e) {
             return ApiResponse::error('Ocurrió un error: '.$e->getMessage(), 500);

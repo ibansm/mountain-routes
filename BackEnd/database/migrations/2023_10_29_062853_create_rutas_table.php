@@ -20,8 +20,8 @@ return new class extends Migration
             $table->float('longitud');
             $table->unsignedInteger('duracion');
             $table->boolean('ninos');
-            $table->date('fecha_creada');
-            $table->date('fecha_realizada');
+            // $table->date('fecha_creada');
+            // $table->date('fecha_realizada');
             $table->json('coordenadas');
             $table->string('foto_perfil')->nullable();
             $table->unsignedBigInteger('usuarios_id');

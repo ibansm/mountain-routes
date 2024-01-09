@@ -1,13 +1,14 @@
 version: "3.8"
 services:
 
-    # Database Server
+    # MySQL Service
     db:
         image: mysql:5.7
+        container_name: "MySQL"
         ports:
             -   3306:3306
         environment:
-            - MYSQL_DATABASE=${DB_DATABASE}
+            - MYSQL_DATABASE=mountain_routes
             - MYSQL_ROOT_PASSWORD=root
         restart: always
         volumes:
@@ -17,20 +18,19 @@ services:
     # PHP Service
     php:
         build:
-            context: .
+            context: ./BackEnd
             target: php
-            args:
-                - APP_ENV=${APP_ENV}
+        container_name: "Backend"
         environment:
-            - APP_ENV=${APP_ENV}
             - CONTAINER_ROLE=app
-        command: bash -c "sleep 100; exec Docker/entrypoint.sh"
+        # working_dir: /var/www/html
+        command: bash -c "service apache2 start; cd /home/proyecto/BackEnd; sleep 100; exec Docker/entrypoint.sh;"
         restart: always
-        working_dir: /var/www/html
         ports:
-            - 80:8000
+            -   80:80
         depends_on:
             - db
-                
+
+
 volumes:
     db-data: ~

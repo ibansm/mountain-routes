@@ -3,26 +3,33 @@ FROM php:8.2-apache as php
 # Enable mod_rewrite
 RUN a2enmod rewrite
 
-RUN apt-get update -y
-RUN apt-get install -y git unzip libpq-dev libcurl4-gnutls-dev
+RUN apt-get update && apt-get install -y \
+    nano \
+    git \
+    unzip \
+    libpq-dev \
+    libcurl4-gnutls-dev
+
 RUN docker-php-ext-install pdo pdo_mysql bcmath
-
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
-
-# Clone the application code
-RUN \
-    mkdir /proyecto \  
-    && git clone https://github.com/ibansm/mountain-routes.git /proyecto \
-    && cd /proyecto/BackEnd \
-    && cp -r . /var/www/html \
-    && chmod 777 /var/www/html/Docker/entrypoint.sh
-
-# For local proyect
-#COPY . /var/www/html
 
 # Set the working directory
 WORKDIR /var/www/html
 
+# Clone the application code
+RUN \
+    mkdir /home/proyecto \  
+    && git clone https://github.com/ibansm/mountain-routes.git /home/proyecto \
+    && chmod 777 /home/proyecto/BackEnd/Docker/entrypoint.sh \
+    && chmod 777 -R /home/proyecto/BackEnd/storage \
+    && ln -s /home/proyecto/BackEnd/public /var/www/html/ \
+    && chmod 755 /var/www/html
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+CMD ["/usr/bin/apache2ctl", "-D", "FOREGROUND"]
+
+EXPOSE 80
+
+# For local proyect
+# COPY . /var/www/html
+

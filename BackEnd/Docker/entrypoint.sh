@@ -15,6 +15,6 @@ if [ "$role" = "app" ]; then
     php artisan cache:clear
     php artisan config:clear
     php artisan route:clear
-    php artisan serve --port=$APP_PORT --host=0.0.0.0
+    # php artisan serve --port=$APP_PORT --host=0.0.0.0
     exec docker-php-entrypoint "$@"
 fi

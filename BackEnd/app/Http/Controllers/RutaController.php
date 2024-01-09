@@ -70,16 +70,16 @@ class RutaController extends Controller
         try {
             $request->validate([
                 'nombre' => 'required|string|unique:rutas',
-                'descripcion' => 'required|string',
+                'descripcion' => 'string',
                 'longitud' => 'required|numeric|between:1,99999999.99',
                 'duracion' => 'required|numeric|between:0,9999',
-                'ciudad' => 'required|string|min:2|max:40',
-                'ninos'=>'required|boolean',
-                'fecha_creada' => 'required|date_format:Y-m-d',
-                'fecha_realizada' => 'required|date_format:Y-m-d|after_or_equal:'.date('Y-01-01'),
+                'ciudad' => 'string|min:2|max:40',
+                'ninos'=>'boolean',
+                // 'fecha_creada' => 'required|date_format:Y-m-d',
+                // 'fecha_realizada' => 'required|date_format:Y-m-d|after_or_equal:'.date('Y-01-01'),
                 'coordenadas' => 'required',
                 'dificultad' => 'required|in:baja,media,alta',
-                'foto_perfil' => 'required|image|max:2048'
+                'foto_perfil' => 'image|max:2048'
             ]);
             
             // Data request
@@ -88,8 +88,11 @@ class RutaController extends Controller
 
             // Set foto_perfil
             // En produccion habra que linkear tambien la carpeta "storage" {php artisan storage:link}
-            $foto = $request->file('foto_perfil')->store('public/multimedia/fotos/perfil');
-            $data['foto_perfil'] = Storage::url($foto);
+            
+            if ($request->file('foto_perfil') != null) {
+                $foto = $request->file('foto_perfil')->store('public/multimedia/fotos/perfil');
+                $data['foto_perfil'] = Storage::url($foto);
+            }
     
             // Set tiempo
             // $data['tiempo'] = $this->setTimeToSeconds($request->tiempo);
@@ -162,8 +165,8 @@ class RutaController extends Controller
                 'duracion' => 'numeric|between:0,9999',
                 'ciudad' => 'string|min:2|max:40',
                 'ninos'=>'required|boolean',
-                'fecha_creada' => 'date_format:Y-m-d',
-                'fecha_realizada' => 'date_format:Y-m-d|after_or_equal:'.date('Y-01-01'),
+                // 'fecha_creada' => 'date_format:Y-m-d',
+                // 'fecha_realizada' => 'date_format:Y-m-d|after_or_equal:'.date('Y-01-01'),
                 'dificultad' => 'in:baja,media,alta',
                 'foto_perfil' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
             ]);
@@ -230,7 +233,7 @@ class RutaController extends Controller
 
         try {
             $rutas = Ruta::select(
-                                'fecha_creada as Fecha',
+                                // 'fecha_creada as Fecha',
                                 'nombre',
                                 'descripcion',
                                 'duracion',
@@ -242,7 +245,7 @@ class RutaController extends Controller
                                 )
                     ->latest()
                     ->take($ruta)
-                    ->orderBy('fecha_creada','DESC')
+                    // ->orderBy('fecha_creada','DESC')
                     ->get();
 
              // Set time field to JSON format
@@ -288,6 +291,17 @@ class RutaController extends Controller
     }
 */
 
+    /**
+     * The function `getGeoJson` retrieves a GeoJSON object for a given route ID in PHP.
+     * 
+     * @param string id The `id` parameter is a string that represents the unique identifier of a
+     * route. It is used to retrieve the route information from the database.
+     * 
+     * @return an API response with a GeoJSON object. If a route with the given ID is found, the
+     * function will return a success response with the GeoJSON object containing the route
+     * coordinates. If no route is found, it will return an error response indicating that no route was
+     * found with the given ID.
+     */
     function getGeoJson(string $id){
           
             $ruta = Ruta::find($id);
