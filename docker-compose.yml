@@ -20,11 +20,11 @@ services:
         build:
             context: ./BackEnd
             target: php
-        container_name: "Backend"
+        container_name: "App"
         environment:
             - CONTAINER_ROLE=app
         # working_dir: /var/www/html
-        command: bash -c "service apache2 start; cd /home/proyecto/BackEnd; sleep 100; exec Docker/entrypoint.sh;"
+        command: bash -c "service apache2 start; cd /home/proyecto/BackEnd; sleep 150; exec Docker/entrypoint.sh;"
         restart: always
         ports:
             -   80:80
