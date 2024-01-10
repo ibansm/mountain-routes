@@ -1,9 +1,8 @@
  #home-img {
-	background-image: url('../../../assets/shutterstock_221809534.jpeg');
+	background: linear-gradient(to top, rgba(244,148,28, 0.187), rgba(239, 237, 233, 0.159)), url('../../../assets/shutterstock_221809534.jpeg');
 	background-position: center;
 	background-size: cover;
 	height: 70vh;
-	// position: absolute;
 }
 
 h1 {
@@ -17,12 +16,9 @@ h1 {
 }
 
 #orange-gradient {
-	// position: absolute;
-	z-index: 1;
-	padding-bottom: 9rem;
+	padding-bottom: 8rem;
 	min-height: 150vh;
-	background: rgb(244,148,28);
-	background: linear-gradient(0deg, rgba(244,148,28,1) 10%, transparent 70%);
+	background: linear-gradient(0deg, rgba(244,148,28, 0.9) 40%, transparent 70%);
 	clip-path: polygon(100% 0, 100% 93%, 26% 100%, 0 93%, 0 0);
 }
 
@@ -32,4 +28,9 @@ h1 {
 	@media (min-width: 768px) {
 		margin: 1rem 4rem;
 	}
+}
+
+#grey-block {
+	background: linear-gradient(0deg, grey 40%, transparent 70%);
+	padding-bottom: 3rem;
 }

@@ -1,24 +1,25 @@
-<!-- FIXME => Hacer que el gradiente pase por encima de la imagen -->
-<div id="orange-gradient" class="">
+<div id="grey-block">
+	<div id="orange-gradient" class="">
+		<section>
+			<article id="home-img" class="d-flex flex-column justify-content-between">
+				<app-menu></app-menu>
+				<h1>Descubre y comparte <br/> rutas de monta&ntilde;a</h1>
+				<app-buscador class="align-self-center mb-3"></app-buscador>
+			</article>
+		</section>
+		<section>
+			<article class="text-center mt-3">
+				<h5>Rutas más populares</h5>
+				<p>Ultimas novedades</p>
+			</article>
+			<app-vertical-card></app-vertical-card>
+		</section>
+	</div>
 	<section>
-		<article id="home-img" class="d-flex flex-column justify-content-between">
-			<app-menu></app-menu>
-			<h1>Descubre y comparte <br/> rutas de monta&ntilde;a</h1>
-			<app-buscador class="align-self-center mb-3"></app-buscador>
-		</article>
-	</section>
-	<section>
-		<article class="text-center mt-3">
-			<h5>Rutas más populares</h5>
-			<p>Ultimas novedades</p>
-		</article>
-		<app-vertical-card></app-vertical-card>
+		<h5 id="vertical-card-title">&Uacute;ltimas b&uacute;squedas</h5>
+		<app-horizontal-card></app-horizontal-card>
 	</section>
 </div>
-<section>
-	<h5 id="vertical-card-title">&Uacute;ltimas b&uacute;squedas</h5>
-	<app-horizontal-card></app-horizontal-card>
-</section>
 <section>
 	<article class="text-center mt-3">
 		<h5>NOTICIAS</h5>
