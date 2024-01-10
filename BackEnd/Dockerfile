@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     nano \
     npm \
     git \
+    unzip \
     libpq-dev \
     libcurl4-gnutls-dev
 
