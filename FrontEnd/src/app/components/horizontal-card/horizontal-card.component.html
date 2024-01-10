@@ -12,31 +12,27 @@
 				<div class="col-md-8">
 					<div class="card-body h-100 d-flex flex-column justify-content-around">
 						<div class="row">
-							<div class="col-10">
+							<div class="col-11">
 								<h5 class="card-title">{{ ruta.nombre }}</h5>
 								<p class="card-text">{{ ruta.descripcion }}</p>
 							</div>
-							<!-- TODO => Dotar de funcionalidad a 'Favoritos' -->
-							<div class="col-2 d-flex justify-content-end mt-2">
-								<i class="bi bi-heart-fill"></i>
-							</div>
 						</div>
 						<div class="row">
-							<div class="col-10 d-flex flex-row justify-content-around">
-								<div class="m-2 d-flex flex-column align-items-center justify-content-end">
+							<div class="col-8 d-flex flex-row justify-content-start">
+								<div class="m-2 d-flex flex-column align-items-center justify-content-end ms-s-4">
 									<img class="ruta-propeties" src="../../../assets/horas.png" alt="">
 									<span class="span-card fw-bold mt-2">{{ ruta.duracion }}'</span>
 								</div>
-								<div class="m-2 d-flex flex-column align-items-center justify-content-end">
+								<div class="m-2 d-flex flex-column align-items-center justify-content-end ms-s-4">
 									<img class="ruta-propeties" src="../../../assets/km.png" alt="">
 									<span class="span-card fw-bold mt-2">{{ ruta.longitud }} km</span>
 								</div>
-								<div class="m-2 d-flex flex-column align-items-center justify-content-end">
+								<div class="m-2 d-flex flex-column align-items-center justify-content-end ms-s-4">
 									<img class="ruta-propeties" src="../../../assets/dificultad.png" alt="">
 									<span class="span-card fw-bold mt-2">{{ ruta.dificultad }}</span>
 								</div>
 							</div>
-							<div class="col-2 d-flex flex-column justify-content-end align-items-end">
+							<div class="col-4 d-flex flex-column justify-content-end align-items-end">
 								<img class="ubicacion-propety" src="../../../assets/ubicacion.png" alt="ubicacion_ruta.png">
 								<span class="span-card mt-1">{{ ruta.ciudad }}</span>
 							</div>

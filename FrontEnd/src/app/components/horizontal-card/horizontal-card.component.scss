@@ -23,3 +23,9 @@
 		max-width: 70vw;
 	}
 }
+
+.ms-s-4 {
+	@media (min-width: 375px) {
+		margin-left: 1.5rem !important;
+	}
+}
