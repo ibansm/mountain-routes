@@ -10,18 +10,23 @@ RUN apt-get update && apt-get install -y \
     nano \
     npm \
     git \
+    unzip \
     libpq-dev \
-    libcurl4-gnutls-dev
+    libcurl4-gnutls-dev 
 
 RUN docker-php-ext-install pdo pdo_mysql bcmath
+
+# Run
+RUN mkdir /home/proyecto 
 
 # Working directory
 WORKDIR /var/www/html
 
-# Run
+# Composer install
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
 RUN \
-    mkdir /home/proyecto \  
-    && git clone https://github.com/ibansm/mountain-routes.git /home/proyecto \
+    git clone https://github.com/ibansm/mountain-routes.git /home/proyecto \
     && chmod 777 /home/proyecto/BackEnd/Docker/entrypoint.sh \
     && chmod 777 -R /home/proyecto/BackEnd/storage \
     && ln -s /home/proyecto/BackEnd/public /var/www/html/ \
@@ -30,8 +35,6 @@ RUN \
     && ng build --configuration production \
     && cd /var/www/html && cp -r /home/proyecto/FrontEnd/dist/front-end/* .
 
-# Composer install
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Port
 EXPOSE 80
