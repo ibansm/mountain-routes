@@ -23,7 +23,8 @@ services:
         container_name: "App"
         environment:
             - CONTAINER_ROLE=app
-        command: bash -c "service apache2 start; sleep 160; cd /home/proyecto/BackEnd; exec Docker/entrypoint.sh;"
+        # working_dir: /var/www/html
+        command: bash -c "service apache2 start; cd /home/proyecto/BackEnd; sleep 150; exec Docker/entrypoint.sh;"
         restart: always
         ports:
             -   80:80
