@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Ruta } from '../models/ruta';
 
@@ -10,6 +10,16 @@ export class PeticionesService {
 	
 	constructor(public _http: HttpClient) { }
 
+	public accessToken = localStorage.getItem("access_token");
+	public tokenType = localStorage.getItem("token_type");
+	public myheaders = new HttpHeaders;
+
+	createHeader() {
+		if (this.accessToken !== null && this.tokenType !== null) {
+			this.myheaders.set ( 'access_token', this.accessToken );
+			this.myheaders.set ( 'token_type', this.tokenType );
+		  }
+	}
 
 	getCiudades(): Observable<any> {
 		return this._http.get(`${this.baseUrl}/ciudades`)
@@ -43,5 +53,19 @@ export class PeticionesService {
 	getFotos(id: number): Observable<any> {
 		return this._http.get(`` + id);
 	}
+
+	postLogin(data : any): Observable<any> {
+		return this._http.post(`${this.baseUrl}/login`, data)
+	}
+
+	postLogout(data : any, header : any): Observable<any> {
+
+		return this._http.post(`${this.baseUrl}/logout`, data, {headers:this.myheaders})
+	}
+
+	postRegistrarse(data : any): Observable<any> {
+		return this._http.post(`${this.baseUrl}/registrarse`, data)
+	}
+	
 
 }

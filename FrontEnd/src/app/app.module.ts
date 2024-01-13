@@ -20,6 +20,8 @@ import { BuscadorComponent } from './components/buscador/buscador.component';
 import { HorizontalCardComponent } from './components/horizontal-card/horizontal-card.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { VerticalCardComponent } from './components/vertical-card/vertical-card.component';
+import { CreateAccComponent } from './components/create-acc/create-acc.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
 	declarations: [
@@ -27,9 +29,11 @@ import { VerticalCardComponent } from './components/vertical-card/vertical-card.
 		HomeComponent,
 		MenuComponent,
 		CheckComponent,
+		CreateAccComponent,
 		ContactoComponent,
 		FavoritasComponent,
 		CreaRutaComponent,
+		LoginComponent,
 		InfoRutaComponent,
 		TipoRutaComponent,
 		BuscadorComponent,

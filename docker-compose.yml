@@ -18,14 +18,14 @@ services:
     # PHP Service
     php:
         build:
-            context: ./BackEnd
+            context: .
             target: php
         container_name: "App"
         environment:
             - CONTAINER_ROLE=app
         # working_dir: /var/www/html
         command: bash -c "service apache2 start; cd /home/proyecto/BackEnd; sleep 150; exec Docker/entrypoint.sh;"
-        # restart: always
+        restart: always
         ports:
             -   80:80
         depends_on:
