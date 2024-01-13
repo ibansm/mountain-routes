@@ -12,10 +12,6 @@
 	<div class="row">
 		<!-- Mapa -->
 		<article id="map" class="col-12 col-md-8 order-md-1"></article>
-		<button type="button" class="btn btn-primary col-4" (click)="cambiarPolyline()">Polyline</button>
-		<button type="button" class="btn btn-danger col-4" (click)="cambiarMarker()">Marker</button>
-		<button type="button" class="btn btn-warning col-4" (click)="cambiarReset()">RESET</button>
-
 		<!-- Formulario -->
 		<article id="crea-ruta-form" class="col-12 col-md-4 order-md-0 d-flex justify-content-center">
 			<form #creaRutaForm="ngForm" (ngSubmit)="creaRutaForm.valid && guardaRuta()" class="w-75 fw-bold">
@@ -54,6 +50,6 @@
 	</article>
 	<!-- TODO => Generar la peticion adecuada para que sean las ultimas creadas
 		 y mostrar solo 2 -->
-	<app-horizontal-card></app-horizontal-card>
+	<app-horizontal-card [datosPadre]="rutasLast"></app-horizontal-card>
 </section>
 <app-footer></app-footer>

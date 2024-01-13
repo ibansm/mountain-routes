@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Control, DomUtil, Icon, IconOptions, LatLng, Map, Marker, Polyline, marker, polyline, tileLayer } from 'leaflet';
 import { Ruta } from 'src/app/models/ruta';
 import { PeticionesService } from 'src/app/service/peticiones.service';
@@ -8,7 +8,10 @@ import { PeticionesService } from 'src/app/service/peticiones.service';
 	templateUrl: './crea-ruta.component.html',
 	styleUrls: ['./crea-ruta.component.scss']
 })
-export class CreaRutaComponent implements AfterViewInit {
+export class CreaRutaComponent implements AfterViewInit, OnInit {
+
+	public rutasLast: Array<Ruta> = []
+
 
 	public nuevaRuta: Ruta;
 
@@ -40,30 +43,22 @@ export class CreaRutaComponent implements AfterViewInit {
 	) {
 		this.nuevaRuta = new Ruta(0, '', '', '', undefined, 0, 0, false, this.coordenadas, this.marcadores);
 	}
+	
+	ngOnInit(): void {
+		this.getLastRutas(2)
+	}
 
-	cambiarPolyline = () => {
-		// Cambiar el parámetro en tu componente de Angular
-		this.markerCounter = 1;
-		this.polylineCounter = 0;
-		console.log('Polyline\n');
-		console.log(this.markerCounter);
-		console.log(this.polylineCounter);
-	}
-	cambiarMarker = () => {
-		// Cambiar el parámetro en tu componente de Angular
-		this.markerCounter = 0;
-		this.polylineCounter = 1;
-		console.log('Marker\n');
-		console.log(this.markerCounter);
-		console.log(this.polylineCounter);
-	}
-	cambiarReset = () => {
-		// Cambiar el parámetro en tu componente de Angular
-		this.markerCounter = 0;
-		this.polylineCounter = 0;
-		console.log('RESET');
-		console.log(this.markerCounter);
-		console.log(this.polylineCounter);
+	getLastRutas(id: number) {
+		this._peticiones.getLastRutas(id).subscribe({
+			next: data => {
+				this.rutasLast = data.data
+				console.log('Resultado de rutasLast: \n', this.rutasLast);
+			},
+			error: error => {
+				console.log('Error accessing cities data\nERROR: ', error);
+				this.rutasLast = []
+			}
+		})
 	}
 	
 	guardaRuta(): void {
