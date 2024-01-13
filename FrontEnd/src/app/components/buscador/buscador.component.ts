@@ -36,11 +36,11 @@ export class BuscadorComponent implements OnInit {
 	)
 	{
 		this.formularioBuscador = this.fb.group({
-			ciudad: ['',],
-			dificultad: ['',],
-			duracion: ['',],
-			longitud: ['',],
-			ninos: ['',]
+			ciudad: [''],
+			dificultad: [''],
+			duracion: [''],
+			longitud: [''],
+			ninos: [0]
 		})
 	}
 
@@ -79,20 +79,25 @@ export class BuscadorComponent implements OnInit {
 
 	public onSubmit(): void {
 		console.log('Formulario enviado => \n');
-		this.formularioBuscador.value.ciudad ?? ''
-		this.formularioBuscador.value.dificultad ?? ''
-		this.formularioBuscador.value.duracion ?? ''
-		this.formularioBuscador.value.longitud ?? ''
-		this.formularioBuscador.value.ninos ?? false
+		// this.formularioBuscador.value.ciudad ?? ''
+		// this.formularioBuscador.value.dificultad ?? ''
+		// this.formularioBuscador.value.duracion ?? ''
+		// this.formularioBuscador.value.longitud ?? ''
+		// this.formularioBuscador.value.ninos ?? 0
 		console.log('Data formulario\n')
-		console.log(this.formularioBuscador.value)
+		// console.log(this.formularioBuscador.value)
 
 		this._peticiones.buscadorForm(this.formularioBuscador.value).subscribe({
 			next: data => {
 				console.log('La data del buscador ha sido enviada correctamente\n' + JSON.stringify(data));
 				if (data.body.data === 'Lo sentimos,no hemos encontrado ninguna ruta') {
 					console.log('NO HAY NADA');
-					this.route.navigate(['/tipo-ruta'], data.body.data)
+				} else {
+					console.log('DATA:\n');
+					console.log(data.body.data);
+					// Tiene que ser un Array<Ruta> el data.body...
+					this._peticiones.setResponse(data.body.data)
+					this.route.navigate(['/tipo-ruta'])
 				}
 			},
 			error: error => {

@@ -10,7 +10,13 @@
 </div>
 <section>
 	<h5 id="vertical-card-title">&Uacute;ltimas b&uacute;squedas</h5>
-	<app-horizontal-card></app-horizontal-card>
+	<div *ngIf="res != []; else elseBlock ">
+		<app-horizontal-card [datosPadre]="res"></app-horizontal-card>
+	</div>
+	<ng-template #elseBlock>
+		<app-horizontal-card [datosPadre]="errorRes"></app-horizontal-card>
+	</ng-template>
+	<app-horizontal-card (eventohijo)="onMensajeHijo($event)"></app-horizontal-card>
 </section>
 <section>
 	<article class="text-center mt-3">

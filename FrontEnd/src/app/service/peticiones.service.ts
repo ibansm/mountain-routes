@@ -6,19 +6,30 @@ import { Ruta } from '../models/ruta';
 @Injectable({ providedIn: 'root' })
 export class PeticionesService {
 
-	public baseUrl = 'http://localhost:8000/api'
-	
-	constructor(public _http: HttpClient) { }
-
+	// Token
 	public accessToken = localStorage.getItem("access_token");
 	public tokenType = localStorage.getItem("token_type");
 	public myheaders = new HttpHeaders;
+	// Base URL
+	public baseUrl = 'http://localhost:8000/api'
+	// Respuesta
+	public respuesta: Array<Ruta> = []
+
+	constructor(public _http: HttpClient) { }
+
+	setResponse(data: Array<Ruta>) {
+		this.respuesta = data
+	}
+
+	getResponse(): Array<Ruta> {
+		return this.respuesta
+	}
 
 	createHeader() {
 		if (this.accessToken !== null && this.tokenType !== null) {
-			this.myheaders.set ( 'access_token', this.accessToken );
-			this.myheaders.set ( 'token_type', this.tokenType );
-		  }
+			this.myheaders.set('access_token', this.accessToken);
+			this.myheaders.set('token_type', this.tokenType);
+		}
 	}
 
 	getCiudades(): Observable<any> {
@@ -32,17 +43,17 @@ export class PeticionesService {
 	getRutas(): Observable<any> {
 		return this._http.get(`${this.baseUrl}/rutas`)
 	}
-	
-	getRuta(id : number): Observable<any> {
+
+	getRuta(id: number): Observable<any> {
 		return this._http.get(`${this.baseUrl}/rutas/${id}`)
 	}
 
-	buscadorForm(data : string): Observable<any> {
-		return this._http.post(`${this.baseUrl}/buscador`, data, {observe: 'response'})
+	buscadorForm(data: string): Observable<any> {
+		return this._http.post(`${this.baseUrl}/buscador`, data, { observe: 'response' })
 	}
 
 	creaRuta(nuevaRuta: Ruta): Observable<any> {
-		return this._http.post(`${this.baseUrl}/rutas`, nuevaRuta, {observe: 'response'})
+		return this._http.post(`${this.baseUrl}/rutas`, nuevaRuta, { observe: 'response' })
 	}
 
 	// El numero es la cantidad de ocurrencias que se quieren recuperar
@@ -54,18 +65,18 @@ export class PeticionesService {
 		return this._http.get(`` + id);
 	}
 
-	postLogin(data : any): Observable<any> {
+	postLogin(data: any): Observable<any> {
 		return this._http.post(`${this.baseUrl}/login`, data)
 	}
 
-	postLogout(data : any, header : any): Observable<any> {
+	postLogout(data: any, header: any): Observable<any> {
 
-		return this._http.post(`${this.baseUrl}/logout`, data, {headers:this.myheaders})
+		return this._http.post(`${this.baseUrl}/logout`, data, { headers: this.myheaders })
 	}
 
-	postRegistrarse(data : any): Observable<any> {
+	postRegistrarse(data: any): Observable<any> {
 		return this._http.post(`${this.baseUrl}/registrarse`, data)
 	}
-	
+
 
 }
