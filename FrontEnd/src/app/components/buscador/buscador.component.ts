@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PeticionesService } from 'src/app/service/peticiones.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-buscador',
@@ -30,7 +31,8 @@ export class BuscadorComponent implements OnInit {
 
 	constructor(
 		private _peticiones: PeticionesService,
-		private fb: FormBuilder
+		private fb: FormBuilder,
+		private route: Router
 	)
 	{
 		this.formularioBuscador = this.fb.group({
@@ -87,7 +89,11 @@ export class BuscadorComponent implements OnInit {
 
 		this._peticiones.buscadorForm(this.formularioBuscador.value).subscribe({
 			next: data => {
-				console.log('La data del buscador ha sido enviada correctamente\n' + data);
+				console.log('La data del buscador ha sido enviada correctamente\n' + JSON.stringify(data));
+				if (data.body.data === 'Lo sentimos,no hemos encontrado ninguna ruta') {
+					console.log('NO HAY NADA');
+					this.route.navigate(['/tipo-ruta'], data.body.data)
+				}
 			},
 			error: error => {
 				console.log('Ha habido un error a la hora de enviar los datos a través del buscador\n' + error);
