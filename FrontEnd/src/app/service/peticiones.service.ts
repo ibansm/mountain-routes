@@ -14,6 +14,9 @@ export class PeticionesService {
 	public baseUrl = 'http://localhost:8000/api'
 	// Respuesta
 	public respuesta: Array<Ruta> = []
+	// Variables globales
+	public hasBeenTouchedBuscador: boolean = false;
+	public isLogged: boolean = false;
 
 	constructor(public _http: HttpClient) { }
 

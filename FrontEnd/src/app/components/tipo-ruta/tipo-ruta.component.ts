@@ -34,4 +34,8 @@ export class TipoRutaComponent implements OnInit {
 			}
 		})
 	}
+
+	public getTrigger(): boolean {
+		return this._peticiones.hasBeenTouchedBuscador = true
+	}
 }

@@ -79,13 +79,9 @@ export class BuscadorComponent implements OnInit {
 
 	public onSubmit(): void {
 		console.log('Formulario enviado => \n');
-		// this.formularioBuscador.value.ciudad ?? ''
-		// this.formularioBuscador.value.dificultad ?? ''
-		// this.formularioBuscador.value.duracion ?? ''
-		// this.formularioBuscador.value.longitud ?? ''
-		// this.formularioBuscador.value.ninos ?? 0
 		console.log('Data formulario\n')
-		// console.log(this.formularioBuscador.value)
+
+		this._peticiones.hasBeenTouchedBuscador = true
 
 		this._peticiones.buscadorForm(this.formularioBuscador.value).subscribe({
 			next: data => {

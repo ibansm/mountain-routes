@@ -1,8 +1,7 @@
-<h1>TipoRuta Component</h1>
 <div id="orange-gradient" class="">
 	<section>
 		<article id="home-img" class="d-flex flex-column justify-content-between">
-			<!-- <app-menu></app-menu> -->
+			<app-menu></app-menu>
 			<h1>Descubre nuevas <br/> rutas de monta&ntilde;a</h1>
 			<app-buscador class="align-self-center mb-3"></app-buscador>
 		</article>
@@ -10,11 +9,14 @@
 </div>
 <section class="mb-5">
 	<!-- <h5 id="vertical-card-title">&Uacute;ltimas b&uacute;squedas</h5> -->
-	<div *ngIf="res.length <= 0; else elseBlock ">
+	<div *ngIf="getTrigger() === true && res.length <= 0; else elseBlock ">
 		<div class="text-center m-5 p-5">
 			<h3>Lo sentimos.</h3>
 			<h3>No hemos hallado rutas con ese criterio de b&uacute;squeda</h3>
 		</div>
+		<app-horizontal-card [datosPadre]="errorRes"></app-horizontal-card>
+	</div>
+	<div *ngIf="getTrigger() === false && res.length <= 0">
 		<app-horizontal-card [datosPadre]="errorRes"></app-horizontal-card>
 	</div>
 	<ng-template #elseBlock>
