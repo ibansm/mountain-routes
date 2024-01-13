@@ -6,7 +6,7 @@ import { Ruta } from '../models/ruta';
 @Injectable({ providedIn: 'root' })
 export class PeticionesService {
 
-	
+	// Token
 	public accessToken = localStorage.getItem("access_token");
 	public tokenType = localStorage.getItem("token_type");
 	public myheaders = new HttpHeaders;
