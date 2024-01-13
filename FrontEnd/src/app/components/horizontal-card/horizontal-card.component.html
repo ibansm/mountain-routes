@@ -4,7 +4,7 @@
 		<!-- Esto es para mostrar las 3 primeras-->
 		<div *ngIf="i < 3" class="card w-100 xxl-w70 mt-3 mb-3 ms-auto me-auto d-grid border-black">
 			<!-- genera el codigo-->
-			<div class="row g-0">
+			<div class="row g-0" (click)="toRuta(ruta.id)">
 				<div class="col-md-4" id="card-img">
 					<!-- TODO => Change absolute path for {{ ruta.imagen }} -->
 					<img src="../../../assets/shutterstock_221809534.jpeg" class="img-thumbnail h-100 object-fit-cover" alt="foto_ruta">
