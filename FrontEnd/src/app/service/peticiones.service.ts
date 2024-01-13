@@ -6,7 +6,10 @@ import { Ruta } from '../models/ruta';
 @Injectable({ providedIn: 'root' })
 export class PeticionesService {
 
-	public baseUrl = 'http://localhost:8000/api'
+	// public baseUrl = 'http://localhost:8000/api'
+
+	// url servidor BirtLH + API-BackEnd
+	public baseUrl = 'https://daw4win10.hosting.birt.eus/public/api'
 	
 	constructor(public _http: HttpClient) { }
 
