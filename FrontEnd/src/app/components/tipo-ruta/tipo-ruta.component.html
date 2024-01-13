@@ -8,21 +8,18 @@
 		</article>
 	</section>
 </div>
-<section>
-	<h5 id="vertical-card-title">&Uacute;ltimas b&uacute;squedas</h5>
-	<div *ngIf="res != []; else elseBlock ">
-		<app-horizontal-card [datosPadre]="res"></app-horizontal-card>
+<section class="mb-5">
+	<!-- <h5 id="vertical-card-title">&Uacute;ltimas b&uacute;squedas</h5> -->
+	<div *ngIf="res.length <= 0; else elseBlock ">
+		<div class="text-center m-5 p-5">
+			<h3>Lo sentimos.</h3>
+			<h3>No hemos hallado rutas con ese criterio de b&uacute;squeda</h3>
+		</div>
+		<app-horizontal-card [datosPadre]="errorRes"></app-horizontal-card>
 	</div>
 	<ng-template #elseBlock>
-		<app-horizontal-card [datosPadre]="errorRes"></app-horizontal-card>
+		<app-horizontal-card [datosPadre]="res"></app-horizontal-card>
 	</ng-template>
-	<app-horizontal-card (eventohijo)="onMensajeHijo($event)"></app-horizontal-card>
-</section>
-<section>
-	<article class="text-center mt-3">
-		<h5>NOTICIAS</h5>
-		<p>Todo sobre  rutas</p>
-	</article>
-	<app-vertical-card></app-vertical-card>
+	<!-- <app-horizontal-card [datosPadre]="res"></app-horizontal-card> -->
 </section>
 <app-footer></app-footer>

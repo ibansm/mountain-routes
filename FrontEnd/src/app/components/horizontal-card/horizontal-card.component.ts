@@ -11,9 +11,10 @@ import { PeticionesService } from 'src/app/service/peticiones.service';
 export class HorizontalCardComponent implements OnInit {
 
 	@Input() datosPadre: Array<Ruta> = []
-	public dataRespuesta: Array<Ruta> = []
-	@Output() eventohijo = new EventEmitter<string>()
 	
+	public dataRespuesta: Array<Ruta> = []
+	
+	@Output() eventohijo = new EventEmitter<string>()
 	@Output() respuesta = new EventEmitter<Array<Ruta>>()
 	
 	constructor( private _peticiones: PeticionesService ) {}

@@ -25,7 +25,7 @@ export class VerticalCardComponent implements OnInit {
 		this._peticiones.getRutas().subscribe({
 			next: data => {
 				this.rutasAll = data.data
-				console.log('Resultado de getRutas: \n', this.rutasAll);
+				// console.log('Resultado de getRutas: \n', this.rutasAll);
 			},
 			error: error => {
 				console.log('Error accessing cities data\nERROR: ', error);
