@@ -6,12 +6,15 @@ import { Ruta } from '../models/ruta';
 @Injectable({ providedIn: 'root' })
 export class PeticionesService {
 
-	// Token
+	
 	public accessToken = localStorage.getItem("access_token");
 	public tokenType = localStorage.getItem("token_type");
 	public myheaders = new HttpHeaders;
 	// Base URL
 	public baseUrl = 'http://localhost:8000/api'
+
+	// url servidor BirtLH + API-BackEnd
+	// public baseUrl = 'https://daw4win10.hosting.birt.eus/public/api'
 	// Respuesta
 	public respuesta: Array<Ruta> = []
 	// Variables globales
