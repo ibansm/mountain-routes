@@ -81,5 +81,9 @@ export class PeticionesService {
 		return this._http.post(`${this.baseUrl}/registrarse`, data)
 	}
 
+	// FIXME => Ver como se puede hallar el user_id por un endpoint
+	getUserId(): Observable<any> {
+		return this._http.get(`${this.baseUrl}/userId`)
+	}
 
 }

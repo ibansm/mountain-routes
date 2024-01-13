@@ -17,6 +17,7 @@ export class Ruta {
 		public longitud?: number,
 		public duracion?: number,
 		public ninos?: boolean,
+		public user_id?: number,
 		public coordenadas?: Array<LatLng>,
 		public marcadores?: Array<Marker>,
 		public imagenes?: Array<File>
