@@ -12,7 +12,6 @@ import { HomeComponent } from './components/home/home.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CheckComponent } from './components/check/check.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
-import { FavoritasComponent } from './components/favoritas/favoritas.component';
 import { CreaRutaComponent } from './components/crea-ruta/crea-ruta.component';
 import { TipoRutaComponent } from './components/tipo-ruta/tipo-ruta.component';
 import { InfoRutaComponent } from './components/info-ruta/info-ruta.component';
@@ -31,7 +30,6 @@ import { LoginComponent } from './components/login/login.component';
 		CheckComponent,
 		CreateAccComponent,
 		ContactoComponent,
-		FavoritasComponent,
 		CreaRutaComponent,
 		LoginComponent,
 		InfoRutaComponent,
