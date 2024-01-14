@@ -9,18 +9,18 @@ import { PeticionesService } from 'src/app/service/peticiones.service';
 })
 export class TipoRutaComponent implements OnInit {
 	
-	public res: Array<Ruta> = [{nombre: 'IAKITO'}];
+	public res: Array<Ruta> = [];
 	public errorRes: Array<Ruta> = []
 	public mensajeHijo: string = ''
 
 	constructor( private _peticiones: PeticionesService ) {}
 	
 	ngOnInit(): void {
-
-		this.res = this._peticiones.getResponse()
+		this.res = this._peticiones.respuesta
 		this.getRutas()
 		console.log('DESDE TIPO-RUTA\n');
 		console.log(this.res);	
+		console.log(this.errorRes);	
 	}
 
 	public getRutas() {

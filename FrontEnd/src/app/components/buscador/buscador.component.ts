@@ -92,7 +92,8 @@ export class BuscadorComponent implements OnInit {
 					console.log('DATA:\n');
 					console.log(data.body.data);
 					// Tiene que ser un Array<Ruta> el data.body...
-					this._peticiones.setResponse(data.body.data)
+					this._peticiones.respuesta = data.body.data
+					// this._peticiones.setResponse(data.body.data)
 					this.route.navigate(['/tipo-ruta'])
 				}
 			},

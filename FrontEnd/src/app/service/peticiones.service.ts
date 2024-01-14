@@ -15,6 +15,7 @@ export class PeticionesService {
 
 	// url servidor BirtLH + API-BackEnd
 	// public baseUrl = 'https://daw4win10.hosting.birt.eus/public/api'
+	
 	// Respuesta
 	public respuesta: Array<Ruta> = []
 	// Variables globales

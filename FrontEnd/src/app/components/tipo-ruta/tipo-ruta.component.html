@@ -8,7 +8,6 @@
 	</section>
 </div>
 <section class="mb-5">
-	<!-- <h5 id="vertical-card-title">&Uacute;ltimas b&uacute;squedas</h5> -->
 	<div *ngIf="getTrigger() === true && res.length <= 0; else elseBlock ">
 		<div class="text-center m-5 p-5">
 			<h3>Lo sentimos.</h3>
@@ -17,11 +16,12 @@
 		<app-horizontal-card [datosPadre]="errorRes"></app-horizontal-card>
 	</div>
 	<div *ngIf="getTrigger() === false && res.length <= 0">
+		<h5 id="vertical-card-title">&Uacute;ltimas b&uacute;squedas</h5>
 		<app-horizontal-card [datosPadre]="errorRes"></app-horizontal-card>
 	</div>
 	<ng-template #elseBlock>
 		<app-horizontal-card [datosPadre]="res"></app-horizontal-card>
 	</ng-template>
-	<!-- <app-horizontal-card [datosPadre]="res"></app-horizontal-card> -->
+	<app-horizontal-card [datosPadre]="res"></app-horizontal-card>
 </section>
 <app-footer></app-footer>
