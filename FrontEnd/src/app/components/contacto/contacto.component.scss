@@ -4,7 +4,8 @@
 	background-image: url('../../../assets/shutterstock_1071252569.jpeg');
 	background-position: center;
 	background-size: cover;
-	height: 70vh;
+	min-height: 70vh;
+	max-height: fit-content;
 	overflow: hidden;
 }
 
@@ -36,6 +37,5 @@ h1 {
 }
 
 #head-title {
-	position: relative;
-	top: -8rem;
+	padding-bottom: 2rem;
 }

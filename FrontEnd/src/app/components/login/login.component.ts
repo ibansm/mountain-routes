@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PeticionesService } from 'src/app/service/peticiones.service';
-import { Injectable } from '@angular/core';
 import { Router  } from '@angular/router';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -27,6 +25,7 @@ export class LoginComponent {
 			next: data => {
 				localStorage.setItem("access_token", JSON.stringify(data.data.access_token));
 				localStorage.setItem("token_type", JSON.stringify(data.data.token_type));
+				// TODO => User_id a traves del localStorage ????
 				this._peticiones.isLogged = true
 				this.router.navigate(['/']);
 				console.log('Datos del usuario1:', data)

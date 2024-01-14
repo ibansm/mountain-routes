@@ -2,7 +2,8 @@
 	background: linear-gradient(to top, rgba(244,148,28, 0.187), rgba(239, 237, 233, 0.159)), url('../../../assets/shutterstock_221809534.jpeg');
 	background-position: center;
 	background-size: cover;
-	height: 70vh;
+	min-height: 70vh;
+	max-height: fit-content;
 }
 
 h1 {
