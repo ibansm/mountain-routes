@@ -136,9 +136,6 @@ export class CreaRutaComponent implements AfterViewInit, OnInit {
 		// Coordenadas
 		if (this.markerCounter === 0 && this.polylineCounter === 1) {
 			
-			/*
-				TODO => Comprobar que se puede guardar el RUTA
-			*/
 			map.on('click', (event) => {
 				this.coordenadas?.push(event.latlng);
 				this.last_coord.push(polyline(this.coordenadas).addTo(map));
