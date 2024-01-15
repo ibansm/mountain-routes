@@ -24,14 +24,16 @@ WORKDIR /var/www/html
 
 # Composer install
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY /BackEnd /home/proyecto/BackEnd
+COPY /FrontEnd /home/proyecto/FrontEnd
 
 RUN \
-    git clone https://github.com/ibansm/mountain-routes.git /home/proyecto \
-    && chmod 777 /home/proyecto/BackEnd/Docker/entrypoint.sh \
+    # git clone https://github.com/ibansm/mountain-routes.git /home/proyecto \
+    chmod 777 /home/proyecto/BackEnd/Docker/entrypoint.sh \
     && chmod 777 -R /home/proyecto/BackEnd/storage \
     && ln -s /home/proyecto/BackEnd/public /var/www/html/ \
     && chmod 755 /var/www/html \
-    && cd /home/proyecto/FrontEnd && npm install @angular/cli -g && npm i \
+    && cd /home/proyecto/FrontEnd && npm install -g @angular/cli && npm install \
     && ng build --configuration production \
     && cd /var/www/html && cp -r /home/proyecto/FrontEnd/dist/front-end/* .
 
