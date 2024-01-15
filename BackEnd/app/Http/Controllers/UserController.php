@@ -33,6 +33,16 @@ class UserController extends Controller
         } 
     }
 
+    public function selectIdUser($email)
+    {
+        try {
+            $idUser = User::select('id')->where('email',$email)->get();
+            return ApiResponse::success($idUser, 200);
+        } catch(Exception $e) {
+            return ApiResponse::error('Ocurrió un error: '.$e->getMessage(), 500);
+        } 
+    }
+
 
     
     /**

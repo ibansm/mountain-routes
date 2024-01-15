@@ -47,7 +47,16 @@ class RutaController extends Controller
     }
 
     
-    //public function create(){}
+    public function limit3()
+    {
+        try {
+            $rutas = Ruta::take(3)->get();
+
+            return ApiResponse::success($rutas,200);
+        } catch(Exception $e) {
+            return ApiResponse::error('Ocurrió un error: '.$e->getMessage(), 500);
+        } 
+    }
 
     
    
@@ -234,6 +243,7 @@ class RutaController extends Controller
         try {
             $rutas = Ruta::select(
                                 // 'fecha_creada as Fecha',
+                                'id',
                                 'nombre',
                                 'descripcion',
                                 'duracion',
@@ -241,7 +251,8 @@ class RutaController extends Controller
                                 'longitud',
                                 'dificultad',
                                 'ninos',
-                                'foto_perfil'
+                                'foto_perfil',
+                                'usuarios_id'
                                 )
                     ->latest()
                     ->take($ruta)
