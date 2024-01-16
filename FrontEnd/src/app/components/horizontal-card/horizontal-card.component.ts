@@ -7,7 +7,6 @@ import { PeticionesService } from 'src/app/service/peticiones.service';
   selector: 'app-horizontal-card',
   templateUrl: './horizontal-card.component.html',
   styleUrls: ['./horizontal-card.component.scss'],
-  providers: [PeticionesService]
 })
 export class HorizontalCardComponent {
 

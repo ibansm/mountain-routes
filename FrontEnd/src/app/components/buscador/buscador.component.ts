@@ -8,7 +8,6 @@ import { Ruta } from 'src/app/models/ruta';
 	selector: 'app-buscador',
 	templateUrl: './buscador.component.html',
 	styleUrls: ['./buscador.component.scss'],
-	providers: [PeticionesService]
 })
 
 export class BuscadorComponent implements OnInit {
@@ -36,8 +35,7 @@ export class BuscadorComponent implements OnInit {
 		private _peticiones: PeticionesService,
 		private fb: FormBuilder,
 		private route: Router
-	)
-	{
+	) {
 		this.formularioBuscador = this.fb.group({
 			ciudad: [''],
 			dificultad: [''],
@@ -51,7 +49,7 @@ export class BuscadorComponent implements OnInit {
 		this.getCiudades()
 		this.getDificultad()
 	}
-	
+
 	public getCiudades() {
 		this._peticiones.getCiudades().subscribe({
 			next: data => {
@@ -84,13 +82,13 @@ export class BuscadorComponent implements OnInit {
 		console.log('Formulario enviado => \n');
 		console.log('Data formulario\n')
 
-		
+
 		this._peticiones.hasBeenTouchedBuscador = true
-		
+
 		this._peticiones.buscadorForm(this.formularioBuscador.value).subscribe({
 			next: data => {
 				console.log('La data del buscador ha sido enviada correctamente\n' + JSON.stringify(data));
-				
+
 				if (data.body.data === 'Lo sentimos,no hemos encontrado ninguna ruta') {
 					console.log('NO HAY NADA');
 				} else {
@@ -99,7 +97,7 @@ export class BuscadorComponent implements OnInit {
 					console.log('DATA:\n');
 					console.log(data.body.data);
 					this.respuesta = data.body.data
-					// this.route.navigate(['/tipo-ruta'])
+					this.route.navigate(['/tipo-ruta'])
 				}
 			},
 			error: error => {
@@ -108,6 +106,6 @@ export class BuscadorComponent implements OnInit {
 			}
 		})
 		console.log('Esto también se ejecuta');
-		
+
 	}
 }

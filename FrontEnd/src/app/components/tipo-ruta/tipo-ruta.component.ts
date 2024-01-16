@@ -1,5 +1,4 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { Observable, take } from 'rxjs';
 import { Ruta } from 'src/app/models/ruta';
 import { PeticionesService } from 'src/app/service/peticiones.service';
 
