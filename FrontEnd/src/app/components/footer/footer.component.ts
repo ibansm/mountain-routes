@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PeticionesService } from 'src/app/service/peticiones.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
+	constructor( private _peticiones: PeticionesService ) {}
+
+	mailTo() {
+		this._peticiones.enviarMailto()
+	}
 }

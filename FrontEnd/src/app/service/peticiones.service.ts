@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Ruta } from '../models/ruta';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class PeticionesService {
@@ -19,13 +20,19 @@ export class PeticionesService {
 	
 	// Data del componente BUSCADOR
 	private respuesta = new BehaviorSubject<Array<Ruta>>([])
-	private arrayRespuesta: Array<Ruta> = []
 
 	// Variables globales
 	public hasBeenTouchedBuscador: boolean = false;
 	public isLogged: boolean = false;
 
-	constructor( private _http: HttpClient ) { }
+	constructor(
+		private _http: HttpClient,
+		private router: Router
+	) { }
+
+	enviarMailto() {
+		location.href = `mailto:info@mountainroutes.com`
+	}
 
 	get respuestaBuscador(): Observable<any> {
 		return this.respuesta.asObservable()
@@ -33,8 +40,6 @@ export class PeticionesService {
 
 	setBuscador(data: Array<Ruta>) {
 		this.respuesta.next(data)
-		console.log('LA DATA HA SIDO SETEADA');
-		console.log(this.respuesta.getValue());
 	}
 
 	createHeader() {

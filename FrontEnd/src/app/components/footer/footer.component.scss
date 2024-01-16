@@ -53,6 +53,9 @@
 		i {
 			color: map-get($colores, 'naranja');
 		}
+		a {
+			cursor: pointer;
+		}
 	}
 	#title {
 		color: map-get($colores, 'naranja');
