@@ -43,37 +43,9 @@ export class CreaRutaComponent implements AfterViewInit, OnInit {
 	) {
 		this.nuevaRuta = new Ruta(undefined, undefined, undefined, undefined, undefined, undefined, undefined, false, undefined, this.coordenadas, this.marcadores);
 	}
-
-	/*
-            nombre
-            descripcion
-            ciudad -> nullable();
-            dificultad => ['baja','media','alta']
-            longitud
-            duracion
-            ninos
-            fecha_creada
-            fecha_realizada
-            coordenadas
-            foto_perfil -> nullable();
-            usuarios_id
-
-
-	*/
 	
 	ngOnInit(): void {
 		this.getLastRutas(2)
-	}
-
-	getUserId() {
-		this._peticiones.getUserId().subscribe({
-			next: data => {
-				return 0;
-			},
-			error: error => {
-				return 1;
-			}
-		})
 	}
 
 	getLastRutas(id: number) {
@@ -91,6 +63,7 @@ export class CreaRutaComponent implements AfterViewInit, OnInit {
 	
 	guardaRuta(): void {
 		console.log(this.nuevaRuta);
+		this.nuevaRuta.user_id = parseFloat(localStorage.getItem('user_id') || '')
 		this._peticiones.creaRuta(this.nuevaRuta).subscribe({
 			next: data => {
 				console.log(data)

@@ -72,6 +72,7 @@ export class PeticionesService {
 		return this._http.get(`${this.baseUrl}/rutas/ultimas/` + id)
 	}
 
+	// TODO => Pendiente de necesidad de implementar o no
 	getFotos(id: number): Observable<any> {
 		return this._http.get(`` + id);
 	}
@@ -89,9 +90,8 @@ export class PeticionesService {
 		return this._http.post(`${this.baseUrl}/registrarse`, data)
 	}
 
-	// FIXME => Ver como se puede hallar el user_id por un endpoint
-	getUserId(): Observable<any> {
-		return this._http.get(`${this.baseUrl}/userId`)
+	getUserId(email: string): Observable<any> {
+		return this._http.get(`${this.baseUrl}/usuarios/id/` + email)
 	}
 
 }
