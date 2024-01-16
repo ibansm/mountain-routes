@@ -68,8 +68,8 @@ export class PeticionesService {
 		return this._http.get(`${this.baseUrl}/rutas/ultimas/` + id)
 	}
 
-	getFotos(id: number): Observable<any> {
-		return this._http.get(`` + id);
+	getFotos(id : number): Observable<any> {
+		return this._http.get(`${this.baseUrl}/fotos-ruta/${id}`)
 	}
 
 	postLogin(data: any): Observable<any> {
