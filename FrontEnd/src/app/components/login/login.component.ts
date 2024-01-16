@@ -20,7 +20,6 @@ export class LoginComponent {
     console.log('Datos del usuario:', this.usuario);
 
 	// Recuperamos el user_id
-	this._peticiones.user_id = parseFloat(this.usuario.email)
 	this._peticiones.getUserId(this.usuario.email).subscribe({
 		next: data => {
 			console.log('USER_ID\n')
