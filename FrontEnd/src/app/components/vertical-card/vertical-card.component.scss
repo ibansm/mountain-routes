@@ -5,11 +5,11 @@
 }
 
 .card-title {
-	@media (max-width: 425px) {
+	// @media (max-width: 425px) {
 		text-overflow: ellipsis;
 		overflow: hidden;
 		white-space: nowrap;
-	}
+	// }
 }
 
 #card-container {
@@ -17,8 +17,13 @@
 	max-height: 50%;
 	@media (min-width: 767px) {
 		max-width: 50%;
+		height:450px;
 	}
 	@media (min-width: 992px) {
 		max-width: 25%;
 	}
+}
+
+#img-container {
+	height: 300px;
 }

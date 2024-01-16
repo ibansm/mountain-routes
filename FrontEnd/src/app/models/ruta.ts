@@ -20,7 +20,8 @@ export class Ruta {
 		public user_id?: number,
 		public coordenadas?: Array<LatLng>,
 		public marcadores?: Array<Marker>,
-		public imagenes?: Array<File>
+		public imagenes?: Array<File>,
+		public foto_perfil?: File
 	) {}
 	
 }

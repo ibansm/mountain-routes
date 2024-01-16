@@ -1,15 +1,13 @@
-<article class="container-fluid container-sm">
+  <article class="container-fluid container-sm">
 	<!-- Array del ts-->
 	<div *ngIf="datosPadre != []; else elseBlock">
-
 		<div *ngFor="let ruta of datosPadre; let i = index">
 			<!-- Esto es para mostrar las 3 primeras-->
 			<div class="card w-100 xxl-w70 mt-3 mb-3 ms-auto me-auto d-grid border-black">
 			<!-- genera el codigo-->
 			<div class="row g-0" (click)="toRuta(ruta.id)">
-				<div class="col-md-4" id="card-img">
-					<!-- TODO => Change absolute path for {{ ruta.imagen }} -->
-					<img src="../../../assets/shutterstock_221809534.jpeg" class="img-thumbnail h-100 object-fit-cover" alt="foto_ruta">
+				<div class="col-md-4 " id="card-img">
+					<img src="{{ ruta.foto_perfil }}" class="img-thumbnail w-100 h-100 object-fit-cover" alt="foto_ruta">
 				</div>
 				<div class="col-md-8">
 					<div class="card-body h-100 d-flex flex-column justify-content-around">

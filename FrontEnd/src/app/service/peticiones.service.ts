@@ -30,6 +30,10 @@ export class PeticionesService {
 		private router: Router
 	) { }
 
+	getCarreras(): Observable<any> {
+		return this._http.get(`${this.baseUrl}/carreras-monte`)
+	}
+
 	enviarMailto() {
 		location.href = `mailto:info@mountainroutes.com`
 	}
