@@ -77,9 +77,8 @@ export class PeticionesService {
 		return this._http.get(`${this.baseUrl}/rutas/ultimas/` + id)
 	}
 
-	// TODO => Pendiente de necesidad de implementar o no
-	getFotos(id: number): Observable<any> {
-		return this._http.get(`` + id);
+	getFotos(id : number): Observable<any> {
+		return this._http.get(`${this.baseUrl}/fotos-ruta/${id}`)
 	}
 
 	postLogin(data: any): Observable<any> {

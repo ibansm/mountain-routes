@@ -13,6 +13,15 @@
   align-items: center;
   font-size: 2rem;
 }
+
+#contact-img {
+	background-image: url('../../../assets/shutterstock_2028613154.jpeg');
+	background-position: center;
+	background-size: cover;
+	min-height: 70vh;
+	max-height: fit-content;
+	overflow: hidden;
+}
 .sidebar-box {
   max-height: 90%;
   position: relative;
