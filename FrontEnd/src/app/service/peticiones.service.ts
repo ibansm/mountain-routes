@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Ruta } from '../models/ruta';
 
 @Injectable({ providedIn: 'root' })
@@ -10,26 +10,31 @@ export class PeticionesService {
 	public accessToken = localStorage.getItem("access_token");
 	public tokenType = localStorage.getItem("token_type");
 	public myheaders = new HttpHeaders;
+
 	// Base URL
 	public baseUrl = 'http://localhost:8000/api'
 
 	// url servidor BirtLH + API-BackEnd
 	// public baseUrl = 'https://daw4win10.hosting.birt.eus/public/api'
 	
-	// Respuesta
-	public respuesta: Array<Ruta> = []
+	// Data del componente BUSCADOR
+	private respuesta = new BehaviorSubject<Array<Ruta>>([])
+	private arrayRespuesta: Array<Ruta> = []
+
 	// Variables globales
 	public hasBeenTouchedBuscador: boolean = false;
 	public isLogged: boolean = false;
 
-	constructor(public _http: HttpClient) { }
+	constructor( private _http: HttpClient ) { }
 
-	setResponse(data: Array<Ruta>) {
-		this.respuesta = data
+	get respuestaBuscador(): Observable<any> {
+		return this.respuesta.asObservable()
 	}
 
-	getResponse(): Array<Ruta> {
-		return this.respuesta
+	setBuscador(data: Array<Ruta>) {
+		this.respuesta.next(data)
+		console.log('LA DATA HA SIDO SETEADA');
+		console.log(this.respuesta.getValue());
 	}
 
 	createHeader() {
@@ -59,7 +64,7 @@ export class PeticionesService {
 		return this._http.get(`${this.baseUrl}/rutas/${id}`)
 	}
 
-	buscadorForm(data: string): Observable<any> {
+	buscadorForm(data: any): Observable<any> {
 		return this._http.post(`${this.baseUrl}/buscador`, data, { observe: 'response' })
 	}
 

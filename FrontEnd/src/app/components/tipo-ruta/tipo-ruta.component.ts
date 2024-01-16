@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { Observable, take } from 'rxjs';
 import { Ruta } from 'src/app/models/ruta';
 import { PeticionesService } from 'src/app/service/peticiones.service';
 
@@ -9,33 +10,35 @@ import { PeticionesService } from 'src/app/service/peticiones.service';
 })
 export class TipoRutaComponent implements OnInit {
 	
-	public res: Array<Ruta> = [];
-	public errorRes: Array<Ruta> = []
-	public mensajeHijo: string = ''
+	// public res: Array<Ruta> = [];
+	// public errorRes: Array<Ruta> = []
+	// public mensajeHijo: string = ''
 
-	constructor( private _peticiones: PeticionesService ) {}
+	@Output() dataBuscador: Array<Ruta> = []
+	
+	constructor( private _peticiones: PeticionesService ) {
+	}
 	
 	ngOnInit(): void {
-		this.res = this._peticiones.respuesta
-		this.getRutas()
-		console.log('DESDE TIPO-RUTA\n');
-		console.log(this.res);	
-		console.log(this.errorRes);	
-	}
-
-	public getRutas() {
-		this._peticiones.getRutas().subscribe({
-			next: data => {
-				this.errorRes = data.data
-			},
-			error: error => {
-				console.log('Error accessing cities data\nERROR: ', error);
-				this.errorRes = []
-			}
+		// this.getResponse()
+		// this._peticiones.obser2.subscribe(data => this.dataBuscador = data)
+		this._peticiones.respuestaBuscador.subscribe(data => {
+			this.dataBuscador = data
+			console.log(data)
 		})
 	}
 
 	public getTrigger(): boolean {
 		return this._peticiones.hasBeenTouchedBuscador = true
 	}
+
+	// public getResponse() {
+	// 	this._peticiones.obser2.pipe(take(1)).subscribe(data => {
+	// 		this.dataBuscador = data
+	// 		console.log('ON_INIT - TipoRuta');
+	// 		console.log(data);
+	// 		console.log('DATA BUSCADOR');
+	// 		console.log(this.dataBuscador);
+	// 	})
+	// }
 }

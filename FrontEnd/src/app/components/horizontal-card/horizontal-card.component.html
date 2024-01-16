@@ -1,6 +1,52 @@
 <article class="container-fluid container-sm">
 	<!-- Array del ts-->
-	<div *ngFor="let ruta of datosPadre; let i = index">
+	<div *ngIf="datosPadre != []; else elseBlock">
+
+		<div *ngFor="let ruta of datosPadre; let i = index">
+			<!-- Esto es para mostrar las 3 primeras-->
+			<div class="card w-100 xxl-w70 mt-3 mb-3 ms-auto me-auto d-grid border-black">
+			<!-- genera el codigo-->
+			<div class="row g-0" (click)="toRuta(ruta.id)">
+				<div class="col-md-4" id="card-img">
+					<!-- TODO => Change absolute path for {{ ruta.imagen }} -->
+					<img src="../../../assets/shutterstock_221809534.jpeg" class="img-thumbnail h-100 object-fit-cover" alt="foto_ruta">
+				</div>
+				<div class="col-md-8">
+					<div class="card-body h-100 d-flex flex-column justify-content-around">
+						<div class="row">
+							<div class="col-11">
+								<h5 class="card-title">{{ ruta.nombre }}</h5>
+								<p class="card-text">{{ ruta.descripcion }}</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-8 d-flex flex-row justify-content-start">
+								<div class="m-2 d-flex flex-column align-items-center justify-content-end ms-s-4">
+									<img class="ruta-propeties" src="../../../assets/horas.png" alt="">
+									<span class="span-card fw-bold mt-2">{{ ruta.duracion }}'</span>
+								</div>
+								<div class="m-2 d-flex flex-column align-items-center justify-content-end ms-s-4">
+									<img class="ruta-propeties" src="../../../assets/km.png" alt="">
+									<span class="span-card fw-bold mt-2">{{ ruta.longitud }} km</span>
+								</div>
+								<div class="m-2 d-flex flex-column align-items-center justify-content-end ms-s-4">
+									<img class="ruta-propeties" src="../../../assets/dificultad.png" alt="">
+									<span class="span-card fw-bold mt-2">{{ ruta.dificultad }}</span>
+								</div>
+							</div>
+							<div class="col-4 d-flex flex-column justify-content-end align-items-end">
+								<img class="ubicacion-propety" src="../../../assets/ubicacion.png" alt="ubicacion_ruta.png">
+								<span class="span-card mt-1">{{ ruta.ciudad }}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<ng-template #elseBlock>
+	<div *ngFor="let ruta of dataBuscador; let i = index">
 		<!-- Esto es para mostrar las 3 primeras-->
 		<div class="card w-100 xxl-w70 mt-3 mb-3 ms-auto me-auto d-grid border-black">
 			<!-- genera el codigo-->
@@ -42,4 +88,5 @@
 			</div>
 		</div>
 	</div>
+</ng-template>
 </article>

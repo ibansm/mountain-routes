@@ -12,13 +12,15 @@ import { PeticionesService } from 'src/app/service/peticiones.service';
 export class HorizontalCardComponent {
 
 	@Input() datosPadre: Array<Ruta> = []
-	
-	public dataRespuesta: Array<Ruta> = []
+	public dataBuscador: Array<Ruta> = []
 	
 	constructor( private _peticiones: PeticionesService, private route: Router ) {}
 
 	ngOnInit(): void {
-		
+		this._peticiones.respuestaBuscador.subscribe(data => {
+			this.dataBuscador = data
+			console.log(data)
+		})
 	}
 
 	toRuta(id: number | undefined) {

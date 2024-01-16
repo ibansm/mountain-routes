@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { PeticionesService } from 'src/app/service/peticiones.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Ruta } from 'src/app/models/ruta';
 
 @Component({
 	selector: 'app-buscador',
@@ -11,6 +12,8 @@ import { Router } from '@angular/router';
 })
 
 export class BuscadorComponent implements OnInit {
+
+	public respuesta: Array<Ruta> = []
 
 	// Formulario
 	public formularioBuscador: FormGroup;
@@ -77,24 +80,26 @@ export class BuscadorComponent implements OnInit {
 		})
 	}
 
-	public onSubmit(): void {
+	public onSubmit() {
 		console.log('Formulario enviado => \n');
 		console.log('Data formulario\n')
 
+		
 		this._peticiones.hasBeenTouchedBuscador = true
-
+		
 		this._peticiones.buscadorForm(this.formularioBuscador.value).subscribe({
 			next: data => {
 				console.log('La data del buscador ha sido enviada correctamente\n' + JSON.stringify(data));
+				
 				if (data.body.data === 'Lo sentimos,no hemos encontrado ninguna ruta') {
 					console.log('NO HAY NADA');
 				} else {
+					// Enviamos el setter del buscador
+					this._peticiones.setBuscador(data.body.data)
 					console.log('DATA:\n');
 					console.log(data.body.data);
-					// Tiene que ser un Array<Ruta> el data.body...
-					this._peticiones.respuesta = data.body.data
-					// this._peticiones.setResponse(data.body.data)
-					this.route.navigate(['/tipo-ruta'])
+					this.respuesta = data.body.data
+					// this.route.navigate(['/tipo-ruta'])
 				}
 			},
 			error: error => {
@@ -102,5 +107,7 @@ export class BuscadorComponent implements OnInit {
 				console.log(this.formularioBuscador.value);
 			}
 		})
+		console.log('Esto también se ejecuta');
+		
 	}
 }
