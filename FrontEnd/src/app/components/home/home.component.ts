@@ -9,23 +9,23 @@ import { PeticionesService } from 'src/app/service/peticiones.service';
 })
 export class HomeComponent implements OnInit {
 
-	public rutasAll: Array<Ruta> = []
+	public rutasThree: Array<Ruta> = []
 
 	constructor( private _peticiones: PeticionesService ) {}
 
 	ngOnInit(): void {
-		this.getRutas()
+		this.getThreeRutas()
 	}
 
-	public getRutas() {
-		this._peticiones.getRutas().subscribe({
+	public getThreeRutas() {
+		this._peticiones.getThreeRutas().subscribe({
 			next: data => {
-				this.rutasAll = data.data
-				console.log('Resultado de getRutas: \n', this.rutasAll);
+				this.rutasThree = data.data
+				console.log('Resultado de getThreeRutas: \n', this.rutasThree);
 			},
 			error: error => {
 				console.log('Error accessing cities data\nERROR: ', error);
-				this.rutasAll = []
+				this.rutasThree = []
 			}
 		})
 	}

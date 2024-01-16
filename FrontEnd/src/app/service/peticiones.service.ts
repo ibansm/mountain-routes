@@ -51,6 +51,10 @@ export class PeticionesService {
 		return this._http.get(`${this.baseUrl}/rutas`)
 	}
 
+	getThreeRutas(): Observable<any> {
+		return this._http.get(`${this.baseUrl}/rutas/limit/3`)
+	}
+
 	getRuta(id: number): Observable<any> {
 		return this._http.get(`${this.baseUrl}/rutas/${id}`)
 	}
