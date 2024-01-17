@@ -90,7 +90,9 @@ export class BuscadorComponent implements OnInit {
 				console.log('La data del buscador ha sido enviada correctamente\n' + JSON.stringify(data));
 
 				if (data.body.data === 'Lo sentimos,no hemos encontrado ninguna ruta') {
-					console.log('NO HAY NADA');
+					this._peticiones.setBuscador(data.body.data)
+					console.log('NO HAY NADA')
+					this.route.navigate(['/tipo-ruta'])
 				} else {
 					// Enviamos el setter del buscador
 					this._peticiones.setBuscador(data.body.data)

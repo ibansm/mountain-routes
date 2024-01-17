@@ -22,8 +22,9 @@ export class PeticionesService {
 	private respuesta = new BehaviorSubject<Array<Ruta>>([])
 
 	// Variables globales
-	public hasBeenTouchedBuscador: boolean = false;
-	public isLogged: boolean = false;
+	public hasBeenTouchedBuscador: boolean = false
+	public isLogged: boolean = false
+	public empty: boolean = false
 
 	constructor(
 		private _http: HttpClient,
@@ -44,6 +45,11 @@ export class PeticionesService {
 
 	setBuscador(data: Array<Ruta>) {
 		this.respuesta.next(data)
+	}
+
+	resetBuscador() {
+		this.empty = false
+		this.hasBeenTouchedBuscador = false
 	}
 
 	createHeader() {

@@ -8,20 +8,22 @@
 	</section>
 </div>
 <section class="mb-5">
-	<app-horizontal-card [datosPadre]="dataBuscador"></app-horizontal-card>
-	<!-- <div *ngIf="getTrigger() === true && res.length <= 0; else elseBlock ">
-		<div class="text-center m-5 p-5">
-			<h3>Lo sentimos.</h3>
+	<div *ngIf="getTrigger() === false">
+		<h5 id="vertical-card-title">Descubre nuestras rutas</h5>
+		<app-horizontal-card [datosPadre]="arrayRutas"></app-horizontal-card>
+	</div>
+	<div *ngIf="getTrigger() === true && getEmpty() === true">
+		<div class="text-center m-5 p-5" #myDiv>
+			<h3>Lo sentimos</h3>
 			<h3>No hemos hallado rutas con ese criterio de b&uacute;squeda</h3>
+			<h3>Aqu&iacute; tienes algunas de nuestras rutas</h3>
 		</div>
-		<app-horizontal-card [datosPadre]="errorRes"></app-horizontal-card>
+		<app-horizontal-card [datosPadre]="arrayRutas"></app-horizontal-card>
 	</div>
-	<div *ngIf="getTrigger() === false && res.length <= 0">
-		<h5 id="vertical-card-title">&Uacute;ltimas b&uacute;squedas</h5>
-		<app-horizontal-card [datosPadre]="errorRes"></app-horizontal-card>
+	<div *ngIf="getTrigger() === true && getEmpty() === false">
+		<h5 id="vertical-card-title">Aqu&iacute; tiene su resultado</h5>
+		<app-horizontal-card [datosPadre]="dataBuscador"></app-horizontal-card>
 	</div>
-	<ng-template #elseBlock>
-		<app-horizontal-card [datosPadre]="res"></app-horizontal-card>
-	</ng-template> -->
+	<!-- <app-horizontal-card [datosPadre]="dataBuscador"></app-horizontal-card> -->
 </section>
 <app-footer></app-footer>
