@@ -1,0 +1,29 @@
+.card-text {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.card-title {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#card-container {
+	max-width: 90%;
+	max-height: 50%;
+
+	@media (min-width: 767px) {
+		max-width: 50%;
+		height: 450px;
+	}
+
+	@media (min-width: 992px) {
+		max-width: 25%;
+	}
+}
+
+#img-container {
+	height: 300px;
+}

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PeticionesService } from 'src/app/service/peticiones.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +11,6 @@ export class VerticalCardComponent implements OnInit {
 	@Input() datosPadre: Array<any> = [];
 
 	constructor( 
-		private _peticiones: PeticionesService,
 		private router: Router
 	) {}
 

@@ -21,6 +21,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { VerticalCardComponent } from './components/vertical-card/vertical-card.component';
 import { CreateAccComponent } from './components/create-acc/create-acc.component';
 import { LoginComponent } from './components/login/login.component';
+import { CarrerasCardComponent } from './components/carreras-card/carreras-card.component';
 
 @NgModule({
 	declarations: [
@@ -37,7 +38,8 @@ import { LoginComponent } from './components/login/login.component';
 		BuscadorComponent,
 		HorizontalCardComponent,
 		FooterComponent,
-  		VerticalCardComponent
+  		VerticalCardComponent,
+    CarrerasCardComponent
 	],
 	imports: [
 		BrowserModule,
