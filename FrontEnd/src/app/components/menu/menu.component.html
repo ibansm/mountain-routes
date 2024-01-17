@@ -13,7 +13,7 @@
 		<li class="nav-item pe-lg-4">
 		  <a [routerLink]="['/tipo-ruta']" routerLinkActive="active" class="nav-link">Rutas de monta&ntilde;a</a>
 		</li>
-		<li class="nav-item pe-lg-4">
+		<li *ngIf="getLog() === true" class="nav-item pe-lg-4">
 			<a [routerLink]="['/crearuta']" [routerLinkActive]="['active']" class="nav-link">Crea tu ruta</a>
 		</li>
 		<li class="nav-item pe-lg-4">
