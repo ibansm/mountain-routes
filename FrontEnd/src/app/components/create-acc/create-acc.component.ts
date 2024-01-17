@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PeticionesService } from 'src/app/service/peticiones.service';
 import { Location } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router  } from '@angular/router';
 
 
@@ -15,8 +16,15 @@ export class CreateAccComponent {
     email: '',
     password: ''
   };
+  public contactForm: FormGroup;
 
-  constructor(private _peticiones: PeticionesService, private router: Router) { }
+  constructor(private _peticiones: PeticionesService, private fb: FormBuilder, private router: Router) {
+	this.contactForm = this.fb.group({
+		user: ['', Validators.required],
+		email: ['', [Validators.required, Validators.email]],
+		password: ['', Validators.required]
+	})
+   }
 
   crearCuenta() {
     // Aquí puedes acceder a los datos del formulario a través de this.usuario
@@ -46,5 +54,9 @@ export class CreateAccComponent {
 		}
     })
   }
+
+  hasErrors(controlName: string, errorType: string) {
+	return this.contactForm.get(controlName)?.hasError(errorType) && this.contactForm.get(controlName)?.touched
+}
 }
 

@@ -12,23 +12,25 @@
 			<div class="col-md-6 col-12 vh-100" style="background-color: #ffffff;">
 				<div class="d-flex justify-content-center align-items-center vh-100">
 					<!-- Contenido de la segunda sección -->
-					<form #creaAccForm="ngForm" (ngSubmit)="crearCuenta()" class="login-form">
+					<form #creaAccForm="ngForm" [formGroup]="contactForm" (ngSubmit)="crearCuenta()" class="login-form">
 						<h1>Reg&iacute;strate</h1>
 						<h3><strong>Bienvenido a Mountain Routes</strong></h3>
 						<h5>Por favor introduce tus datos</h5>
 						<div class="mb-3">
-							<label for="name" class="form-label">Usuario</label>
-							<input type="text" class="form-control" id="name" name="name"
-								[(ngModel)]="usuario.username">
+							<label for="user" class="form-label">Usuario</label>
+							<input type="text" class="form-control" id="user" name="user" [(ngModel)]="usuario.username" formControlName="user" [ngClass]="{ 'is-invalid': hasErrors('user', 'required') }">
+							<span *ngIf="hasErrors('user', 'required')" class="text-danger">El useario es un campo requerido</span>
 						</div>
 						<div class="mb-3">
-							<label for="user" class="form-label">Email</label>
-							<input type="email" class="form-control" id="user" name="user" [(ngModel)]="usuario.email">
+							<label for="email" class="form-label">Email</label>
+							<input type="email" class="form-control" id="email" name="email" [(ngModel)]="usuario.email" formControlName="email" [ngClass]="{ 'is-invalid': hasErrors('email', 'required') }">
+							<span *ngIf="hasErrors('email', 'required')" class="text-danger">El useario es un campo requerido</span>
+							<span *ngIf="hasErrors('email', 'email')" class="text-danger">El email tiene que tener un formato valido</span>
 						</div>
 						<div class="mb-3">
 							<label for="exampleInputPassword1" class="form-label">Contraseña</label>
-							<input type="password" class="form-control" name="password" id="exampleInputPassword1"
-								[(ngModel)]="usuario.password">
+							<input type="password" class="form-control" name="password" id="exampleInputPassword1" [(ngModel)]="usuario.password" formControlName="password" [ngClass]="{ 'is-invalid': hasErrors('password', 'required') }">
+							<span *ngIf="hasErrors('password', 'required')" class="text-danger">La contraseña es un campo requerido </span>
 						</div>
 						<button type="submit" class="btn btn-primary">Sign In</button>
 					</form>

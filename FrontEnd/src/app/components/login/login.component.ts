@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PeticionesService } from 'src/app/service/peticiones.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router  } from '@angular/router';
 
 @Component({
@@ -13,7 +14,14 @@ export class LoginComponent {
     password: ''
   };
 
-  constructor(private _peticiones: PeticionesService, private router: Router ) { }
+  public contactForm: FormGroup;
+
+  constructor(private _peticiones: PeticionesService, private fb: FormBuilder, private router: Router ) { 
+		this.contactForm = this.fb.group({
+			password: ['', Validators.required],
+			email: ['', [Validators.required, Validators.email]]
+		})
+	}
 
   login(formulario: any) {
     // Aquí puedes acceder a los datos del formulario a través de this.usuario
@@ -44,5 +52,10 @@ export class LoginComponent {
 				this.router.navigate(['/create_account'])
 			}
 		})
+		
   }
+
+  hasErrors(controlName: string, errorType: string) {
+	return this.contactForm.get(controlName)?.hasError(errorType) && this.contactForm.get(controlName)?.touched
+}
 }
