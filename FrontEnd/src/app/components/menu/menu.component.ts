@@ -15,10 +15,12 @@ export class MenuComponent {
 	}
 
 	getLog(): boolean {
-		return this._peticiones.isLogged
+		return this._peticiones.isLogged()
 	}
 
 	logOut(): void {
-		this._peticiones.isLogged = false
+		localStorage.removeItem("access_token")
+		localStorage.removeItem("token_type")
+		localStorage.removeItem("user_id")
 	}
 }

@@ -23,7 +23,7 @@ export class PeticionesService {
 
 	// Variables globales
 	public hasBeenTouchedBuscador: boolean = false
-	public isLogged: boolean = false
+	// public isLogged: boolean = false
 	public empty: boolean = false
 
 	constructor(
@@ -47,6 +47,14 @@ export class PeticionesService {
 		this.respuesta.next(data)
 	}
 
+	isLogged(): boolean {
+		if (localStorage.getItem("access_token")) {
+			return true
+		} else {
+			return false
+		}
+	}
+
 	resetBuscador() {
 		this.empty = false
 		this.hasBeenTouchedBuscador = false
@@ -54,8 +62,8 @@ export class PeticionesService {
 
 	createHeader() {
 		if (this.accessToken !== null && this.tokenType !== null) {
-			this.myheaders.set('access_token', this.accessToken);
-			this.myheaders.set('token_type', this.tokenType);
+			this.myheaders.set("access_token", this.accessToken);
+			this.myheaders.set("token_type", this.tokenType);
 		}
 	}
 
