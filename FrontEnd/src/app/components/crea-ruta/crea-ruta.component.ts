@@ -66,6 +66,7 @@ export class CreaRutaComponent implements AfterViewInit, OnInit {
 		this.nuevaRuta.user_id = parseFloat(localStorage.getItem('user_id') || '')
 		this._peticiones.creaRuta(this.nuevaRuta).subscribe({
 			next: data => {
+				this.getLastRutas(2)
 				console.log(data)
 			},
 			error: error => {

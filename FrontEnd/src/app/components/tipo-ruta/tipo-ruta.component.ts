@@ -13,7 +13,7 @@ export class TipoRutaComponent implements OnInit {
 	// public errorRes: Array<Ruta> = []
 	// public mensajeHijo: string = ''
 
-	@Output() dataBuscador: Array<Ruta> = []
+	public dataBuscador: Array<Ruta> = []
 	
 	constructor( private _peticiones: PeticionesService ) {
 	}
