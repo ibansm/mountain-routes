@@ -43,7 +43,6 @@ export class LoginComponent {
 			next: data => {
 				localStorage.setItem("access_token", JSON.stringify(data.data.access_token));
 				localStorage.setItem("token_type", JSON.stringify(data.data.token_type));
-				this._peticiones.isLogged = true
 				this.router.navigate(['/']);
 				console.log('Datos del usuario1:', data)
 			},

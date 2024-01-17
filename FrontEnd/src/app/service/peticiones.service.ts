@@ -22,8 +22,9 @@ export class PeticionesService {
 	private respuesta = new BehaviorSubject<Array<Ruta>>([])
 
 	// Variables globales
-	public hasBeenTouchedBuscador: boolean = false;
-	public isLogged: boolean = false;
+	public hasBeenTouchedBuscador: boolean = false
+	// public isLogged: boolean = false
+	public empty: boolean = false
 
 	constructor(
 		private _http: HttpClient,
@@ -46,10 +47,23 @@ export class PeticionesService {
 		this.respuesta.next(data)
 	}
 
+	isLogged(): boolean {
+		if (localStorage.getItem("access_token")) {
+			return true
+		} else {
+			return false
+		}
+	}
+
+	resetBuscador() {
+		this.empty = false
+		this.hasBeenTouchedBuscador = false
+	}
+
 	createHeader() {
 		if (this.accessToken !== null && this.tokenType !== null) {
-			this.myheaders.set('access_token', this.accessToken);
-			this.myheaders.set('token_type', this.tokenType);
+			this.myheaders.set("access_token", this.accessToken);
+			this.myheaders.set("token_type", this.tokenType);
 		}
 	}
 

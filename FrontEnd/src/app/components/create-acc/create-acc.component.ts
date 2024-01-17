@@ -36,7 +36,6 @@ export class CreateAccComponent {
 		next: data => {
 		localStorage.setItem("access_token", JSON.stringify(data.data.access_token));
 		localStorage.setItem("token_type", JSON.stringify(data.data.token_type));
-		this._peticiones.isLogged = true
 		// Recuperamos el user_id
 		this._peticiones.getUserId(this.usuario.email).subscribe({
 			next: data => {
