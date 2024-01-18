@@ -27,10 +27,10 @@ class UserFactory extends Factory
             'email'=> $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => $this->faker->password(),
-            'nombre'=> $this->faker->name,
-            'apellidos'=> $this->faker->lastName,
-            'edad'=> $this->faker->optional()->numberBetween(10,99),
-            'rol'=> $this->faker->randomElement(['user','admin'])
+            // 'nombre'=> $this->faker->name,
+            // 'apellidos'=> $this->faker->lastName,
+            // 'edad'=> $this->faker->optional()->numberBetween(10,99),
+            // 'rol'=> $this->faker->randomElement(['user','admin'])
         ];
     }
 

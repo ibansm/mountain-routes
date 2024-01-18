@@ -28,6 +28,7 @@ return new class extends Migration
             $table->integer('inscripcion')->nullable();
             $table->float('precio')->nullable();
             $table->string('web')->nullable();
+			$table->string('imagen')->nullable();
         });
     }
 

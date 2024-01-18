@@ -92,9 +92,9 @@ class UserController extends Controller
             $request->validate([
                 'username' =>'string',
                 'email' => 'unique:users,email,'.$usuario->id,
-                'nombre'=>'string|nullable',
-                'apellidos'=>'string|nullable',
-                'edad'=>'integer|nullable',
+                // 'nombre'=>'string|nullable',
+                // 'apellidos'=>'string|nullable',
+                // 'edad'=>'integer|nullable',
             ]);
 
             $usuario->update($request->all());
