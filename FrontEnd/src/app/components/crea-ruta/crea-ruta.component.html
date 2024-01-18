@@ -14,10 +14,9 @@
 		<article id="map" class="col-12 col-md-8 order-md-1"></article>
 		<!-- Formulario -->
 		<article id="crea-ruta-form" class="col-12 col-md-4 order-md-0 d-flex justify-content-center">
-			<form #creaRutaForm="ngForm" (ngSubmit)="guardaRuta()" novalidate
-				class="w-75 fw-bold">
+			<form #creaRutaForm="ngForm" (ngSubmit)="guardaRuta()" novalidate class="w-75 fw-bold">
 
-				<label for="dificultad" class="form-label">Nombra tu ruta</label>
+				<label class="form-label">Nombra tu ruta</label>
 				<input type="text" class="form-control" id="nombre_ruta" name="nombre" #nombre="ngModel"
 					[(ngModel)]="this.nuevaRuta.nombre" required
 					[ngClass]="{'is-invalid': creaRutaForm.submitted && nombre.errors}">
@@ -25,11 +24,11 @@
 					<div *ngIf="nombre.errors['required']">Campo obligatorio</div>
 				</div>
 
-				<label for="ciudad" class="form-label">Ubicaci&oacute;n de la ruta</label>
+				<label class="form-label">Ubicaci&oacute;n de la ruta</label>
 				<input type="text" class="form-control" id="ciudad_ruta" name="ciudad"
 					[(ngModel)]="this.nuevaRuta.ciudad">
 
-				<label for="ciudad" class="form-label">Longitud de la ruta (m)</label>
+				<label class="form-label">Longitud de la ruta (m)</label>
 				<input type="number" class="form-control" id="longitud_ruta" name="longitud" #longitud="ngModel"
 					[(ngModel)]="this.nuevaRuta.longitud" required
 					[ngClass]="{'is-invalid': creaRutaForm.submitted && longitud.errors}">
@@ -37,7 +36,7 @@
 					<div *ngIf="longitud.errors['required']">Campo obligatorio</div>
 				</div>
 
-				<label for="ciudad" class="form-label">Duraci&oacute;n de la ruta en (min)</label>
+				<label class="form-label">Duraci&oacute;n de la ruta en (min)</label>
 				<input type="number" class="form-control" id="duracion_ruta" name="duracion" #duracion="ngModel"
 					[(ngModel)]="this.nuevaRuta.duracion" required
 					[ngClass]="{'is-invalid': creaRutaForm.submitted && duracion.errors}">
@@ -45,7 +44,7 @@
 					<div *ngIf="duracion.errors['required']">Campo obligatorio</div>
 				</div>
 
-				<label for="dificultad" class="form-label">Elige una dificultad</label>
+				<label class="form-label">Elige una dificultad</label>
 				<select class="form-select" id="dificultad" name="dificultad" #dificultad="ngModel"
 					[(ngModel)]="this.nuevaRuta.dificultad" required
 					[ngClass]="{'is-invalid': creaRutaForm.submitted && dificultad.errors}">
@@ -57,7 +56,7 @@
 					<div *ngIf="dificultad.errors['required']">Campo obligatorio</div>
 				</div>
 
-				<label for="dificultad" class="form-label">Describe tu ruta</label>
+				<label class="form-label">Describe tu ruta</label>
 				<textarea class="form-control" id="describe_ruta" rows="3" name="descripcion" #descripcion="ngModel"
 					[(ngModel)]="this.nuevaRuta.descripcion" required
 					[ngClass]="{'is-invalid': creaRutaForm.submitted && descripcion.errors}"></textarea>
@@ -65,14 +64,18 @@
 					<div *ngIf="descripcion.errors['required']">Campo obligatorio</div>
 				</div>
 
-				<label for="ciudad" class="form-label">Introduce tus imagenes</label>
+				<label class="form-label">Introduce la foto principal para tu ruta</label>
+				<input class="form-control" type="file" name="foto_ruta" id="foto_ruta" accept="image/*"
+					[(ngModel)]="this.nuevaRuta.foto_perfil" (change)="guardaFormData($event)">
+
+				<!-- <label class="form-label">Introduce tus imagenes</label>
 				<input class="form-control" type="file" name="imagenes" id="imagenes_ruta" accept=".jpeg, .jpg, .png"
-					multiple [(ngModel)]="this.nuevaRuta.imagenes">
+					multiple [(ngModel)]="this.nuevaRuta.imagenes"> -->
 
 				<div class="d-flex align-items-center ps-2">
 					<input class="form-check-input me-1 ps-0 " type="checkbox" id="ninos_ruta" name="ninos"
 						[(ngModel)]="this.nuevaRuta.ninos" required>
-					<label for="ninos_ruta" class="form-check-label">Ruta apta para ni&ntilde;os</label>
+					<label class="form-check-label">Ruta apta para ni&ntilde;os</label>
 				</div>
 
 				<div class="d-flex justify-content-center align-items-center">
@@ -81,13 +84,12 @@
 
 				<div class="d-none">
 					<input class="form-control" id="duracion_ruta" name="coordenadas" #coordenadas="ngModel"
-					[(ngModel)]="this.nuevaRuta.coordenadas" required
-					[ngClass]="{'is-invalid': creaRutaForm.submitted && coordenadas.errors}">
+						[(ngModel)]="this.nuevaRuta.coordenadas" required
+						[ngClass]="{'is-invalid': creaRutaForm.submitted && coordenadas.errors}">
 				</div>
 				<div *ngIf="coordenadas.errors" class="invalid-feedback coor-error">
 					<div *ngIf="coordenadas.errors['required']">Introducir las coordenadas es un campo obligatorio</div>
 				</div>
-
 			</form>
 		</article>
 	</div>

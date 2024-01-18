@@ -9,22 +9,22 @@ import { PeticionesService } from 'src/app/service/peticiones.service';
 	styleUrls: ['./crea-ruta.component.scss']
 })
 export class CreaRutaComponent implements AfterViewInit, OnInit {
+	public imagen: string = ''
 
 	public rutasLast: Array<Ruta> = []
-
 
 	public nuevaRuta: Ruta;
 
 	public coordenadas: Array<LatLng> = [];
 	private last_coord: Polyline<any>[] = [];
-	
+
 	// Triggers
 	private markerCounter = 0;
 	private polylineCounter = 1;
-	
+
 	// Marcadores
 	public marcadores: Array<Marker> = [];
-	private nuevoMarcador: Marker<any> = new Marker({"lat": 0, "lng": 0});
+	private nuevoMarcador: Marker<any> = new Marker({ "lat": 0, "lng": 0 });
 
 	// Iconos marcadores
 	public customIcon = (options: IconOptions) => {
@@ -35,15 +35,15 @@ export class CreaRutaComponent implements AfterViewInit, OnInit {
 			}
 		})
 	}
-	public treeIcon = this.customIcon({iconUrl: '../../../assets/leaflet/10097523_garden_tree_nature_destination_location_icon.png'})
-	public museumIcon = this.customIcon({iconUrl: '../../../assets/leaflet/10097531_bank_business_finance_destination_location_icon.png'})
+	public treeIcon = this.customIcon({ iconUrl: '../../../assets/leaflet/10097523_garden_tree_nature_destination_location_icon.png' })
+	public museumIcon = this.customIcon({ iconUrl: '../../../assets/leaflet/10097531_bank_business_finance_destination_location_icon.png' })
 
 	constructor(
 		private _peticiones: PeticionesService,
 	) {
-		this.nuevaRuta = new Ruta(undefined, undefined, undefined, undefined, undefined, undefined, undefined, false, undefined, this.coordenadas, this.marcadores);
+		this.nuevaRuta = new Ruta(undefined, undefined, undefined, undefined, undefined, undefined, undefined, false, undefined, this.coordenadas);
 	}
-	
+
 	ngOnInit(): void {
 		this.getLastRutas(2)
 	}
@@ -60,10 +60,10 @@ export class CreaRutaComponent implements AfterViewInit, OnInit {
 			}
 		})
 	}
-	
+
 	guardaRuta(): void {
 		console.log(this.nuevaRuta);
-		this.nuevaRuta.user_id = parseFloat(localStorage.getItem('user_id') || '')
+		this.nuevaRuta.usuarios_id = parseFloat(localStorage.getItem('user_id') || '')
 		this._peticiones.creaRuta(this.nuevaRuta).subscribe({
 			next: data => {
 				this.getLastRutas(2)
@@ -76,40 +76,70 @@ export class CreaRutaComponent implements AfterViewInit, OnInit {
 		})
 	}
 
+	guardaFormData(event: any) {
+		const file = event.target.files[0]
+		if (file) {
+			this.encodeImageToBase64(file).then(
+				base => {
+					this.nuevaRuta.foto_perfil = base
+					console.log(this.nuevaRuta.foto_perfil);
+				}
+			).catch( error => console.error(error) )
+		}
+		this.nuevaRuta.foto_perfil = event.target.files[0]
+	}
+
+	private encodeImageToBase64(file: File): Promise<string> {
+		return new Promise<string>((resolve, reject) => {
+			const reader = new FileReader()
+
+			reader.onloadend = () => {
+				if (typeof reader.result === 'string') {
+					resolve(reader.result)
+				} else {
+					reject('Error al leer la imagen.')
+				}
+			};
+
+			// Lee el contenido de la imagen como una URL de datos (base64)
+			reader.readAsDataURL(file)
+		});
+	}
+
 	ngAfterViewInit(): void {
 		const map = new Map('map').setView([43.263, -2.93501], 15);
-		
+
 		tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(map);
 
-		// Trigger marker or polyline
-		const MapButtons = Control.extend({
-			options: {
-				position: 'topright',
-				className: 'mi-boton',
-				url: '../../../assets/leaflet/10097531_bank_business_finance_destination_location_icon.png'
-			},
-			onAdd: function(): HTMLImageElement {
-				const div = DomUtil.create('div')
-				const input = DomUtil.create('img', this.options.className, div);
-				input.src = this.options.url
-				input.style.width = '40px';
-				input.style.height = '40px';
-				input.style.cursor = 'pointer';
-				input.style.backgroundColor = 'white';
-				// input.addEventListener('click', () => {})
-				return input;
-			}
-		})
-	
-		const markerButton = new MapButtons()
-		markerButton.addTo(map)
-		const polyButton = new MapButtons({position: 'topleft'})
+		// BOTON - MARKER OR POLYLINE
+			// const MapButtons = Control.extend({
+			// 	options: {
+			// 		position: 'topright',
+			// 		className: 'mi-boton',
+			// 		url: '../../../assets/leaflet/10097531_bank_business_finance_destination_location_icon.png'
+			// 	},
+			// 	onAdd: function(): HTMLImageElement {
+			// 		const div = DomUtil.create('div')
+			// 		const input = DomUtil.create('img', this.options.className, div);
+			// 		input.src = this.options.url
+			// 		input.style.width = '40px';
+			// 		input.style.height = '40px';
+			// 		input.style.cursor = 'pointer';
+			// 		input.style.backgroundColor = 'white';
+			// 		// input.addEventListener('click', () => {})
+			// 		return input;
+			// 	}
+			// })
+
+			// const markerButton = new MapButtons()
+			// markerButton.addTo(map)
+			// const polyButton = new MapButtons({position: 'topleft'})
 
 		// Coordenadas
 		if (this.markerCounter === 0 && this.polylineCounter === 1) {
-			
+
 			map.on('click', (event) => {
 				this.coordenadas?.push(event.latlng);
 				this.last_coord.push(polyline(this.coordenadas).addTo(map));
@@ -124,11 +154,12 @@ export class CreaRutaComponent implements AfterViewInit, OnInit {
 				console.log('POP - Coordenadas\n');
 				console.log(this.last_coord);
 			})
+
 		// Marcadores
 		} else if (this.markerCounter === 1 && this.polylineCounter === 0) {
-			
+
 			map.on('click', (e) => {
-				this.nuevoMarcador = marker(e.latlng, {draggable: true, icon: new this.treeIcon()}).addTo(map);
+				this.nuevoMarcador = marker(e.latlng, { draggable: true, icon: new this.treeIcon() }).addTo(map);
 				this.marcadores.push(this.nuevoMarcador);
 				console.log('PUSH\n');
 				console.log(this.marcadores);
@@ -140,9 +171,6 @@ export class CreaRutaComponent implements AfterViewInit, OnInit {
 				console.log('POP\n');
 				console.log(this.marcadores);
 			})
-
 		}
-			
-
 	}
 }

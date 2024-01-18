@@ -82,13 +82,13 @@ class RutaController extends Controller
                 'descripcion' => 'string',
                 'longitud' => 'required|numeric|between:1,99999999.99',
                 'duracion' => 'required|numeric|between:0,9999',
-                'ciudad' => 'string|min:2|max:40',
+                'ciudad' => 'string|max:40',
                 'ninos'=>'boolean',
                 // 'fecha_creada' => 'required|date_format:Y-m-d',
                 // 'fecha_realizada' => 'required|date_format:Y-m-d|after_or_equal:'.date('Y-01-01'),
                 'coordenadas' => 'required',
                 'dificultad' => 'required|in:baja,media,alta',
-                'foto_perfil' => 'image|max:2048'
+                'foto_perfil' => 'string'
             ]);
             
             // Data request

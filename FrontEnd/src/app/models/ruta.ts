@@ -17,11 +17,11 @@ export class Ruta {
 		public longitud?: number,
 		public duracion?: number,
 		public ninos?: boolean,
-		public user_id?: number,
+		public usuarios_id?: number,
 		public coordenadas?: Array<LatLng>,
-		public marcadores?: Array<Marker>,
-		public imagenes?: Array<File>,
-		public foto_perfil?: File
+		// public marcadores?: Array<Marker>,
+		// public imagenes?: Array<File>,
+		public foto_perfil?: string
 	) {}
 	
 }

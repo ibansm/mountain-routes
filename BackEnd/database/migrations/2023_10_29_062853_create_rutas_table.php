@@ -23,7 +23,7 @@ return new class extends Migration
             // $table->date('fecha_creada');
             // $table->date('fecha_realizada');
             $table->json('coordenadas');
-            $table->string('foto_perfil')->nullable();
+            $table->longText('foto_perfil')->nullable();
             $table->unsignedBigInteger('usuarios_id');
             $table->foreign('usuarios_id')->references('id')->on('users');
             $table->timestamps();
