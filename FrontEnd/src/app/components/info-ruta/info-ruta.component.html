@@ -47,9 +47,9 @@
 <div class="section section4">
   <div id="carouselExample" class="carousel slide">
     <div  class="carousel-inner">
-      <div *ngFor="let fotos of fotosAll; let i = index">
+      <!-- <div *ngFor="let fotos of fotosAll; let i = index"> -->
         <div class="carousel-item active">
-          <img src="{{ fotos.foto }}"  class="d-block w-100" alt="...">
+          <img src="{{ ruta.foto_perfil?.startsWith('https://via.placeholder.com') ? ruta.foto_perfil : 'http://localhost:8000' + ruta.foto_perfil }}"  class="d-block w-100" alt="...">
         </div>
       </div>
     </div>
@@ -62,5 +62,5 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-</div>
+<!-- </div> -->
 <app-footer></app-footer> 

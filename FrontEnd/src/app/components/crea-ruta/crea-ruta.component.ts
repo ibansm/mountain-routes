@@ -65,13 +65,15 @@ export class CreaRutaComponent implements AfterViewInit, OnInit {
 		console.log(this.nuevaRuta);
 		this.nuevaRuta.usuarios_id = parseFloat(localStorage.getItem('user_id') || '')
 
+		const n = this.nuevaRuta.ninos === false ? 0 : 1
+
 		this.formData.append('nombre', this.nuevaRuta.nombre || '')
 		this.formData.append('descripcion', this.nuevaRuta.descripcion || '')
 		this.formData.append('ciudad', this.nuevaRuta.ciudad || '')
 		this.formData.append('dificultad', this.nuevaRuta.dificultad || '')
 		this.formData.append('longitud', String(this.nuevaRuta.longitud || 0))
 		this.formData.append('duracion', String(this.nuevaRuta.duracion || 0))
-		this.formData.append('ninos', String(this.nuevaRuta.ninos || 0))
+		this.formData.append('ninos', String(n || 0))
 		this.formData.append('usuarios_id', String(this.nuevaRuta.usuarios_id || 0))
 		this.formData.append('coordenadas', String(this.nuevaRuta.coordenadas || []))
 		console.log('El nombre del formData es: \n' + this.formData.get('ninos'))

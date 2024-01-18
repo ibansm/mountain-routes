@@ -83,7 +83,7 @@ class RutaController extends Controller
                 'longitud' => 'required|numeric|between:1,99999999.99',
                 'duracion' => 'required|numeric|between:0,9999',
                 'ciudad' => 'string|max:40',
-                'ninos'=>'boolean',
+                'ninos'=>'numeric|in:0,1',
                 // 'fecha_creada' => 'required|date_format:Y-m-d',
                 // 'fecha_realizada' => 'required|date_format:Y-m-d|after_or_equal:'.date('Y-01-01'),
                 'coordenadas' => 'required',
