@@ -33,9 +33,11 @@ export class TipoRutaComponent implements OnInit {
 	}
 
 	ngAfterViewInit() {
-		this.myDiv.nativeElement.addEventListener('load', () => {
-			this.reset()
-		})
+		if (this.myDiv) {
+			this.myDiv.nativeElement.addEventListener('load', () => {
+				this._peticiones.resetBuscador()
+			})
+		}
 	}
 
 	getTrigger(): boolean {
@@ -50,9 +52,5 @@ export class TipoRutaComponent implements OnInit {
 		this._peticiones.getRutas().subscribe(data => {
 			this.arrayRutas = data.data
 		})
-	}
-
-	reset() {
-		this._peticiones.resetBuscador()
 	}
 }

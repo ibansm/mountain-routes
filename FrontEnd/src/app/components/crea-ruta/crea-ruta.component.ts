@@ -9,7 +9,7 @@ import { PeticionesService } from 'src/app/service/peticiones.service';
 	styleUrls: ['./crea-ruta.component.scss']
 })
 export class CreaRutaComponent implements AfterViewInit, OnInit {
-	public imagen: string = ''
+	public formData = new FormData()
 
 	public rutasLast: Array<Ruta> = []
 
@@ -64,7 +64,25 @@ export class CreaRutaComponent implements AfterViewInit, OnInit {
 	guardaRuta(): void {
 		console.log(this.nuevaRuta);
 		this.nuevaRuta.usuarios_id = parseFloat(localStorage.getItem('user_id') || '')
-		this._peticiones.creaRuta(this.nuevaRuta).subscribe({
+
+		this.formData.append('nombre', this.nuevaRuta.nombre || '')
+		this.formData.append('descripcion', this.nuevaRuta.descripcion || '')
+		this.formData.append('ciudad', this.nuevaRuta.ciudad || '')
+		this.formData.append('dificultad', this.nuevaRuta.dificultad || '')
+		this.formData.append('longitud', String(this.nuevaRuta.longitud || 0))
+		this.formData.append('duracion', String(this.nuevaRuta.duracion || 0))
+		this.formData.append('ninos', String(this.nuevaRuta.ninos || 0))
+		this.formData.append('usuarios_id', String(this.nuevaRuta.usuarios_id || 0))
+		this.formData.append('coordenadas', String(this.nuevaRuta.coordenadas || []))
+		console.log('El nombre del formData es: \n' + this.formData.get('ninos'))
+		console.log('El tipo de la data del formData es: \n' + typeof(this.formData.get('ninos')))
+
+
+
+
+
+
+		this._peticiones.creaRuta(this.formData).subscribe({
 			next: data => {
 				this.getLastRutas(2)
 				console.log(data)
@@ -104,6 +122,13 @@ export class CreaRutaComponent implements AfterViewInit, OnInit {
 			// Lee el contenido de la imagen como una URL de datos (base64)
 			reader.readAsDataURL(file)
 		});
+	}
+
+	guardaImagen(event: any) {
+		console.log('EVENT - IMAGE')
+		console.log(event.target.files[0])
+		this.formData.append('foto_perfil', event.target.files[0], 'foto_iako.png')
+		console.log(event.target.files[0].name)
 	}
 
 	ngAfterViewInit(): void {

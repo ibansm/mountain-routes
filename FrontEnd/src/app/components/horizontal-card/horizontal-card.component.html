@@ -7,7 +7,7 @@
 			<!-- genera el codigo-->
 			<div class="row g-0" (click)="toRuta(ruta.id)">
 				<div class="col-md-4 " id="card-img">
-					<img src="{{ ruta.foto_perfil }}" class="img-thumbnail w-100 h-100 object-fit-cover" alt="foto_ruta">
+					<img src="{{ ruta.foto_perfil?.startsWith('https://via.placeholder.com') ? ruta.foto_perfil : 'http://localhost:8000' + ruta.foto_perfil }}" class="img-thumbnail w-100 h-100 object-fit-cover" alt="foto_ruta">
 				</div>
 				<div class="col-md-8">
 					<div class="card-body h-100 d-flex flex-column justify-content-around">
@@ -51,7 +51,7 @@
 			<div class="row g-0" (click)="toRuta(ruta.id)">
 				<div class="col-md-4" id="card-img">
 					<!-- TODO => Change absolute path for {{ ruta.imagen }} -->
-					<img src="../../../assets/shutterstock_221809534.jpeg" class="img-thumbnail h-100 object-fit-cover" alt="foto_ruta">
+					<img src="{{ruta.foto_perfil?.startsWith('https://via.placeholder.com') ? ruta.foto_perfil : 'http://localhost:8000' + ruta.foto_perfil }}" class="img-thumbnail h-100 object-fit-cover" alt="foto_ruta">
 				</div>
 				<div class="col-md-8">
 					<div class="card-body h-100 d-flex flex-column justify-content-around">

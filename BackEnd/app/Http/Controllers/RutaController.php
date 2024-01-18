@@ -88,7 +88,7 @@ class RutaController extends Controller
                 // 'fecha_realizada' => 'required|date_format:Y-m-d|after_or_equal:'.date('Y-01-01'),
                 'coordenadas' => 'required',
                 'dificultad' => 'required|in:baja,media,alta',
-                'foto_perfil' => 'string'
+                'foto_perfil' => 'image'
             ]);
             
             // Data request

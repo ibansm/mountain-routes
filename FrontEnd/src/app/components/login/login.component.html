@@ -18,7 +18,7 @@
               <h5>Por favor introduce tu usuario y contraseña</h5>
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email" aria-describedby="emailHelp" name="email" [ngClass]="{ 'is-invalid': hasErrors('email', 'required') || hasErrors('email', 'email') }">
+                <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email" aria-describedby="emailHelp" name="email" [(ngModel)]="usuario.email" [ngClass]="{ 'is-invalid': hasErrors('email', 'required') || hasErrors('email', 'email') }">
                 <span *ngIf="hasErrors('email', 'required')" class="text-danger">El email es un campo requerido</span>
                 <span *ngIf="hasErrors('email', 'email')" class="text-danger">El email tiene que tener un formato valido</span>
               </div>

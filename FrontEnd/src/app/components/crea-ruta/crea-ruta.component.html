@@ -14,7 +14,7 @@
 		<article id="map" class="col-12 col-md-8 order-md-1"></article>
 		<!-- Formulario -->
 		<article id="crea-ruta-form" class="col-12 col-md-4 order-md-0 d-flex justify-content-center">
-			<form #creaRutaForm="ngForm" (ngSubmit)="guardaRuta()" novalidate class="w-75 fw-bold">
+			<form #creaRutaForm="ngForm" (ngSubmit)="guardaRuta()" enctype="multipart/form-data" novalidate class="w-75 fw-bold">
 
 				<label class="form-label">Nombra tu ruta</label>
 				<input type="text" class="form-control" id="nombre_ruta" name="nombre" #nombre="ngModel"
@@ -66,7 +66,7 @@
 
 				<label class="form-label">Introduce la foto principal para tu ruta</label>
 				<input class="form-control" type="file" name="foto_ruta" id="foto_ruta" accept="image/*"
-					[(ngModel)]="this.nuevaRuta.foto_perfil" (change)="guardaFormData($event)">
+					[(ngModel)]="this.nuevaRuta.foto_perfil" (change)="guardaImagen($event)">
 
 				<!-- <label class="form-label">Introduce tus imagenes</label>
 				<input class="form-control" type="file" name="imagenes" id="imagenes_ruta" accept=".jpeg, .jpg, .png"
