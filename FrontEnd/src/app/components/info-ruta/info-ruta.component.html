@@ -23,7 +23,7 @@
         <div class="d-flex flex-row justify-content-center">
           <div class="small-icon d-flex flex-column align-items-center justify-content-end">
             <img class="ruta-propeties" src="../../../assets/horas.png" alt="">
-            <span class="span-card fw-bold mt-2">{{ ruta.tiempo }} h</span>
+            <span class="span-card fw-bold mt-2">{{ ruta.duracion }} h</span>
           </div>
           <div class="small-icon d-flex flex-column align-items-center justify-content-end">
             <img class="ruta-propeties" src="../../../assets/km.png" alt="">
@@ -39,9 +39,7 @@
   </div>
 </div>
 <!-- Section 2 -->
-<div class="section section2 d-flex">
-  <img class="mapa-propeties" src="../../../assets/mapa.png" alt="">
-</div>
+<article id="map" class="container"></article>
 <!-- Section 3 -->
 <div class="section section3">
   {{ ruta.descripcion }}

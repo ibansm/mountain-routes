@@ -100,3 +100,10 @@ font-size: 0.9rem;
 color: #422d18;
 font-weight: bold;
 }
+
+#map {
+	min-height: 50vh;
+	@media (min-width: 768px) {
+		height: 100%;
+	}
+}

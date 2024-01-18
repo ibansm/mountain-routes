@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { PeticionesService } from 'src/app/service/peticiones.service';
 import { ActivatedRoute  } from '@angular/router';
 import { Location } from '@angular/common';
+import { Map, tileLayer } from 'leaflet';
 
 @Component({
   selector: 'app-info-ruta',
-  //imports: [],
   templateUrl: './info-ruta.component.html',
   styleUrls: ['./info-ruta.component.scss'],
-  providers: [PeticionesService]
 })
-export class InfoRutaComponent implements OnInit {
+export class InfoRutaComponent implements OnInit, AfterViewInit {
 	constructor( private _peticiones: PeticionesService, private route: ActivatedRoute, private location: Location ) {}
-
+	
 	public ruta: any;
 	public fotosAll: any[] = []
 	public currentURL: string = this.location.path();
@@ -28,6 +27,14 @@ export class InfoRutaComponent implements OnInit {
 		  });
 		this.getRuta();
 		this.getFotos();
+	}
+
+	ngAfterViewInit(): void {
+		const map = new Map('map').setView([43.263, -2.93501], 15);
+
+		tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+		}).addTo(map);
 	}
 
 	public getRuta() {
