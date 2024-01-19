@@ -48,9 +48,15 @@
   <div id="carouselExample" class="carousel slide">
     <div  class="carousel-inner">
       <!-- <div *ngFor="let fotos of fotosAll; let i = index"> -->
-        <div class="carousel-item active">
-          <img src="{{ ruta.foto_perfil?.startsWith('https://via.placeholder.com') ? ruta.foto_perfil : 'http://localhost:8000' + ruta.foto_perfil }}"  class="d-block w-100" alt="...">
-        </div>
+		<div *ngIf="ruta.foto_perfil == null;else olio"  class="carousel-item active">
+			<img src="../../../assets/logo.png" class="bg-dark object-fit-contain img-thumbnail w-100 h-100" alt="foto_ruta">
+		</div>
+
+		<ng-template #olio>
+			<div class="col-md-4" id="card-img">
+				<img src="{{ ruta.foto_perfil?.startsWith('https://via.placeholder.com') ? ruta.foto_perfil : 'http://localhost:8000' + ruta.foto_perfil }}" class="img-thumbnail w-100 h-100 object-fit-cover" alt="foto_ruta">
+			</div>
+		</ng-template>
       </div>
     </div>
     <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
