@@ -126,4 +126,8 @@ export class PeticionesService {
 		return this._http.post(`${this.baseUrl}/contacta-con-nosotros`, data)
 	}
 
+	deleteRuta(id: number): Observable<any> {
+		return this._http.delete(`${this.baseUrl}/rutas/` + id)
+	}
+
 }

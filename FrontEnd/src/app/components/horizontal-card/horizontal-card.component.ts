@@ -45,4 +45,8 @@ export class HorizontalCardComponent implements OnChanges {
 		}
 	}
 
+	deleteCard(id: number| undefined) {
+		this._peticiones.deleteRuta(id ?? 0)
+	}
+
 }
