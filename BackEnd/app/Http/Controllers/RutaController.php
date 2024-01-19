@@ -88,7 +88,7 @@ class RutaController extends Controller
                 // 'fecha_realizada' => 'required|date_format:Y-m-d|after_or_equal:'.date('Y-01-01'),
                 'coordenadas' => 'required',
                 'dificultad' => 'required|in:baja,media,alta',
-                'foto_perfil' => 'image'
+                'foto_perfil' => 'file'
             ]);
             
             // Data request
@@ -177,7 +177,7 @@ class RutaController extends Controller
                 // 'fecha_creada' => 'date_format:Y-m-d',
                 // 'fecha_realizada' => 'date_format:Y-m-d|after_or_equal:'.date('Y-01-01'),
                 'dificultad' => 'in:baja,media,alta',
-                'foto_perfil' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
+                'foto_perfil' => 'file'
             ]);
 
             // $request['tiempo'] = $this->setTimeToSeconds($request->tiempo); // To seconds

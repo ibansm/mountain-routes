@@ -74,24 +74,27 @@ export class CreaRutaComponent implements AfterViewInit, OnInit {
 		this.formData.append('longitud', String(this.nuevaRuta.longitud || 0))
 		this.formData.append('duracion', String(this.nuevaRuta.duracion || 0))
 		this.formData.append('ninos', String(n || 0))
-		this.formData.append('usuarios_id', String(this.nuevaRuta.usuarios_id || 0))
 		this.formData.append('coordenadas', String(this.nuevaRuta.coordenadas || []))
+		this.formData.append('usuarios_id', String(this.nuevaRuta.usuarios_id || 0))
+		
 		console.log('El nombre del formData es: \n' + this.formData.get('ninos'))
 		console.log('El tipo de la data del formData es: \n' + typeof(this.formData.get('ninos')))
 
-
+		console.log(this.formData)
 
 
 
 
 		this._peticiones.creaRuta(this.formData).subscribe({
+			
 			next: data => {
 				this.getLastRutas(2)
 				console.log(data)
 			},
 			error: error => {
 				console.log('Error a la hora de guardar la ruta.\n');
-				console.log(error.status + ' ' + error.statusText);
+				console.log("Data Form:" + JSON.stringify(this.formData))
+				console.log(error.status + ' ' + JSON.stringify(error.error));
 			}
 		})
 	}
@@ -125,6 +128,7 @@ export class CreaRutaComponent implements AfterViewInit, OnInit {
 			reader.readAsDataURL(file)
 		});
 	}
+
 
 	guardaImagen(event: any) {
 		console.log('EVENT - IMAGE')
