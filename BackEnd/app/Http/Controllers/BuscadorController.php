@@ -37,7 +37,7 @@ class BuscadorController extends Controller
        $duracion = $request->duracion;
        $ninos = $request->ninos;
 
-       $rutas = Ruta::select('nombre','descripcion','ciudad','dificultad','longitud','duracion','ninos', 'foto_perfil')
+       $rutas = Ruta::select('id','nombre','descripcion','ciudad','dificultad','longitud','duracion','ninos', 'foto_perfil')
                 ->where('ninos',$ninos) 
                 ->when($ciudad,function($query,$ciudad){
 
