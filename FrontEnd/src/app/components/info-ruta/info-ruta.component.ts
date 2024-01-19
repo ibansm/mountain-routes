@@ -2,7 +2,8 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { PeticionesService } from 'src/app/service/peticiones.service';
 import { ActivatedRoute  } from '@angular/router';
 import { Location } from '@angular/common';
-import { Map, tileLayer } from 'leaflet';
+import { Map, tileLayer, LatLng } from 'leaflet';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-info-ruta',
@@ -15,6 +16,11 @@ export class InfoRutaComponent implements OnInit, AfterViewInit {
 	public ruta: any;
 	public fotosAll: any[] = []
 	public currentURL: string = this.location.path();
+
+	public unaCoorr: any[] = []
+	public todasCoor: any[] = []
+	public coordenadas: any[] = []
+
 	//public urlTree = this.urlSerializer.parse(this.currentURL);
 	public id : string = "";
 
@@ -27,14 +33,26 @@ export class InfoRutaComponent implements OnInit, AfterViewInit {
 		  });
 		this.getRuta();
 		this.getFotos();
+		this.coordenadas = this.ruta.coordenadas;
+		console.log('Resultado de mis coordenadas: \n', this.coordenadas);
+		//this.getCoordenadas();
 	}
 
 	ngAfterViewInit(): void {
-		const map = new Map('map').setView([43.263, -2.93501], 15);
+
+		for (const coordinate of this.coordenadas) {
+			this.unaCoorr.push(parseFloat(coordinate.lat));
+			this.unaCoorr.push(parseFloat(coordinate.lng));
+			this.todasCoor.push(this.unaCoorr);
+			this.unaCoorr = [];
+		}
+
+		const map = new Map('map').setView(this.todasCoor[0], 15);
 
 		tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(map);
+
 	}
 
 	public getRuta() {
@@ -64,4 +82,17 @@ export class InfoRutaComponent implements OnInit, AfterViewInit {
 			}
 		})
 	}
+	//public getCoordenadas() {
+	//	this._peticiones.getGeojson(parseInt(this.id, 10)).subscribe({
+	//		
+	//		next: data => {
+	//			this.coordenadas = Object.values(data.data)
+	//			console.log('Resultado de getCoordenadas: \n', this.coordenadas);
+	//		},
+	//		error: error => {
+	//			console.log('Error accessing cities data\nERROR: ', error);
+	//			this.fotosAll = []
+	//		}
+	//	})
+	//}
 }
