@@ -121,4 +121,9 @@ export class PeticionesService {
 		return this._http.get(`${this.baseUrl}/usuarios/id/` + email)
 	}
 
+	sendMessageFromContact(data: any):Observable<any>
+	{
+		return this._http.post(`${this.baseUrl}/contacta-con-nosotros`, data)
+	}
+
 }

@@ -9,19 +9,19 @@
 		<form [formGroup]="contactForm" (ngSubmit)="contactSubmit()">
 			<div class="row">
 				<div class="form-floating mb-4 col-6">
-				  <input type="text" class="form-control" id="contact-name" placeholder="Nombre" formControlName="nombre" [ngClass]="{ 'is-invalid': hasErrors('nombre', 'required') }">
+				  <input type="text" class="form-control" id="contact-name" placeholder="Nombre" formControlName="nombre" [(ngModel)] = "this.nombre" [ngClass]="{ 'is-invalid': hasErrors('nombre', 'required') }">
 				  <label for="contact-name" class="ms-3">Nombre</label>
 				  <span *ngIf="hasErrors('nombre', 'required')" class="text-danger">El nombre es un campo requerido</span>
 				</div>
 				<div class="form-floating col-6">
-					<input type="email" class="form-control" id="contact-email" placeholder="name@example.com" formControlName="email" [ngClass]="{ 'is-invalid': hasErrors('email', 'required') || hasErrors('email', 'email') }">
+					<input type="email" class="form-control" id="contact-email" placeholder="name@example.com" formControlName="email" [(ngModel)] = "this.email" [ngClass]="{ 'is-invalid': hasErrors('email', 'required') || hasErrors('email', 'email') }">
 					<label for="contact-email" class="ms-3">Email</label>
 					<span *ngIf="hasErrors('email', 'required')" class="text-danger">El email es un campo requerido</span>
 					<span *ngIf="hasErrors('email', 'email')" class="text-danger">El email tiene que tener un formato valido</span>
 				</div>
 			</div>
 			<div class="form-floating col-12">
-				<textarea class="form-control" placeholder="Deja tus comentarios aqu&iacute;" id="contact-description" formControlName="texto"></textarea>
+				<textarea class="form-control" placeholder="Deja tus comentarios aqu&iacute;" id="contact-description" formControlName="texto" [(ngModel)] = "this.mensaje"></textarea>
 				<label for="floatingTextarea">Deja tus comentarios aqu&iacute;</label>
 			</div>
 			<div id="button-container">
