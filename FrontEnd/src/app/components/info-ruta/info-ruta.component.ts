@@ -31,7 +31,9 @@ export class InfoRutaComponent implements OnInit, AfterViewInit {
 		  });
 		this.getRuta();
 		// this.getFotos();
-		this.coordenadas = this.ruta.coordenadas;
+		if (this.ruta.coordenadas) {
+			this.coordenadas = this.ruta.coordenadas;
+		}
 		console.log('Resultado de mis coordenadas: \n', this.coordenadas);
 	}
 

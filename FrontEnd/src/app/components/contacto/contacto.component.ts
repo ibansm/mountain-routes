@@ -15,11 +15,6 @@ export class ContactoComponent {
 	public contactForm: FormGroup;
 
 	public mailContent: string = '';
-
-	public nombre:string = '';
-	public email:string = '';
-	public mensaje:string = '';
-	public contacto:any;
 	
 	constructor (
 		private fb: FormBuilder,
@@ -29,13 +24,18 @@ export class ContactoComponent {
 		this.contactForm = this.fb.group({
 			nombre: ['', Validators.required],
 			email: ['', [Validators.required, Validators.email]],
-			texto: []
+			texto: ['']
 		})
 	}
 
 	contactSubmit(): void {
+		const nombre: string = this.contactForm.get('nombre')?.value
+		const email: string = this.contactForm.get('email')?.value
+		const mensaje: string = this.contactForm.get('texto')?.value
+		let contacto: any;
 
-		if (this.nombre == '' || this.email == '' || this.mensaje== '') {
+
+		if (nombre == '' || email == '' || mensaje== '') {
 			Swal.fire({
 			  position: 'center',
 			  icon: 'error',
@@ -43,22 +43,16 @@ export class ContactoComponent {
 			  showConfirmButton: true,
 			}) 
 			return;
+
 		} else {
-
-			this.contacto = {
-				nombre: this.nombre,
-				email: this.email,
-				mensaje: this.mensaje
+			contacto = {
+				nombre: nombre,
+				email: email,
+				mensaje: mensaje
 			}
-		// this.mailContent += this.contactForm.value.nombre
-		// this.mailContent += ' ' + this.contactForm.value.email
-		// this.mailContent += ' ' + this.contactForm.value.texto
-		// console.log(this.mailContent);
 
-		// Envio del email
-		// this._peticiones.enviarMailto()
-
-			this._peticiones.sendMessageFromContact(this.contacto).subscribe({
+			// Envio del email
+			this._peticiones.sendMessageFromContact(contacto).subscribe({
 				next: data => {
 					Swal.fire({
 						position: 'center',
@@ -78,7 +72,6 @@ export class ContactoComponent {
 				}
 			})
 		}
-
 	}
 
 	hasErrors(controlName: string, errorType: string) {
