@@ -2,9 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { PeticionesService } from 'src/app/service/peticiones.service';
 import { ActivatedRoute  } from '@angular/router';
 import { Location } from '@angular/common';
-import { Map, tileLayer, LatLng } from 'leaflet';
-import * as L from 'leaflet';
-
+import { Map, tileLayer, LatLng, polyline } from 'leaflet';
 @Component({
   selector: 'app-info-ruta',
   templateUrl: './info-ruta.component.html',
@@ -32,26 +30,25 @@ export class InfoRutaComponent implements OnInit, AfterViewInit {
 			console.log('Route Parameter - ID:', this.id);
 		  });
 		this.getRuta();
-		this.getFotos();
+		// this.getFotos();
 		this.coordenadas = this.ruta.coordenadas;
 		console.log('Resultado de mis coordenadas: \n', this.coordenadas);
-		//this.getCoordenadas();
 	}
 
 	ngAfterViewInit(): void {
-
-		for (const coordinate of this.coordenadas) {
-			this.unaCoorr.push(parseFloat(coordinate.lat));
-			this.unaCoorr.push(parseFloat(coordinate.lng));
-			this.todasCoor.push(this.unaCoorr);
-			this.unaCoorr = [];
-		}
-
-		const map = new Map('map').setView(this.todasCoor[0], 15);
+		
+		const map = new Map('map').setView([43.263, -2.93501], 15);
 
 		tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(map);
+
+		polyline(this.todasCoor, {color: 'red'}).addTo(map);
+		console.log('TODAS COORDENADAS\n');
+		console.log(this.todasCoor);
+		
+		// zoom the map to the polyline
+		map.fitBounds(this.todasCoor);
 
 	}
 
@@ -61,6 +58,19 @@ export class InfoRutaComponent implements OnInit, AfterViewInit {
 			next: data => {
 				this.ruta = data.data
 				console.log('Resultado de getRutas: \n', this.ruta);
+
+				const regex = /LatLng\((-?\d+\.\d+),\s*(-?\d+\.\d+)\)/g;
+				const coordenadas: number[][] = [];
+			
+				let match;
+				while ((match = regex.exec(this.ruta.coordenadas)) !== null) {
+					const latitud = parseFloat(match[1]);
+					const longitud = parseFloat(match[2]);
+					coordenadas.push([latitud, longitud]);
+				}
+				console.log(coordenadas);
+				this.todasCoor = coordenadas
+				
 			},
 			error: error => {
 				console.log('Error accessing cities data\nERROR: ', error);
@@ -82,17 +92,5 @@ export class InfoRutaComponent implements OnInit, AfterViewInit {
 			}
 		})
 	}
-	//public getCoordenadas() {
-	//	this._peticiones.getGeojson(parseInt(this.id, 10)).subscribe({
-	//		
-	//		next: data => {
-	//			this.coordenadas = Object.values(data.data)
-	//			console.log('Resultado de getCoordenadas: \n', this.coordenadas);
-	//		},
-	//		error: error => {
-	//			console.log('Error accessing cities data\nERROR: ', error);
-	//			this.fotosAll = []
-	//		}
-	//	})
-	//}
+
 }
