@@ -14,16 +14,16 @@ INSERT INTO carreras (
 		inscripcion, precio, web, imagen
 		)
 	VALUES	(
-		"Los Montes de Vitoria - irekia", 12, "Araba, Vitoria-Gasteiz", "Ullibarri-Jauregi", "Vitoria-Gasteiz", 62310, '{"subida":2848,"bajada":2968}', "2024-01-01", false, '{"Altura-max":1177,"Tiempo max":"14h","% asfalto":1,"% pista o camino tierra":30,"% senderos":70}', null, null, null, null, "http://www.manueliradier.com/", 'https://via.placeholder.com/640x480.png/00cccc?text=praesentium'
+		"Los Montes de Vitoria - irekia", 12, "Araba, Vitoria-Gasteiz", "Ullibarri-Jauregi", "Vitoria-Gasteiz", 62310, '{"subida":2848,"bajada":2968}', "2024-01-01", false, '{"Altura-max":1177,"Tiempo max":"14h","% asfalto":1,"% pista o camino tierra":30,"% senderos":70}', null, null, null, null, "http://www.manueliradier.com/", 'https://www.fundacionvital.eus/sites/default/files/2021-05/Montes-de-Vitoria19-500x500.jpg'
 		),
 		(
-		"Speed Trail Monte Naranco", 13, "Asturias, Naranco", null, null, 10000, null, "2024-01-02", false, null, null, '{"latitud":43.36026,"longitud":-5.844759}', null, null, "https://www.clubrunning.es/carrera/?id=16526", 'https://via.placeholder.com/640x480.png/00cccc?text=praesentium'
+		"Speed Trail Monte Naranco", 13, "Asturias, Naranco", null, null, 10000, null, "2024-01-02", false, null, null, '{"latitud":43.36026,"longitud":-5.844759}', null, null, "https://www.clubrunning.es/carrera/?id=16526", 'https://www.empa-t.com/wp-content/uploads/elementor/thumbs/II-TRAIL-MONTE-NARANCO-ps9u3hpmbb3qjfffir6tgjvci9pvku77qld584wu0w.jpg'
 		),
 		(
-		"La Ronde Solidaire de la St Vincent", 15, "Indre-et-Loire, Amboise ", null, null, 7000, null, "2024-01-06", false, null, null, '{"latitud":47.413326,"longitud":0.984407}', null, null, "http://www.rondesaintvincent.com/", 'https://via.placeholder.com/640x480.png/00cccc?text=praesentium'
+		"La Ronde Solidaire de la St Vincent", 15, "Indre-et-Loire, Amboise ", null, null, 7000, null, "2024-01-06", false, null, null, '{"latitud":47.413326,"longitud":0.984407}', null, null, "http://www.rondesaintvincent.com/", 'https://www.cdr37.net/media/uploaded/sites/6290/actualite/63e11726228b1_rondesolidaire.png'
 		),
 		(
-		"Trail des Castels", 14, "Tarn, Marssac", "Marssac-Sur Tarn", "Marssac-Sur Tarn", 23000, '{"subida":550,"bajada":550}', "2024-01-06", false, '["Servicio de duchas","Servicio de masaje", "Bocadillos o comida a la llegada", "Trofeos", "Sorteo de premios"]', '{"Avituallamientos":1,"% asfalto":20,"% pista o camino tierra":30,"% senderos":30,"% campo a través":30}', '{"latitud":43.915537,"longitud":2.0304370000000063}', null, null, "http://www.rivesdutarnrunning.fr/", 'https://via.placeholder.com/640x480.png/00cccc?text=praesentium'
+		"Trail des Castels", 14, "Tarn, Marssac", "Marssac-Sur Tarn", "Marssac-Sur Tarn", 23000, '{"subida":550,"bajada":550}', "2024-01-06", false, '["Servicio de duchas","Servicio de masaje", "Bocadillos o comida a la llegada", "Trofeos", "Sorteo de premios"]', '{"Avituallamientos":1,"% asfalto":20,"% pista o camino tierra":30,"% senderos":30,"% campo a través":30}', '{"latitud":43.915537,"longitud":2.0304370000000063}', null, null, "http://www.rivesdutarnrunning.fr/", 'https://entrecastells.cat/wp-content/uploads/2020/01/PORTADA-2020-WEB-111-e1580410901393.jpg'
 		),
 		(
 		"Sant Mateu Xtrail 25k", 11, "Barelona, Premià de Dalt ", "Riera de Sant Pere 147, Premia de Dalt, Societat Sant Jaume", "Riera de Sant Pere 147, Premia de Dalt, Societat Sant Jaume", 25000, '{"subida":600,"bajada":"-"}', "2024-01-09", true, '["Servicio guardarropa","Prueba cronometrada con chip", "Bocadillos o comida a la llegada", "Servicio de duchas"]', '{"Altura max.":500,"Tiempo max.":"2h30","Avituallamientos":4,"% asfalto":2,"% pista o camino tierra":5,"% senderos":93}', null, null, null, "http://www.stmateuxtrail.com/", 'https://via.placeholder.com/640x480.png/00cccc?text=praesentium'
