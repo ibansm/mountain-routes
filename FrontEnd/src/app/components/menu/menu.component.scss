@@ -47,3 +47,7 @@ li.nav-item {
 		padding: 0.3rem 0;
 	}
 }
+
+#navbarNav ul li a:hover {
+	color: map-get($colores, 'naranja');
+}

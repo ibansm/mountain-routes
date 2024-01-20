@@ -13,6 +13,7 @@
 #card-container {
 	max-width: 90%;
 	max-height: 50%;
+	transition: all .3s ease-in;
 
 	@media (min-width: 767px) {
 		max-width: 50%;
@@ -22,6 +23,11 @@
 	@media (min-width: 992px) {
 		max-width: 25%;
 	}
+}
+
+#card-container:hover {
+	transform: scale(1.05);
+	opacity: .8;
 }
 
 #img-container {

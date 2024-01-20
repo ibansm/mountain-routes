@@ -33,3 +33,11 @@
 #card-img {
 	max-height: 250px;
 }
+
+article > div > div > div {
+	cursor: pointer;
+}
+
+article > div > div > div:hover {
+	opacity: .7;
+}
