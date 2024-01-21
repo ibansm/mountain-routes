@@ -13,10 +13,10 @@ export class PeticionesService {
 	public myheaders = new HttpHeaders;
 
 	// Base URL
-	public baseUrl = 'http://localhost:8000/api'
+	// public baseUrl = 'http://localhost:8000/api'
 
 	// url servidor BirtLH + API-BackEnd
-	// public baseUrl = 'https://daw4win10.hosting.birt.eus/public/api'
+	public baseUrl = 'https://daw4win10.hosting.birt.eus/public/api'
 	
 	// Data del componente BUSCADOR
 	private respuesta = new BehaviorSubject<Array<Ruta>>([])
